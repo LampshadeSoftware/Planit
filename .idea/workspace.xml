@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7150b3ef-cae5-418b-9f1e-986ac9cbe49a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/courses_database/static/js/wishlist.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/cowboylynk.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/cowboylynk.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/courses_database/templates/index-base.html" beforeDir="false" afterPath="$PROJECT_DIR$/courses_database/templates/index-base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/courses_database/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/courses_database/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="7150b3ef-cae5-418b-9f1e-986ac9cbe49a" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,8 +52,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/courses_database/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="33" column="60" selection-start-line="33" selection-start-column="60" selection-end-line="33" selection-end-column="60" />
+            <state relative-caret-position="57">
+              <caret line="8" column="19" lean-forward="true" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -233,6 +227,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="707" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32894737" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -646,8 +641,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/courses_database/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="33" column="60" selection-start-line="33" selection-start-column="60" selection-end-line="33" selection-end-column="60" />
+        <state relative-caret-position="57">
+          <caret line="8" column="19" lean-forward="true" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
         </state>
       </provider>
     </entry>
