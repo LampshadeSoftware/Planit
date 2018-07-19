@@ -5,11 +5,11 @@
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("static/fullcalendar/fullcalendar"), require("jquery"));
+		module.exports = factory(require("courses_database/static/fullcalendar/fullcalendar"), require("jquery"));
 	else if(typeof define === 'function' && define.amd)
-		define(["static/fullcalendar/fullcalendar", "jquery"], factory);
+		define(["courses_database/static/fullcalendar/fullcalendar", "jquery"], factory);
 	else if(typeof exports === 'object')
-		factory(require("static/fullcalendar/fullcalendar"), require("jquery"));
+		factory(require("courses_database/static/fullcalendar/fullcalendar"), require("jquery"));
 	else
 		factory(root["FullCalendar"], root["jQuery"]);
 })(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_3__) {
