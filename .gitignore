@@ -104,3 +104,5 @@ Planit/db.sqlite3
 
 .DS_Store
 Planit/.DS_store
+
+\.idea/
