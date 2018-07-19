@@ -1,2 +1,26 @@
 {% extends 'index-base.html' %}
 {% load static %}
+
+{% block searchTable %}
+	<table id="add_courses_table">
+		<thead>
+		<tr><th>Subject</th>
+			<th>Course ID</th>
+			<th>Course Title</th>
+			<th>Add</th>
+		</tr>
+		</thead>
+		<tbody>
+		{% for item in sections %}
+			<tr>
+				<td> {{ item.subject }}</td>
+				<td> {{ item.course_id }} </td>
+				<td> {{ item.title }}</td>
+				<td style="text-align: center;">
+					<button onclick="addToWishList('{{item.subject}}','{{item.course_id}}','{{item.title}}')">+</button>
+				</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
