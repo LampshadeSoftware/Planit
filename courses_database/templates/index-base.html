@@ -5,15 +5,16 @@
     <meta charset="UTF-8">
     <title>PLANiT!</title>
 
-    <!-- Load CSS -->
+    <!-- load CSS -->
     <link rel='stylesheet' href="{% static 'fullcalendar/fullcalendar.css' %}" />
     <link rel="stylesheet" href="{% static 'DataTables/datatables.css' %}">
+    <!-- end load CSS -->
 </head>
 <body>
     {% block searchTable %}
     {% endblock %}
 
-    <!-- load Scripts -->
+    <!-- load scripts -->
     <script src="{% static 'fullcalendar/lib/jquery.min.js' %}"></script>
     <script src="{% static 'fullcalendar/lib/moment.min.js' %}"></script>
     <script src="{% static 'fullcalendar/fullcalendar.js' %}"></script>
@@ -22,5 +23,6 @@
 
     <script src="{% static 'js/scheduler.js' %}"></script>
     <script src="{% static 'js/scheduler-init.js' %}"></script>
+    <!-- end load scripts -->
 </body>
 </html>
