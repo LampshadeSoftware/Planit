@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7150b3ef-cae5-418b-9f1e-986ac9cbe49a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/home-base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Planit/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Planit/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -71,8 +66,8 @@
       <file leaf-file-name="home-base.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/home-base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="252">
+              <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -137,8 +132,8 @@
         <option value="$PROJECT_DIR$/courses_database/admin.py" />
         <option value="$PROJECT_DIR$/courses_database/templates/home-base.html" />
         <option value="$PROJECT_DIR$/courses_database/templates/home.html" />
-        <option value="$PROJECT_DIR$/templates/home-base.html" />
         <option value="$PROJECT_DIR$/Planit/settings.py" />
+        <option value="$PROJECT_DIR$/templates/home-base.html" />
       </list>
     </option>
   </component>
@@ -276,8 +271,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="right" id="Python Console" order="4" weight="0.35702747" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3296355" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32786885" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1987076" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32786885" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1987076" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="5" weight="0.32956383" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -455,8 +450,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/home-base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="252">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
         </state>
       </provider>
     </entry>
