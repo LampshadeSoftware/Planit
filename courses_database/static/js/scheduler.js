@@ -3,4 +3,7 @@ $(document).ready( function () {
 
     // SETS UP TABLES
     tablesInit();
+
+    // SETS UP CALENDAR
+    calendarInit();
 } );
