@@ -18,5 +18,5 @@ function calendarInit(){
 }
 
 function tablesInit(){
-    $('#add_courses_table').DataTable();
+    let coursesDataTable = $('#search_courses_table').DataTable({searching: true, dom: 'lrtp', "lengthChange": false});
 }

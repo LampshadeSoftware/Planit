@@ -1,8 +1,27 @@
 {% extends 'index-base.html' %}
 {% load static %}
 
+{% block tabs %}
+    <div class="tabs is-boxed is-fullwidth">
+        <ul>
+            <li class="is-active">
+                <a>
+                    <span class="icon is-small"><i class="fas fa-search"></i></span>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <span class="icon is-small"><i class="fas fa-filter"></i></span>
+                    <span>Filter</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
+
 {% block searchTable %}
-	<table id="add_courses_table">
+	<table id="search_courses_table" class="display">
 		<thead>
 		<tr><th>Subject</th>
 			<th>Course ID</th>
