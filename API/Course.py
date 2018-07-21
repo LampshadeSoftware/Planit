@@ -1,26 +1,15 @@
-import os
-import sys
-
-import django
-
-sys.path.append('..')
-# you have to set the correct path to you settings module
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Planit.Planit.settings")
-
-django.setup()
-
-# your imports, e.g. Django models
-from courses_database.models import Section
-
 from API.Section import *
 from API.TimeBlock import *
+import django
+django.setup()
+from courses_database.models import Section
+
 
 class API_Course:
-
-	'''
+	"""
 	:param subject: string (ex: CSCI)
 	:param course_id: string (ex: 141)
-	'''
+	"""
 	def __init__(self, subject, course_id):
 		self._subject = subject
 		self._course_id = course_id
@@ -63,4 +52,3 @@ class API_Course:
 
 	def __str__(self):
 		return str(self._subject) + " " + str(self._course_id)
-
