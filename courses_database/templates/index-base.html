@@ -26,7 +26,10 @@
         <div class="columns">
             <div class="column is-4">
                 {% block tabs %}{% endblock %}
-                {% block searchTable %}{% endblock %}
+                <div id="searchTab">
+                    {% block searchTable %}{% endblock %}
+                </div>
+                <div id="filterTab"></div>
             </div>
             <div class="column is-8">
                 <div id="calendar"></div>
