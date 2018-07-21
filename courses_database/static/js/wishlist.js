@@ -1,27 +1,27 @@
 class WishList {
     constructor(){
-        this.wishList = {};
+        this.wish_list = {};
         this.reloadData();
     }
 
-    addClass(subject, courseId, title){
-        this.wishList[subject + courseId] = {
+    addClass(subject, course_id, title){
+        this.wish_list[subject + course_id] = {
             "subject": subject,
-            "courseId": courseId,
+            "course_id": course_id,
             "title": title,
             "optional": true
         };
     }
 
-    removeClass(subject, courseId){
-        delete this.wishList[subject + courseId];
+    removeClass(subject, course_id){
+        delete this.wish_list[subject + course_id];
     }
 
     reloadData(){
-        this.wishList = JSON.parse(localStorage.getItem("wishList")) || {};
+        this.wish_list = JSON.parse(localStorage.getItem("wish_list")) || {};
     }
 
     saveData(){
-        localStorage.setItem("wishList", JSON.stringify(this.wishList));
+        localStorage.setItem("wish_list", JSON.stringify(this.wish_list));
     }
 }
