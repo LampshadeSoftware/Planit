@@ -18,5 +18,23 @@ function calendarInit(){
 }
 
 function tablesInit(){
-    $('#add_courses_table').DataTable();
+    let coursesDataTable = $('#course_search_table').DataTable({searching: true, dom: 'lrtp', "lengthChange": false});
+
+    // sets up all the course search filters
+    $('#subject_input').on( 'keyup', function () {
+        filterCourseTable(this, 0);
+    });
+    $('#course_num_input').on( 'keyup', function () {
+        filterCourseTable(this, 1);
+    });
+    $('#title_input').on( 'keyup', function () {
+        filterCourseTable(this, 2);
+    });
+
+    function filterCourseTable(element, column) {
+        coursesDataTable
+            .columns( column )
+            .search( element.value )
+            .draw();
+    }
 }
