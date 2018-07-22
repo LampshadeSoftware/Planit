@@ -45,12 +45,32 @@ function updateSchedules(is_async) {
     });
 }
 
+// Start of calendar functions
 function updateCalendar() {
     let calendar = $('#calendar');
     calendar.fullCalendar('removeEvents');
     calendar.fullCalendar('addEventSource', scheduler.getCurrentSchedule());
     calendar.fullCalendar('rerenderEvents');
+
+    // updates the schedule index title
+    if (scheduler.numberOfSchedules() === 0){
+        document.getElementById("schedule_index").innerHTML = "0/0";
+    } else {
+        document.getElementById("schedule_index").innerHTML = (scheduler.schedule_index + 1).toString() + "/"
+            + scheduler.numberOfSchedules().toString();
+    }
 }
+
+function cycleLeft(){
+    scheduler.cycleLeft();
+    updateCalendar();
+}
+
+function cycleRight(){
+    scheduler.cycleRight();
+    updateCalendar();
+}
+// End of calendar functions
 
 // Start of wish list functions
 function addToWishList(subject, course_id, title){

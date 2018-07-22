@@ -1,6 +1,10 @@
+/**
+ * Manages all of the schedules and the currently displayed schedules
+ * Parses raw data and converts it to a calendar-readable format
+ */
 class Scheduler {
     constructor(){
-        this.schedules = [[{}]];
+        this.schedules = [[]];
         this.schedule_index = 0;
     }
 
@@ -14,6 +18,8 @@ class Scheduler {
     parseRawSchedules(raw_schedules){
         // clears the last array of schedules and resets index
         this.reset();
+
+        console.log(raw_schedules);
 
         this.schedules = [];
         // parses the raw schedules dictionary into a FullCalendar-readable format
@@ -49,9 +55,9 @@ class Scheduler {
     }
 
     cycleLeft(){
-        num_schedules = this.numberOfSchedules();
+        let num_schedules = this.numberOfSchedules();
         this.schedule_index -= 1;
-        if (this.schedule_idex < 0){
+        if (this.schedule_index < 0){
             if (num_schedules === 0){
                 this.schedule_index = 0;
             } else {
@@ -61,13 +67,18 @@ class Scheduler {
     }
 
     cycleRight(){
-        scheduleIndex += 1;
-        if (scheduleIndex >= numSchedules){
-            scheduleIndex = 0;
+        this.schedule_index += 1;
+        if (this.schedule_index >= this.numberOfSchedules()){
+            this.schedule_index = 0;
         }
     }
 
     numberOfSchedules(){
+        if (this.schedules.length === 1){
+            if (this.schedules[0].length === 0){
+                return 0;
+            }
+        }
         return this.schedules.length;
     }
 
