@@ -259,6 +259,10 @@ class API_User:
 		the given schedule and all its derivative schedules are not allowed through the filters
 		"""
 
+		# check that schedule has less than max credits
+		if self._filters['credit_max'] is not None and schedule.total_credits() > self._filters['credit_max']:
+			return False
+			
 		return True
 
 	def schedule_passes_final_filters(self, schedule):
@@ -274,10 +278,6 @@ class API_User:
 
 		# check that schedule has more than min credits
 		if self._filters['credit_min'] is not None and schedule.total_credits() < self._filters['credit_min']:
-			return False
-
-		# check that schedule has less than max credits
-		if self._filters['credit_max'] is not None and schedule.total_credits() > self._filters['credit_max']:
 			return False
 
 		# check for all desired attributes
