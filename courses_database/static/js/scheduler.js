@@ -1,58 +1,79 @@
-// global variables
-var wish_list = new WishList();  // stores the classes that the user is interested in
+class Scheduler {
+    constructor(){
+        this.schedules = [[{}]];
+        this.schedule_index = 0;
+    }
 
-$(document).ready( function () {
-    // sets up everything
-    tablesInit();
-    calendarInit();
-} );
+    /**
+     * returns the schedule that the user is currently viewing (the one at schedule index)
+     */
+    getCurrentSchedule(){
+        console.log("here");
+        return this.schedules[this.schedule_index];
+    }
 
-/**
- * Retrieves available schedules from the database given the current wish list items
- * @param {boolean} is_async - if false, this function won't run in the background
- */
-function updateSchedules(is_async) {
-    if (typeof(is_async)==='undefined') is_async = true;  // default value for is_async
+    parseRawSchedules(raw_schedules){
+        // clears the last array of schedules and resets index
+        this.reset();
 
-    // TODO: when schedule filters are implemented, update this line to get those filters
-    let filters = {};
-    var courses_info = {
-        "wish_list": wish_list.getData(),
-        "filters": filters
-    };
+        this.schedules = [];
+        // parses the raw schedules dictionary into a FullCalendar-readable format
+        for (let i in raw_schedules) {
+            creditCounts.push(raw_schedules[i]["total_credits"]);
+            let schedule = [];
+            let sections = raw_schedules[i]["sections"];
+            for (let j in sections) {
+                let section = sections[j];
 
-    // Ajax gets the schedules data in the background (or not in the background if async is false)
-    $.ajax({
-        url: get_schedules_url,
-        method: 'POST',
-        data: {
-            "courses_info": JSON.stringify(courses_info),
-            "csrfmiddlewaretoken": csrf_token
-        },
-        dataType: 'json',
-        async: is_async,
-        success: function (data) {
-            creditCounts = [];
-            coursesInfo = data["coursesInfo"];
-            let raw_schedules = data["schedules"];
-            if (raw_schedules.length > 0){  // if there exists at least one schedule
-            } else {  // no scheduels exist given the courses in the wish list
+                let subject = section["subject"];
+                let courseId = section["course_id"];
+                let sectionNum = section["section_num"];
+                let title = section["title"];
+                let numCredits = section["num_credits"];
+                for (let t in section["times"]) {
+                    let time = section["times"][t];
+                    let day = time["day"];
+                    let startHour = time["start_hour"];
+                    let startMinute = time["start_minute"];
+                    let endHour = time["end_hour"];
+                    let endMinute = time["end_minute"];
+                    schedule.push({
+                        "title": "[" + numCredits + "] " + subject + " " + courseId + " " + sectionNum + " - " + title,
+                        "start": "2018-01-0" + day + 'T' + startHour + ":" + startMinute,
+                        "end": "2018-01-0" + day + 'T' + endHour + ":" + endMinute,
+                        "color": coursesInfo[subject + courseId]["color"]
+                    });
+                }
             }
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {  // something went wrong
-            alert("Status: " + textStatus + ". Error" + errorThrown);
+            this.schedules.push(schedule);
         }
-    });
-}
+    }
 
-// Start of wish list functions
-function addToWishList(subject, course_id, title){
-    wish_list.addCourse(subject, course_id, title);
-    updateSchedules();
-}
+    cycleLeft(){
+        num_schedules = this.numberOfSchedules();
+        this.schedule_index -= 1;
+        if (this.schedule_idex < 0){
+            if (num_schedules === 0){
+                this.schedule_index = 0;
+            } else {
+                this.schedule_index = num_schedules-1;
+            }
+        }
+    }
 
-function removeFromWishList(subject, course_id, title){
-    wish_list.removeCourse(subject, course_id, title);
-    updateSchedules();
+    cycleRight(){
+        scheduleIndex += 1;
+        if (scheduleIndex >= numSchedules){
+            scheduleIndex = 0;
+        }
+    }
+
+    numberOfSchedules(){
+        return this.schedules.length;
+    }
+
+    reset(){
+        this.schedules = [[{}]];
+        this.schedule_index = 0;
+    }
 }
-// End of wish list functions

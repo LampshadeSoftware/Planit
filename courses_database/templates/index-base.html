@@ -45,7 +45,8 @@
 
     <script src="{% static 'js/wishlist.js' %}"></script>
     <script src="{% static 'js/scheduler.js' %}"></script>
-    <script src="{% static 'js/scheduler-init.js' %}"></script>
+    <script src="{% static 'js/init.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
     <script> // gets Django template variables that will be used in js
         var get_schedules_url = '{% url "get_schedules" %}';
         var csrf_token = '{{ csrf_token }}';
