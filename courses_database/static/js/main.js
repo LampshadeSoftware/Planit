@@ -1,6 +1,6 @@
 // global variables
-var wish_list = new WishList();  // stores the classes that the user is interested in
-var scheduler = new Scheduler();
+let wish_list = new WishList();  // stores the classes that the user is interested in
+let scheduler = new Scheduler();
 
 $(document).ready( function () {
     // sets up everything
@@ -17,7 +17,7 @@ function updateSchedules(is_async) {
 
     // TODO: when schedule filters are implemented, update this line to get those filters
     let filters = {};
-    var courses_info = {
+    let courses_info = {
         "wish_list": wish_list.getData(),
         "filters": filters
     };
@@ -33,8 +33,10 @@ function updateSchedules(is_async) {
         dataType: 'json',
         async: is_async,
         success: function (data) {
+            // TODO: move these into scheduler.js
             creditCounts = [];
             coursesInfo = data["coursesInfo"];
+
             let raw_schedules = data["schedules"];
             scheduler.parseRawSchedules(raw_schedules);
             updateCalendar();

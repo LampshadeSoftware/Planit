@@ -8,6 +8,15 @@ body {
   font-family: 'Arial Rounded MT Bold', Arial, Helvetica, sans-serif;
 }
 
+.center-horizontal {
+  margin: 0 auto;
+  width: 100px;
+}
+
+.section {
+  padding-top: 1.5rem;
+}
+
 .dataTables_wrapper .dataTables_filter {
   float: left;
   text-align: right;

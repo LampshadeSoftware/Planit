@@ -19,9 +19,8 @@ class Scheduler {
         // clears the last array of schedules and resets index
         this.reset();
 
-        console.log(raw_schedules);
-
         this.schedules = [];
+
         // parses the raw schedules dictionary into a FullCalendar-readable format
         for (let i in raw_schedules) {
             creditCounts.push(raw_schedules[i]["total_credits"]);
