@@ -1,0 +1,102 @@
+
+class Time_Block:
+
+	DAYS = ['M', 'T', 'W', 'R', 'F']
+
+	'''
+	returns a list of time blocks, repeating the start/end times for the given days
+	ex: time_str = 'MWF:1000-1050'
+	'''
+	@classmethod
+	def get_time_blocks(cls, time_str):
+		blocks = []
+
+		if ':' in time_str:
+			colon_index = time_str.index(':')
+			days = time_str[:colon_index]
+
+			start_time = time_str[-9:-5]
+			end_time = time_str[-4:]
+
+
+			for day in days:
+				blocks.append(Time_Block(start_time, end_time, day))
+
+		return blocks
+
+	@classmethod
+	def convert_string(cls, time_str):
+		hour = int(time_str[:2])
+		minute = int(time_str[2:])
+		time = hour * 60 + minute
+
+		return time
+
+	@classmethod
+	def get_readable_time(cls, time):
+		return format((time // 60), '02d') + format((time % 60), '02d')
+
+
+	def __init__(self, start_str, end_str, day):
+
+		self._start = Time_Block.convert_string(start_str)
+		self._end = Time_Block.convert_string(end_str)
+
+		self._day_index = Time_Block.DAYS.index(day)
+
+	def __str__(self):
+		out = Time_Block.DAYS[self._day_index]
+		out += ": " + Time_Block.get_readable_time(self._start)
+		out += "-" + Time_Block.get_readable_time(self._end)
+		return out
+
+
+	def get_start(self):
+		return self._start
+
+	def get_end(self):
+		return self._end
+
+	def get_day_char(self):
+		return Time_Block.DAYS[self._day_index]
+
+	def get_day_index(self):
+		return self._day_index
+
+	def get_as_list(self):
+		return [self.get_day_char(), self._start, self._end]
+
+	def get_as_dict(self):
+		out = dict()
+		out['day'] = self.get_day_index() + 1
+
+		readable_start = Time_Block.get_readable_time(self._start)
+		out['start_hour'] = readable_start[:2]
+		out['start_minute'] = readable_start[2:]
+
+		readable_end = Time_Block.get_readable_time(self._end)
+		out['end_hour'] = readable_end[:2]
+		out['end_minute'] = readable_end[2:]
+
+		return out
+
+	def overlaps(self, other_block):
+		if self._day_index != other_block._day_index:
+			return False
+
+		if self._start < other_block._start:
+			if self._end < other_block._start:
+				return False
+			else:
+				return True
+		else:
+			if self._start < other_block._end:
+				return True
+			else:
+				return False
+
+	def starts_after(self, time_str):
+		return self._start >= Time_Block.convert_string(time_str)
+
+	def ends_before(self, time_str):
+		return self._end <= Time_Block.convert_string(time_str)
