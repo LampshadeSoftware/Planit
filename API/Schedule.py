@@ -139,15 +139,16 @@ class API_Schedule:
 		Converts this object into a list of dictionaries that can be passed between services.
 
 		Returns:
-		list(dict): a list of dictionaries, where each dictionary represents a meet time
-		of a section, with the keys:
-			title
-			start
-			end
-			color
-
-		TODO: fix this so that each dictionary is one section, with another list of time
-		block dictionaries for meet times
+		dict: A dictionary representing information about the schedule, with keys:
+			total_credits -> int
+			sections -> dict, with keys:
+				subject -> string
+				course_id -> string
+				title -> string
+				section_num -> string
+				crn -> int
+				num_credits -> int
+				times -> list(dict) (see Time_Block.py for keys)
 		"""
 
 		sched = dict()

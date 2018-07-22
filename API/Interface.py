@@ -40,7 +40,7 @@ def compute_schedules(wish_list, filters):
 	for key in filters:
 		# print("Receiving filter - {" + str(key) + ": " + str(filters[key]) + "}")
 		if len(filters[key]) > 0:
-			user.apply_filter(key, filters[key])
+			user.set_filter(key, filters[key])
 		pass
 
 	out = user.get_interface_output(colors_dict)

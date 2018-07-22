@@ -129,11 +129,11 @@ class Time_Block:
 
 		Returns:
 		dict: Dictionary representation with keys:
-			day
-			start_hour
-			start_minute
-			end_hour
-			end_minute
+			day -> int
+			start_hour -> string
+			start_minute -> string
+			end_hour -> string
+			end_minute -> string
 		"""
 
 		out = dict()
