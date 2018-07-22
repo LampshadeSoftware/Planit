@@ -1,4 +1,4 @@
-from API.TimeBlock import *
+from API.Time_Block import *
 from random import choice
 
 class API_Schedule:
@@ -121,7 +121,7 @@ class API_Schedule:
 		"""
 
 		out = ""
-		for day in TimeBlock.DAYS:
+		for day in Time_Block.DAYS:
 			out += str(day) + "\n"
 			out += "---------\n"
 			for section in self._sections:

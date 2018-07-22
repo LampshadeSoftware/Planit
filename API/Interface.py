@@ -9,7 +9,7 @@ from API.User import *
 from courses_database.models import Section
 
 from API.Section import *
-from API.TimeBlock import *
+from API.Time_Block import *
 
 
 def compute_schedules(wish_list, filters):

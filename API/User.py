@@ -1,5 +1,5 @@
 from API.Course import *
-from API.TimeBlock import *
+from API.Time_Block import *
 from API.Schedule import *
 
 
@@ -31,10 +31,10 @@ class API_User:
 
 	def apply_filter(self, filter, value):
 		if filter == 'startTime':
-			self.set_filter_earliest_time(TimeBlock.get_readable_time(int(value)))
+			self.set_filter_earliest_time(Time_Block.get_readable_time(int(value)))
 
 		elif filter == 'endTime':
-			self.set_filter_latest_time(TimeBlock.get_readable_time(int(value)))
+			self.set_filter_latest_time(Time_Block.get_readable_time(int(value)))
 
 		elif filter == 'minCredits':
 			self.set_filter_credit_min(value)
@@ -231,8 +231,3 @@ class API_User:
 			used_courses[key]['color'] = colors_dict[key]
 
 		return {'schedules': schedules, 'used_courses': used_courses}
-
-
-
-
-

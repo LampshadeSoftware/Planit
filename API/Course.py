@@ -1,5 +1,5 @@
 from API.Section import *
-from API.TimeBlock import *
+from API.Time_Block import *
 import django
 django.setup()
 from courses_database.models import Section
@@ -38,7 +38,7 @@ class API_Course:
 		# Create section objects for all sections of this course and store in list
 		self._sections = []
 		for section in django_obj_set:
-			time_blocks = TimeBlock.get_time_blocks(section.meet_time)
+			time_blocks = Time_Block.get_time_blocks(section.meet_time)
 			sec_object = API_Section(self, section.crn, section.section_number, time_blocks, section.title)
 			self._sections.append(sec_object)
 
