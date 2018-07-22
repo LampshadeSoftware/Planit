@@ -2,16 +2,28 @@ from API.TimeBlock import *
 from random import choice
 
 class API_Schedule:
+	"""
+	Represents a specific potential schedule, with a set of class sections that
+	do not conflict with each other.
+	"""
 
 	def __init__(self):
 		self._sections = set()
 		self._num_credits = 0
 
-	'''
-	:param new_section: API.Section object
-	:return: True if the add was successful, false if not
-	'''
+
 	def add_section(self, new_section):
+		"""
+		Attempt to add a new section to this schedule. If there is a conflict
+		with the existing sections, the section will not be added.
+
+		Parameters:
+		new_section (API_Section): The new section to be added
+
+		Returns:
+		bool: True if the add was successful, false if not
+		"""
+
 		# check that we are not adding duplicate sections
 		if new_section in self._sections:
 			# print(str(new_section) + " already exists in schedule")
@@ -30,12 +42,30 @@ class API_Schedule:
 		return True
 
 	def total_credits(self):
+		"""
+		Returns:
+		int: The sum of all credits of courses in this schedule
+		"""
+
 		return self._num_credits
 
 	def get_sections(self):
+		"""
+		Returns:
+		list(API_Section): The section objects represented by this schedule
+		"""
+
 		return list(self._sections)
 
 	def get_course_set(self):
+		"""
+		Iterates over every section in the internal sections list and compiles
+		a set of the course identifiers (ex: 'CSCI 141') of each of the sections.
+
+		Returns:
+		set(string): The course identifiers of the courses represented by this schedule
+		"""
+
 		out = set()
 		for section in self._sections:
 			course = section.get_course()
@@ -47,11 +77,18 @@ class API_Schedule:
 			out.add(key)
 		return out
 
-	'''
-	:param other_schedule: API.Schedule object
-	:return: true if the schedules are equal, false if not
-	'''
+
 	def equals(self, other_schedule):
+		"""
+		Determines the equality of this schedule to another schedule.
+
+		Parameters:
+		other_schedule (API_Schedule): The schedule object to compare to this one.
+
+		Returns:
+		bool: True if the schedules contain exactly the same sections, false if not
+		"""
+
 		if len(self._sections) != len(other_schedule._sections):
 			return False
 
@@ -61,10 +98,15 @@ class API_Schedule:
 
 		return True
 
-	'''
-	:return: a new API.Schedule object that has all the same sections
-	'''
+
 	def copy(self):
+		"""
+		Creates a new API_Schedule object with the same sections
+
+		Returns:
+		API_Schedule: A reference to the new identical schedule
+		"""
+
 		new = API_Schedule()
 		new._sections = self._sections.copy()
 		new._num_credits = self._num_credits
@@ -72,6 +114,12 @@ class API_Schedule:
 
 
 	def __str__(self):
+		"""
+		String representation of the schedule for debugging.
+
+		Lists each day and the sections and times for that day.
+		"""
+
 		out = ""
 		for day in TimeBlock.DAYS:
 			out += str(day) + "\n"
@@ -85,19 +133,23 @@ class API_Schedule:
 			out += "\n"
 		return out
 
-	'''
-	:param colors_dict: Dictionary, maps subject+course_id to a color
-	:return: a list of dictionaries, where each dictionary represents a meet time
-	of a section, with the keys:
-		title
-		start
-		end
-		color
 
-	TODO: fix this so that each dictionary is one section, with another list of time
-	block dictionaries for meet times
-	'''
 	def convert_to_dict(self):
+		"""
+		Converts this object into a list of dictionaries that can be passed between services.
+
+		Returns:
+		list(dict): a list of dictionaries, where each dictionary represents a meet time
+		of a section, with the keys:
+			title
+			start
+			end
+			color
+
+		TODO: fix this so that each dictionary is one section, with another list of time
+		block dictionaries for meet times
+		"""
+
 		sched = dict()
 		sched['total_credits'] = self.total_credits()
 
@@ -120,5 +172,3 @@ class API_Schedule:
 		sched['sections'] = sections
 
 		return sched
-
-
