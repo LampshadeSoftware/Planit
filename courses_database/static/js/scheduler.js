@@ -8,7 +8,6 @@ class Scheduler {
      * returns the schedule that the user is currently viewing (the one at schedule index)
      */
     getCurrentSchedule(){
-        console.log("here");
         return this.schedules[this.schedule_index];
     }
 

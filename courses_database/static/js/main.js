@@ -37,12 +37,12 @@ function updateSchedules(is_async) {
             coursesInfo = data["coursesInfo"];
             let raw_schedules = data["schedules"];
             scheduler.parseRawSchedules(raw_schedules);
+            updateCalendar();
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {  // something went wrong
             alert("Status: " + textStatus + ". Error" + errorThrown);
         }
     });
-    updateCalendar();
 }
 
 function updateCalendar() {
