@@ -12,6 +12,27 @@ body {
   display: none;
 }
 
+// Start of input styling
+label, input {
+  float:left;
+}
+
+input {
+  font-size: 1rem;
+  padding: 2px; // instead of using fixed height
+  width: 50%;
+}
+
+label {
+  width: 50%; // can use JavaScript if it needs to be dynamic
+  padding-top: 3px; // to make the label vertically inline with the input element
+}
+
+.fieldWrapper {
+  clear:left;
+}
+// End of input styling
+
 .is-active {
   display: block;
 }

@@ -1,5 +1,3 @@
-import os
-import sys
 import django
 django.setup()
 
@@ -7,9 +5,6 @@ from API.User import *
 
 # your imports, e.g. Django models
 from courses_database.models import Section
-
-from API.Section import *
-from API.Time_Block import *
 
 
 def compute_schedules(wish_list, filters):

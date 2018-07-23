@@ -10,6 +10,25 @@ body {
   display: none;
 }
 
+label, input {
+  float: left;
+}
+
+input {
+  font-size: 1rem;
+  padding: 2px;
+  width: 50%;
+}
+
+label {
+  width: 50%;
+  padding-top: 3px;
+}
+
+.fieldWrapper {
+  clear: left;
+}
+
 .is-active {
   display: block;
 }
