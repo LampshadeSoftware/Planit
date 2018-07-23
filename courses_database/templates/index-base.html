@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <!-- end load CSS -->
 </head>
-<body>
+<body onunload="wish_list.saveData()">
     <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="#">
@@ -31,6 +31,11 @@
                 <div id="filter_tab"></div>
             </div>
             <div class="column is-8">
+                <div class="center-horizontal">
+                    <button onclick="cycleLeft()"><</button>
+                    <strong><p id="schedule_index" style="display: inline-block;">0/0</p></strong>
+                    <button onclick="cycleRight()">></button>
+                </div>
                 <div id="calendar"></div>
             </div>
         </div>
@@ -43,8 +48,14 @@
 
     <script src="{% static 'DataTables/datatables.js' %}"></script>
 
+    <script src="{% static 'js/wishlist.js' %}"></script>
     <script src="{% static 'js/scheduler.js' %}"></script>
-    <script src="{% static 'js/scheduler-init.js' %}"></script>
+    <script src="{% static 'js/init.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script> // gets Django template variables that will be used in js
+        var get_schedules_url = '{% url "get_schedules" %}';
+        var csrf_token = '{{ csrf_token }}';
+    </script>
     <!-- end load scripts -->
 </body>
 </html>

@@ -21,8 +21,8 @@ def index(request):
 def get_schedules(request):
 	if request.POST:
 		# gets the relevant schedule request data from the post request
-		schedule_request_data = json.loads(request.POST["data"])
-		wish_list = schedule_request_data["wishList"]
+		schedule_request_data = json.loads(request.POST["courses_info"])
+		wish_list = schedule_request_data["wish_list"]
 		filters = schedule_request_data["filters"]
 
 		if wish_list:  # if there are courses in the wish list, send the possible schedules
