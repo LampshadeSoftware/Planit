@@ -35,7 +35,7 @@ class Time_Block:
 		return blocks
 
 	@classmethod
-	def convert_readable_to_msm(cls, readablew):
+	def convert_readable_to_msm(cls, readable):
 		"""
 		Converts a time string in military time to the number of minutes since midnight.
 

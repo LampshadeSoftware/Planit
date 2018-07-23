@@ -24,11 +24,6 @@ class API_Schedule:
 		bool: True if the add was successful, false if not
 		"""
 
-		# check that we are not adding duplicate sections
-		if new_section in self._sections:
-			# print(str(new_section) + " already exists in schedule")
-			return False
-
 		# check that the class we are trying to add does not overlap with
 		# any sections that already exist in this schedule
 		for existing_section in self._sections:
@@ -78,7 +73,7 @@ class API_Schedule:
 		return out
 
 
-	def equals(self, other_schedule):
+	def __eq__(self, other_schedule):
 		"""
 		Determines the equality of this schedule to another schedule.
 
