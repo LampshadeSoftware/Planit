@@ -1,3 +1,7 @@
+/**
+ * General functions for the whole website
+ */
+
 // global variables
 let wish_list = new WishList();  // stores the classes that the user is interested in
 let scheduler = new Scheduler();
@@ -6,6 +10,7 @@ $(document).ready( function () {
     // sets up everything
     tablesInit();
     calendarInit();
+    tabsInit();
 } );
 
 /**

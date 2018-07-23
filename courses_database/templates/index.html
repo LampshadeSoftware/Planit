@@ -2,15 +2,15 @@
 {% load static %}
 
 {% block tabs %}
-    <div class="tabs is-boxed is-fullwidth">
+    <div class="tabs is-boxed is-fullwidth" id="tabs">
         <ul>
-            <li class="is-active">
+            <li class="is-active" data-tab="search">
                 <a>
                     <span class="icon is-small"><i class="fas fa-search"></i></span>
                     <span>Search Courses</span>
                 </a>
             </li>
-            <li>
+            <li data-tab="filter">
                 <a>
                     <span class="icon is-small"><i class="fas fa-filter"></i></span>
                     <span>Filter Schedules</span>

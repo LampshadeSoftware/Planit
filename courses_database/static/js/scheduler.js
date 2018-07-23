@@ -2,6 +2,7 @@
  * Manages all of the schedules and the currently displayed schedules
  * Parses raw data and converts it to a calendar-readable format
  */
+
 class Scheduler {
     constructor(){
         this.schedules = [[]];

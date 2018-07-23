@@ -38,3 +38,19 @@ function tablesInit(){
             .draw();
     }
 }
+
+function tabsInit(){
+    $('#tabs li').on( 'click', function () {
+        let tab = $(this).data('tab');  // gets the tab that the user clicked
+
+        $('#tabs li').removeClass('is-active');  // makes all tabs inactive
+        $(this).addClass('is-active');  // makes the clicked tab active
+
+        // makes all tab contents inactive
+        $('#search_tab').removeClass('is-active');
+        $('#filter_tab').removeClass('is-active');
+
+        // makes clicked tab content active
+        $("#" + tab + "_tab").addClass('is-active');
+    });
+}

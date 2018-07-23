@@ -1,3 +1,7 @@
+/**
+ * Manages the wish list (addition, deletion, saving to local storage)
+ */
+
 class WishList {
     constructor(){
         localStorage.clear();  // use this for testing to clear local storage of any messed up data

@@ -25,10 +25,12 @@
         <div class="columns">
             <div class="column is-4">
                 {% block tabs %}{% endblock %}
-                <div id="search_tab">
+                <div id="search_tab" class="content-tab is-active">
                     {% block searchTable %}{% endblock %}
                 </div>
-                <div id="filter_tab"></div>
+                <div id="filter_tab" class="content-tab">
+                    {% block wishListFilters %}{% endblock %}  <!-- TODO: Implement this -->
+                </div>
             </div>
             <div class="column is-8">
                 <div class="center-horizontal">
