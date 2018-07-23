@@ -1,14 +1,6 @@
-
-
 import os
 import sys
-
 import django
-
-sys.path.append('..')
-# you have to set the correct path to you settings module
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Planit.Planit.settings")
-
 django.setup()
 
 from API.User import *
@@ -17,14 +9,15 @@ from API.User import *
 from courses_database.models import Section
 
 from API.Section import *
-from API.TimeBlock import *
+from API.Time_Block import *
 
 
-'''
-wish_list should be a list of dictionaries where each dictionary has
-subject, course_id, and title as keys
-'''
 def compute_schedules(wish_list, filters):
+	"""
+	:param wish_list: should be a list of dictionaries where each dictionary has subject, course_id, and title as keys
+	:param filters:
+	:return:
+	"""
 	user = API_User()
 
 	colors = ["#46B8AF", "#5869CE", "#CE5858", "#BD4EAC", "#F0962A", "#5DC15D", "#975DC1"]
@@ -43,12 +36,11 @@ def compute_schedules(wish_list, filters):
 
 		user.add_to_wish_list(str(course['subject']), str(course['course_id']), optional=course['optional']=='true')
 
-
 	# apply filters
 	for key in filters:
-		#print("Recieving filter - {" + str(key) + ": " + str(filters[key]) + "}")
+		# print("Receiving filter - {" + str(key) + ": " + str(filters[key]) + "}")
 		if len(filters[key]) > 0:
-			user.apply_filter(key, filters[key])
+			user.set_filter(key, filters[key])
 		pass
 
 	out = user.get_interface_output(colors_dict)
