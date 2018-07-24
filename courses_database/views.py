@@ -27,8 +27,8 @@ def get_schedules(request):
 
 		if wish_list:  # if there are courses in the wish list, send the possible schedules
 			schedules, courses_info = Interface.compute_schedules(list(wish_list.values()), filters)
-			return JsonResponse({"schedules": schedules, "coursesInfo": courses_info}, safe=False)
+			return JsonResponse({"schedules": schedules, "courses_info": courses_info}, safe=False)
 		else:  # returns a default value if no courses were provided
-			return JsonResponse({"schedules": [], "coursesInfo": {}}, safe=False)
+			return JsonResponse({"schedules": [], "courses_info": {}}, safe=False)
 	else:
 		return HttpResponse("Da fuck are you tryin' to do?")

@@ -26,9 +26,12 @@
     <div class="section is-primary">
         <div class="columns">
             <div class="column is-5" id="search_and_filter_tabs">
-                <div class="notification" id="wish_list_holder">
-                    <strong>You have not added any courses to your wish list.</strong>
-                    To add classes, select them from the 'Search Courses' tab.
+                <div class="notification">
+                    <div class="content-tab" id="empty_wish_list">
+                        <strong>You have not added any courses to your wish list.</strong>
+                        To add courses, select them from the 'Search Courses' tab.
+                    </div>
+                    <div class="content-tab is-active" id="wish_list"></div>
                 </div>
                 {% block tabs %}{% endblock %}
                 <div id="search_tab" class="content-tab is-active">

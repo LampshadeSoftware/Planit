@@ -12,6 +12,8 @@ $(document).ready( function () {
     calendarInit();
     tabsInit();
     filtersInit();
+
+    updateSchedules();
 } );
 
 /**
@@ -44,12 +46,9 @@ function updateSchedules(is_async) {
         dataType: 'json',
         async: is_async,
         success: function (data) {
-            // TODO: move these into scheduler.js
-            creditCounts = [];
-            coursesInfo = data["coursesInfo"];
-
+            let courses_info = data["courses_info"];  // gives info about the courses, applies to all schedules
             let raw_schedules = data["schedules"];
-            scheduler.parseRawSchedules(raw_schedules);
+            scheduler.parseRawSchedules(raw_schedules, courses_info);
             updateCalendar();
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {  // something went wrong

@@ -8,6 +8,8 @@ class Scheduler {
         this.empty_schedules = [[{}]];
         this.schedules = this.empty_schedules;
         this.schedule_index = 0;
+        this.credit_counts = [];
+        this.courses_info = {};
     }
 
     /**
@@ -17,15 +19,17 @@ class Scheduler {
         return this.schedules[this.schedule_index];
     }
 
-    parseRawSchedules(raw_schedules){
+    parseRawSchedules(raw_schedules, courses_info){
         // clears the last array of schedules and resets index
         this.reset();
 
+        this.courses_info = courses_info;
         this.schedules = [];
 
+        // TODO: update all these variables to follow our new syntax rules
         // parses the raw schedules dictionary into a FullCalendar-readable format
         for (let i in raw_schedules) {
-            creditCounts.push(raw_schedules[i]["total_credits"]);
+            this.credit_counts.push(raw_schedules[i]["total_credits"]);
             let schedule = [];
             let sections = raw_schedules[i]["sections"];
             for (let j in sections) {
@@ -47,7 +51,7 @@ class Scheduler {
                         "title": "[" + numCredits + "] " + subject + " " + courseId + " " + sectionNum + " - " + title,
                         "start": "2018-01-0" + day + 'T' + startHour + ":" + startMinute,
                         "end": "2018-01-0" + day + 'T' + endHour + ":" + endMinute,
-                        "color": coursesInfo[subject + courseId]["color"]
+                        "color": this.courses_info[subject + courseId]["color"]
                     });
                 }
             }
