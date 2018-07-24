@@ -26,9 +26,8 @@ function updateSchedules(is_async) {
         obj[item.name] = item.value;
         return obj;
     }, {});
-    // filters["days_off"] = String($("#daysOff").multipleSelect("getSelects"));
-    // filters["attr"] = String($("#attributes").multipleSelect("getSelects"));
-    console.log(filters);
+    filters["days_off"] = String($("#days_off").multipleSelect("getSelects"));
+    filters["attr"] = String($("#attributes").multipleSelect("getSelects"));
     let courses_info = {
         "wish_list": wish_list.getData(),
         "filters": filters
