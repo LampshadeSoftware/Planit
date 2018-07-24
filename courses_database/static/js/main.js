@@ -60,7 +60,6 @@ function updateSchedules(is_async) {
 
 // Start of calendar functions
 function updateCalendar() {
-    if (scheduler.numberOfSchedules() == 0) { return; }
     let calendar = $('#calendar');
     calendar.fullCalendar('removeEvents');
     calendar.fullCalendar('addEventSource', scheduler.getCurrentSchedule());

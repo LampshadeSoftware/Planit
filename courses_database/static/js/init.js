@@ -86,10 +86,10 @@ function filtersInit(){
 
     start_time.addEventListener('change', function(){
         time_slider.noUiSlider.set([this.value, null]);
-    });
+    }, {passive: true});
     end_time.addEventListener('change', function(){
         time_slider.noUiSlider.set([null, this.value]);
-    });
+    }, {passive: true});
 
     time_slider.noUiSlider.on('update', function( values, handle ) {
 
@@ -124,10 +124,10 @@ function filtersInit(){
 
     min_credits.addEventListener('change', function() {
         credit_slider.noUiSlider.set([this.value, null]);
-    });
+    }, {passive: true});
     max_credits.addEventListener('change', function() {
         credit_slider.noUiSlider.set([null, this.value]);
-    });
+    }, {passive: true});
 
     credit_slider.noUiSlider.on('update', function (values, handle ) {
         let value = values[handle];
