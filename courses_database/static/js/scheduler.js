@@ -2,9 +2,11 @@
  * Manages all of the schedules and the currently displayed schedules
  * Parses raw data and converts it to a calendar-readable format
  */
+
 class Scheduler {
     constructor(){
-        this.schedules = [[]];
+        this.empty_schedules = [[{}]];
+        this.schedules = this.empty_schedules;
         this.schedule_index = 0;
     }
 
@@ -51,6 +53,9 @@ class Scheduler {
             }
             this.schedules.push(schedule);
         }
+        if (this.schedules.length === 0) {
+            this.schedules = [[{}]];
+        }
     }
 
     cycleLeft(){
@@ -74,7 +79,7 @@ class Scheduler {
 
     numberOfSchedules(){
         if (this.schedules.length === 1){
-            if (this.schedules[0].length === 0){
+            if (Object.keys(this.schedules[0][0]).length === 0){
                 return 0;
             }
         }
@@ -82,7 +87,7 @@ class Scheduler {
     }
 
     reset(){
-        this.schedules = [[{}]];
+        this.schedules = this.empty_schedules;
         this.schedule_index = 0;
     }
 }

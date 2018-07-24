@@ -1,3 +1,7 @@
+/**
+ * General functions for the whole website
+ */
+
 // global variables
 let wish_list = new WishList();  // stores the classes that the user is interested in
 let scheduler = new Scheduler();
@@ -6,6 +10,8 @@ $(document).ready( function () {
     // sets up everything
     tablesInit();
     calendarInit();
+    tabsInit();
+    filtersInit();
 } );
 
 /**
@@ -16,7 +22,12 @@ function updateSchedules(is_async) {
     if (typeof(is_async)==='undefined') is_async = true;  // default value for is_async
 
     // TODO: when schedule filters are implemented, update this line to get those filters
-    let filters = {};
+    let filters = $('#wish_list_filters').serializeArray().reduce(function(obj, item) {
+        obj[item.name] = item.value;
+        return obj;
+    }, {});
+    filters["days_off"] = String($("#days_off").multipleSelect("getSelects"));
+    filters["attr"] = String($("#attributes").multipleSelect("getSelects"));
     let courses_info = {
         "wish_list": wish_list.getData(),
         "filters": filters

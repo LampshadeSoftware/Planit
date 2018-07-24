@@ -6,13 +6,25 @@ body {
   font-family: "Arial Rounded MT Bold", Arial, Helvetica, sans-serif;
 }
 
+.section {
+  padding-top: 1.5rem;
+}
+
 .center-horizontal {
   margin: 0 auto;
   width: 100px;
 }
 
-.section {
-  padding-top: 1.5rem;
+.full-width {
+  width: 100%;
+}
+
+.content-tab {
+  display: none;
+}
+
+.is-active {
+  display: block;
 }
 
 .dataTables_wrapper .dataTables_filter {

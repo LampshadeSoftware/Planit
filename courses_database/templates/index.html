@@ -2,15 +2,15 @@
 {% load static %}
 
 {% block tabs %}
-    <div class="tabs is-boxed is-fullwidth">
+    <div class="tabs is-boxed is-fullwidth" id="tabs">
         <ul>
-            <li class="is-active">
+            <li class="is-active" data-tab="search">
                 <a>
                     <span class="icon is-small"><i class="fas fa-search"></i></span>
                     <span>Search Courses</span>
                 </a>
             </li>
-            <li>
+            <li data-tab="filter">
                 <a>
                     <span class="icon is-small"><i class="fas fa-filter"></i></span>
                     <span>Filter Schedules</span>
@@ -21,8 +21,8 @@
 {% endblock %}
 
 {% block searchTable %}
-    <ul id="course_search_filters">
-        <li>
+    <div id="course_search_filters">
+        <div class="field_wrapper">
             <label for="subject_input">Subject</label>
             <input title="Course Subject" id="subject_input" list="subjects">
             <datalist id="subjects">
@@ -96,16 +96,16 @@
                 <option value="THEA" >Theatre</option>
                 <option value="WRIT" >
             </datalist>
-        </li>
-        <li>
+        </div>
+        <div class="field_wrapper">
             <label for="course_num_input">Course Number</label>
             <input title="Course Number" type="text" id="course_num_input">
-        </li>
-        <li>
+        </div>
+        <div class="field_wrapper">
             <label for="title_input">Title</label>
             <input title="Course Title" type="text" id="title_input">
-        </li>
-    </ul>
+        </div>
+    </div>
 	<table id="course_search_table" class="display">
 		<thead>
 		<tr><th>Subject</th>
@@ -127,4 +127,206 @@
 		{% endfor %}
 		</tbody>
 	</table>
+{% endblock %}
+
+{% block wishListFilters %}
+    <form id="wish_list_filters">
+        <!-- Time Filter -->
+        <label for="start_time">Start Time:</label>
+        <select id="start_time" name="start_time" onchange="updateSchedules()">
+            <option value="480" >8:00</option>
+            <option value="510" >8:30</option>
+            <option value="540" >9:00</option>
+            <option value="570" >9:30</option>
+            <option value="600" >10:00</option>
+            <option value="630" >10:30</option>
+            <option value="660" >11:00</option>
+            <option value="690" >11:30</option>
+            <option value="720" >12:00</option>
+            <option value="750" >12:30</option>
+            <option value="780" >1:00</option>
+            <option value="810" >1:30</option>
+            <option value="840" >2:00</option>
+            <option value="870" >2:30</option>
+            <option value="900" >3:00</option>
+            <option value="930" >3:30</option>
+            <option value="960" >4:00</option>
+            <option value="990" >4:30</option>
+            <option value="1020" >5:00</option>
+        </select>
+        <label for="end_time">End Time:</label>
+        <select id="end_time" name="end_time" onchange="updateSchedules()">
+            <option value="480" >8:00</option>
+            <option value="510" >8:30</option>
+            <option value="540" >9:00</option>
+            <option value="570" >9:30</option>
+            <option value="600" >10:00</option>
+            <option value="630" >10:30</option>
+            <option value="660" >11:00</option>
+            <option value="690" >11:30</option>
+            <option value="720" >12:00</option>
+            <option value="750" >12:30</option>
+            <option value="780" >1:00</option>
+            <option value="810" >1:30</option>
+            <option value="840" >2:00</option>
+            <option value="870" >2:30</option>
+            <option value="900" >3:00</option>
+            <option value="930" >3:30</option>
+            <option value="960" >4:00</option>
+            <option value="990" >4:30</option>
+            <option value="1020" >5:00</option>
+            <option value="1050" >5:30</option>
+            <option value="1080" >6:00</option>
+            <option value="1110" >6:30</option>
+            <option value="1140" >7:00</option>
+            <option value="1170" >7:30</option>
+            <option value="1200" >8:00</option>
+            <option value="1230" >8:30</option>
+            <option value="1260" >9:00</option>
+            <option value="1290" >9:30</option>
+            <option value="1320" >10:00</option>
+        </select>
+        <div id="time_slider" style="padding-left: 15px; margin-bottom: 2em;"></div>
+
+        <!-- Credit Filter -->
+        <label for="min_credits">Minimum Credits:</label>
+        <select id="min_credits" name="min_credits" onchange="updateSchedules()">
+            <option value="1" >1</option>
+            <option value="2" >2</option>
+            <option value="3" >3</option>
+            <option value="4" >4</option>
+            <option value="5" >5</option>
+            <option value="6" >6</option>
+            <option value="7" >7</option>
+            <option value="8" >8</option>
+            <option value="9" >9</option>
+            <option value="10" >10</option>
+            <option value="11" >11</option>
+            <option value="12" >12</option>
+            <option value="13" >13</option>
+            <option value="14" >14</option>
+            <option value="15" >15</option>
+            <option value="16" >16</option>
+            <option value="17" >17</option>
+            <option value="18" >18</option>
+            <option value="19" >19</option>
+            <option value="20" >20</option>
+        </select>
+        <label for="max_credits">Maximum Credits:</label>
+        <select id="max_credits" name="max_credits" onchange="updateSchedules()">
+            <option value="1" >1</option>
+            <option value="2" >2</option>
+            <option value="3" >3</option>
+            <option value="4" >4</option>
+            <option value="5" >5</option>
+            <option value="6" >6</option>
+            <option value="7" >7</option>
+            <option value="8" >8</option>
+            <option value="9" >9</option>
+            <option value="10" >10</option>
+            <option value="11" >11</option>
+            <option value="12" >12</option>
+            <option value="13" >13</option>
+            <option value="14" >14</option>
+            <option value="15" >15</option>
+            <option value="16" >16</option>
+            <option value="17" >17</option>
+            <option value="18" >18</option>
+            <option value="19" >19</option>
+            <option value="20" >20</option>
+        </select>
+        <div id="credit_slider" style="padding-left: 15px; margin-bottom: 2em;"></div>
+
+        <!-- Days Off Filter -->
+        <label for="days_off">Days Off</label>
+        <select class="full-width" multiple="multiple" id="days_off">
+            <option name="day" value="M"> Monday</option>
+            <option name="day" value="T"> Tuesday</option>
+            <option name="day" value="W"> Wednesday</option>
+            <option name="day" value="R"> Thursday</option>
+            <option name="day" value="F"> Friday</option>
+        </select>
+        <br><br>
+
+        <!-- Attributes Filter -->
+        <label for="attributes">Attributes</label>
+        <select class="full-width" multiple="multiple" id="attributes">
+            <option value="ACTV"> Active Learning -- ACTV</option>
+            <option value="FEE"> Additional Fee Required -- FEE</option>
+            <option value="ALB"> American Lit before 1920 -- ALB</option>
+            <option value="ALV"> Arts Letters Values -- ALV</option>
+            <option value="GE6"> Arts Proficiency (GER6) -- GE6</option>
+            <option value="BLB"> British Lit before 1700 -- BLB</option>
+            <option value="BLT"> British Lit between 1700-1900 -- BLT</option>
+            <option value="BLWF"> Business Law - Foundational -- BLWF</option>
+            <option value="BLWS"> Business Law - Supporting -- BLWS</option>
+            <option value="CHEL"> Chemistry Electives -- CHEL</option>
+            <option value="CSOT"> CLST Other Courses -- CSOT</option>
+            <option value="C100"> College 100 -- C100</option>
+            <option value="C150"> College 150 -- C150</option>
+            <option value="C200"> College 200 -- C200</option>
+            <option value="C300"> College 300 -- C300</option>
+            <option value="C400"> College 400 -- C400</option>
+            <option value="MATC"> Computational Mathematics -- MATC</option>
+            <option value="CR"> Constructions of Race -- CR</option>
+            <option value="CLS"> Crim, Law, &amp; Society -- CLS</option>
+            <option value="CSI" > Culture Society Individual -- CSI</option>
+            <option value="DC" > Department Chair Required -- DC</option>
+            <option value="ECWR" >ECON Writing Requirement -- ECWR</option>
+            <option value="EXP" >Experiential -- EXP</option>
+            <option value="FRSM" >First-Year Seminar -- FRSM</option>
+            <option value="FLP" >Foreign Lang Proficiency -- FLP</option>
+            <option value="G2LA" >G2LA Natural Sci-Physical Lab -- G2LA</option>
+            <option value="G2LB" >G2LB Natural Sci-Bio Lab -- G2LB</option>
+            <option value="GE1" >GE1Math/Quantitative Reasoning -- GE1</option>
+            <option value="GE2A" >GE2A Natural Sci-Physical -- GE2A</option>
+            <option value="GE2B" >GE2B Natural Sci-Biological -- GE2B</option>
+            <option value="GE2L" >GE2L Natural Science Lab -- GE2L</option>
+            <option value="GE3" >GE3 Social Sciences -- GE3</option>
+            <option value="GE4A" >GE4A Hist/Cultr Euro Tradition -- GE4A</option>
+            <option value="GE4B" >GE4B Hist/Cult outside EurTrad -- GE4B</option>
+            <option value="GE4C" >GE4C Cross-Cultural Issues -- GE4C</option>
+            <option value="GE5" >GE5 Lit/Hist of the Arts -- GE5</option>
+            <option value="GE7" >GE7 Phil/Relig/Soc Thought -- GE7</option>
+            <option value="GLOB" >Globalization -- GLOB</option>
+            <option value="GUAR" >Guaranteed Summer Offering -- GUAR</option>
+            <option value="HMWB" >Health, Med, &amp; Well-Being -- HMWB</option>
+            <option value="HIPP" >High Impact Projects -- HIPP</option>
+            <option value="HIPT" >High Impact Projects -- HIPT</option>
+            <option value="HISC" >HIST Colloquium Requirement -- HISC</option>
+            <option value="HINW" >HIST Non-Western Survey Course -- HINW</option>
+            <option value="IRCP" >INRL Capstone -- IRCP</option>
+            <option value="IREL" >INRL Elective -- IREL</option>
+            <option value="IRSC" >INRL Social Cultural Concepts -- IRSC</option>
+            <option value="IN" >Instructor Permission Required -- IN</option>
+            <option value="JDST" >Judaic Studies Requirement -- JDST</option>
+            <option value="KINA" >KINE Activity -- KINA</option>
+            <option value="EPPH" >KINE Epidemiology Pub Hlth -- EPPH</option>
+            <option value="LWWR" >Law Writing Requirement -- LWWR</option>
+            <option value="LW1R" >Law Year 1 Requirement -- LW1R</option>
+            <option value="LW2R" >Law Year 2 Requirement -- LW2R</option>
+            <option value="LS" >Literature since 1900 -- LS</option>
+            <option value="LDWR" >Lower Divsn Writing Req -- LDWR</option>
+            <option value="MMTG" >Mandatory Meeting -- MMTG</option>
+            <option value="MATH" >Math Proficiency -- MATH</option>
+            <option value="MCR" >Meets Major Computing Req -- MCR</option>
+            <option value="MWR" >Meets Major Writing Req -- MWR</option>
+            <option value="MCGD" >Molecules/Cells/Genes/Develop -- MCGD</option>
+            <option value="NQR" >Nat World Quant Reasoning -- NQR</option>
+            <option value="NATV" >Natv Stds Minor Core -- NATV</option>
+            <option value="ON" >Online Course -- ON</option>
+            <option value="MATO" >Operations Research -- MATO</option>
+            <option value="OWR" >Optional Writing Requirement -- OWR</option>
+            <option value="OPEE" >Organsms/Popultns/Ecology/Evol -- OPEE</option>
+            <option value="P/F" >Pass/Fail Course -- P/F</option>
+            <option value="PACT" >Physical Activity Proficiency -- PACT</option>
+            <option value="MATP" >Probability &amp; Statistics -- MATP</option>
+            <option value="MATS" >Scientific Applications -- MATS</option>
+            <option value="SHCR" >Short Course -- SHCR</option>
+            <option value="SA" >Single Author/Film Auteur -- SA</option>
+            <option value="SPPJ" >Soc Prob, Pol, &amp; Justice -- SPPJ</option>
+            <option value="SUST" >Sustainability Courses -- SUST</option>
+            <option value="UNSM" >University Seminar Req -- UNSM</option>
+        </select>
+    </form>
 {% endblock %}
