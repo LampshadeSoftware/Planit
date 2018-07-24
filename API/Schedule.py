@@ -10,7 +10,6 @@ class API_Schedule:
 		self._sections = set()
 		self._num_credits = 0
 
-
 	def add_section(self, new_section):
 		"""
 		Attempt to add a new section to this schedule. If there is a conflict
@@ -71,7 +70,6 @@ class API_Schedule:
 			out.add(key)
 		return out
 
-
 	def __eq__(self, other_schedule):
 		"""
 		Determines the equality of this schedule to another schedule.
@@ -92,7 +90,6 @@ class API_Schedule:
 
 		return True
 
-
 	def copy(self):
 		"""
 		Creates a new API_Schedule object with the same sections
@@ -105,7 +102,6 @@ class API_Schedule:
 		new._sections = self._sections.copy()
 		new._num_credits = self._num_credits
 		return new
-
 
 	def __str__(self):
 		"""
@@ -127,7 +123,6 @@ class API_Schedule:
 			out += "\n"
 		return out
 
-
 	def convert_to_dict(self):
 		"""
 		Converts this object into a list of dictionaries that can be passed between services.
@@ -144,7 +139,7 @@ class API_Schedule:
 				num_credits -> int
 				times -> list(dict) (see Time_Block.py for keys)
 		"""
-
+		
 		sched = dict()
 		sched['total_credits'] = self.total_credits()
 

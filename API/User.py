@@ -36,19 +36,19 @@ class API_User:
 		value (variable type): The value to set that filter
 		"""
 
-		if filter == 'startTime':
-			self._set_filter_earliest_time(Time_Block.get_readable_time(int(value)))
+		if filter == 'start_time':
+			self._set_filter_earliest_time(Time_Block.convert_msm_to_readable(int(value)))
 
-		elif filter == 'endTime':
-			self._set_filter_latest_time(Time_Block.get_readable_time(int(value)))
+		elif filter == 'end_time':
+			self._set_filter_latest_time(Time_Block.convert_msm_to_readable(int(value)))
 
-		elif filter == 'minCredits':
+		elif filter == 'min_credits':
 			self._set_filter_credit_min(value)
 
-		elif filter == 'maxCredits':
+		elif filter == 'max_credits':
 			self._set_filter_credit_max(value)
 
-		elif filter == 'daysOff':
+		elif filter == 'days_off':
 			days = value.split(',')
 			for day in days:
 				self._set_filter_forbidden_days(day, True)

@@ -11,6 +11,7 @@ $(document).ready( function () {
     tablesInit();
     calendarInit();
     tabsInit();
+    filtersInit();
 } );
 
 /**
@@ -21,7 +22,13 @@ function updateSchedules(is_async) {
     if (typeof(is_async)==='undefined') is_async = true;  // default value for is_async
 
     // TODO: when schedule filters are implemented, update this line to get those filters
-    let filters = {};
+    let filters = $('#wish_list_filters').serializeArray().reduce(function(obj, item) {
+        obj[item.name] = item.value;
+        return obj;
+    }, {});
+    // filters["days_off"] = String($("#daysOff").multipleSelect("getSelects"));
+    // filters["attr"] = String($("#attributes").multipleSelect("getSelects"));
+    console.log(filters);
     let courses_info = {
         "wish_list": wish_list.getData(),
         "filters": filters
@@ -54,6 +61,7 @@ function updateSchedules(is_async) {
 
 // Start of calendar functions
 function updateCalendar() {
+    if (scheduler.numberOfSchedules() == 0) { return; }
     let calendar = $('#calendar');
     calendar.fullCalendar('removeEvents');
     calendar.fullCalendar('addEventSource', scheduler.getCurrentSchedule());

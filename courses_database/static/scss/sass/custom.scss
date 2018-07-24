@@ -1,56 +1,63 @@
 $primary: #46B8AF;
 
+// REGION: styles that affect all of a certain element
 body {
   font-family: "Open Sans", monospace;
 }
-
 .header {
   font-family: 'Arial Rounded MT Bold', Arial, Helvetica, sans-serif;
 }
-
-.content-tab {
-  display: none;
+.section {
+  padding-top: 1.5rem;
 }
+// END REGION
 
-// Start of input styling
-label, input {
-  float:left;
-}
-
-input {
-  font-size: 1rem;
-  padding: 2px; // instead of using fixed height
-  width: 50%;
-}
-
-label {
-  width: 50%; // can use JavaScript if it needs to be dynamic
-  padding-top: 3px; // to make the label vertically inline with the input element
-}
-
-.fieldWrapper {
-  clear:left;
-}
-// End of input styling
-
-.is-active {
-  display: block;
-}
-
+// REGION: general useful classes
 .center-horizontal {
   margin: 0 auto;
   width: 100px;
 }
-
-.section {
-  padding-top: 1.5rem;
+.full-width {
+  width: 100%;
 }
+// END REGION
 
+// REGION: for (not) displaying tabs
+.content-tab {
+  display: none;
+}
+.is-active {
+  display: block;
+}
+// END REGION
+
+// REGION: input bars styling
+//label, input {
+//  float:left;
+//}
+//
+//input {
+//  font-size: 1rem;
+//  padding: 2px; // instead of using fixed height
+//  width: 50%;
+//}
+//
+//label {
+//  width: 50%; // can use JavaScript if it needs to be dynamic
+//  padding-top: 3px; // to make the label vertically inline with the input element
+//}
+//
+//.field_wrapper {
+//  clear:left;
+//}
+// END REGION
+
+// REGION: data tables
 .dataTables_wrapper .dataTables_filter {
   float: left;
   text-align: right;
 }
-
 .dataTables_wrapper .dataTables_filter input {
   margin-left: 0.0em;
 }
+// END REGION
