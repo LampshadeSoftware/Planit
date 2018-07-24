@@ -2,6 +2,7 @@
  * Manages the wish list (addition, deletion, saving to local storage)
  */
 
+// TODO: Wish list should store a list of WishListItems
 class WishList {
     constructor(){
         localStorage.clear();  // use this for testing to clear local storage of any messed up data
@@ -10,12 +11,7 @@ class WishList {
     }
 
     addCourse(subject, course_id, title){
-        this.wish_list[subject + course_id] = {
-            "subject": subject,
-            "course_id": course_id,
-            "title": title,
-            "optional": true
-        };
+        this.wish_list[subject + course_id] = new WishListCourse(subject, course_id, title);
     }
 
     removeCourse(subject, course_id){
@@ -23,17 +19,46 @@ class WishList {
     }
 
     reloadData(){
-        this.wish_list = JSON.parse(localStorage.getItem("wish_list")) || {};
+        let saved_wish_list = JSON.parse(localStorage.getItem("wish_list")) || {};
+        for (let key in saved_wish_list) {
+            if (saved_wish_list.hasOwnProperty(key)) {
+                this.addCourse(this.wish_list[key]["subject"],
+                    this.wish_list[key]["course_id"],
+                    this.wish_list[key]["title"]);
+            }
+        }
     }
 
     saveData(){
-        localStorage.setItem("wish_list", JSON.stringify(this.wish_list));
+        localStorage.setItem("wish_list", JSON.stringify(this.asDict()));
     }
 
-    /**
-     * returns the dictionary that we use to store the wish list items
-     */
-    getData(){
-        return this.wish_list;
+    asDict(){
+        let savable_wish_list = {};
+        for (let key in this.wish_list) {
+            // check if the property/key is defined in the object itself, not in parent
+            if (this.wish_list.hasOwnProperty(key)) {
+                savable_wish_list[key] = this.wish_list[key].asDict();
+            }
+        }
+        return savable_wish_list;
+    }
+}
+
+class WishListCourse{
+    constructor(subject, course_id, title){
+        this.subject = subject;
+        this.course_id = course_id;
+        this.title = title;
+        this.optional = true;
+    }
+
+    asDict() {
+        return {
+            "subject": this.subject,
+            "course_id": this.course_id,
+            "title": this.title,
+            "optional": true
+        };
     }
 }

@@ -8,7 +8,7 @@ let scheduler = new Scheduler();
 
 $(document).ready( function () {
     // sets up everything
-    tablesInit();
+    tableInit();
     calendarInit();
     tabsInit();
     filtersInit();
@@ -29,7 +29,7 @@ function updateSchedules(is_async) {
     filters["days_off"] = String($("#days_off").multipleSelect("getSelects"));
     filters["attr"] = String($("#attributes").multipleSelect("getSelects"));
     let courses_info = {
-        "wish_list": wish_list.getData(),
+        "wish_list": wish_list.asDict(),
         "filters": filters
     };
 

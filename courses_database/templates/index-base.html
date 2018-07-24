@@ -25,7 +25,11 @@
     </nav>
     <div class="section is-primary">
         <div class="columns">
-            <div class="column is-4">
+            <div class="column is-5" id="search_and_filter_tabs">
+                <div class="notification" id="wish_list_holder">
+                    <strong>You have not added any courses to your wish list.</strong>
+                    To add classes, select them from the 'Search Courses' tab.
+                </div>
                 {% block tabs %}{% endblock %}
                 <div id="search_tab" class="content-tab is-active">
                     {% block searchTable %}{% endblock %}
@@ -34,7 +38,7 @@
                     {% block wishListFilters %}{% endblock %}  <!-- TODO: Implement this -->
                 </div>
             </div>
-            <div class="column is-8">
+            <div class="column is-7">
                 <div class="center-horizontal">
                     <button onclick="cycleLeft()"><</button>
                     <strong><p id="schedule_index" style="display: inline-block;">0/0</p></strong>

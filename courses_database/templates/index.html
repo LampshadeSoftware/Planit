@@ -21,8 +21,9 @@
 {% endblock %}
 
 {% block searchTable %}
+    <!-- TODO: Look up Bulma 'levels' for getting things to look nice on the same line -->
     <div id="course_search_filters">
-        <div class="field_wrapper">
+        <nav class="level">
             <label for="subject_input">Subject</label>
             <input title="Course Subject" id="subject_input" list="subjects">
             <datalist id="subjects">
@@ -96,20 +97,19 @@
                 <option value="THEA" >Theatre</option>
                 <option value="WRIT" >
             </datalist>
-        </div>
-        <div class="field_wrapper">
+
             <label for="course_num_input">Course Number</label>
             <input title="Course Number" type="text" id="course_num_input">
-        </div>
-        <div class="field_wrapper">
+        </nav>
+        <nav class="level">
             <label for="title_input">Title</label>
-            <input title="Course Title" type="text" id="title_input">
-        </div>
+            <input title="Course Title" type="text" id="title_input" class="full-width">
+        </nav>
     </div>
 	<table id="course_search_table" class="display">
 		<thead>
 		<tr><th>Subject</th>
-			<th>Course ID</th>
+			<th>ID</th>
 			<th>Course Title</th>
 			<th>Add</th>
 		</tr>

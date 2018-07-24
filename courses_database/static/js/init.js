@@ -23,7 +23,7 @@ function calendarInit(){
 /**
  * sets up the table that holds all of the courses and allows the user to search for courses
  */
-function tablesInit(){
+function tableInit(){
     let coursesDataTable = $('#course_search_table').DataTable({searching: true, dom: 'lrtp', "lengthChange": false});
 
     // sets up all the course search filters
@@ -111,7 +111,7 @@ function filtersInit(){
     noUiSlider.create(credit_slider, {
         connect: true,
         behavior: 'tap',
-        start: [12, 18],
+        start: [3, 18],
         step: 1,
         range: {
             'min': 1,
