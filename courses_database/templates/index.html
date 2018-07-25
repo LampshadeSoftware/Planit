@@ -109,9 +109,8 @@
 	<table id="course_search_table" class="display">
 		<thead>
 		<tr><th>Subject</th>
-			<th>ID</th>
+			<th>Course ID</th>
 			<th>Course Title</th>
-			<th>Add</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -120,9 +119,6 @@
 				<td> {{ item.subject }}</td>
 				<td> {{ item.course_id }} </td>
 				<td> {{ item.title }}</td>
-				<td style="text-align: center;">
-					<button onclick="addToWishList('{{item.subject}}','{{item.course_id}}','{{item.title}}')">+</button>
-				</td>
 			</tr>
 		{% endfor %}
 		</tbody>

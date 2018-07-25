@@ -12,6 +12,8 @@ class WishList {
     addCourse(subject, course_id, title){
         if (!((subject + course_id) in this.wish_list)) {
             this.wish_list[subject + course_id] = new WishListItem(subject, course_id, title);
+        } else {
+            this.removeCourse(subject, course_id, title);
         }
     }
 
