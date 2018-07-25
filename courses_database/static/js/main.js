@@ -3,8 +3,8 @@
  */
 
 // global variables
-let wish_list = new WishList();  // stores the classes that the user is interested in
 let scheduler = new Scheduler();
+let wish_list = new WishList(scheduler);  // stores the classes that the user is interested in
 
 $(document).ready( function () {
     // sets up everything
@@ -13,7 +13,7 @@ $(document).ready( function () {
     tabsInit();
     filtersInit();
 
-    updateSchedules();
+    updateSchedules(false);
 } );
 
 /**
@@ -30,7 +30,7 @@ function updateSchedules(is_async) {
     }, {});
     filters["days_off"] = String($("#days_off").multipleSelect("getSelects"));
     filters["attr"] = String($("#attributes").multipleSelect("getSelects"));
-    let courses_info = {
+    let schedule_restrictions = {
         "wish_list": wish_list.asDict(),
         "filters": filters
     };
@@ -40,13 +40,13 @@ function updateSchedules(is_async) {
         url: get_schedules_url,
         method: 'POST',
         data: {
-            "courses_info": JSON.stringify(courses_info),
+            "schedule_restrictions": JSON.stringify(schedule_restrictions),
             "csrfmiddlewaretoken": csrf_token
         },
         dataType: 'json',
         async: is_async,
         success: function (data) {
-            let courses_info = data["courses_info"];  // gives info about the courses, applies to all schedules
+            let courses_info = data["courses_info"];  // contains info about the courses, applies to all schedules
             let raw_schedules = data["schedules"];
             scheduler.parseRawSchedules(raw_schedules, courses_info);
             updateCalendar();
@@ -71,6 +71,9 @@ function updateCalendar() {
         document.getElementById("schedule_index").innerHTML = (scheduler.schedule_index + 1).toString() + "/"
             + scheduler.numberOfSchedules().toString();
     }
+
+    // updates the wish list button visuals
+    wish_list.updateButtons();
 }
 
 function cycleLeft(){

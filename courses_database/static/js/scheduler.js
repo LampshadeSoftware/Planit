@@ -23,8 +23,8 @@ class Scheduler {
         // clears the last array of schedules and resets index
         this.reset();
 
-        this.courses_info = courses_info;
         this.schedules = [];
+        this.courses_info = courses_info;
 
         // TODO: update all these variables to follow our new syntax rules
         // parses the raw schedules dictionary into a FullCalendar-readable format

@@ -27,6 +27,12 @@ body {
   display: block;
 }
 
+.wish_list_item {
+  border-radius: 10px;
+  width: 80px;
+  height: 40px;
+}
+
 .dataTables_wrapper .dataTables_filter {
   float: left;
   text-align: right;
