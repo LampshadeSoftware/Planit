@@ -1,8 +1,6 @@
 /**
  * Manages the wish list (addition, deletion, saving to local storage)
  */
-
-// TODO: Wish list should store a list of WishListItems
 class WishList {
     constructor(scheduler){
         localStorage.clear();  // use this for testing to clear local storage of any messed up data
@@ -40,20 +38,26 @@ class WishList {
     }
 
     updateButtons(){
-        console.log(scheduler.courses_info);
-        let html = "";
-        for (let key in this.wish_list){
-            if (this.wish_list.hasOwnProperty(key)) {
-                let color = "#BBBBBB";
-                let font_color = "#333333";
-                if (this.scheduler.courses_info[key]["color"]){
-                    color = this.scheduler.courses_info[key]["color"];
-                    font_color = "#ffffff";
+        if (Object.keys(this.wish_list).length === 0){
+            $('#empty_wish_list').addClass('is-active');
+            $('#wish_list').removeClass('is-active');
+        } else {
+            let html = "";
+            for (let key in this.wish_list){
+                if (this.wish_list.hasOwnProperty(key)) {
+                    let color = "#BBBBBB";
+                    let font_color = "#333333";
+                    if (this.scheduler.courses_info[key]["color"]){
+                        color = this.scheduler.courses_info[key]["color"];
+                        font_color = "#ffffff";
+                    }
+                    html += this.wish_list[key].createButton(color, font_color);
                 }
-                html += this.wish_list[key].createButton(color, font_color);
             }
+            $("#wish_list").html(html);
+            $('#empty_wish_list').removeClass('is-active');
+            $('#wish_list').addClass('is-active');
         }
-        $("#wish_list").html(html);
     }
 
     asDict(){
