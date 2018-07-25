@@ -19,7 +19,11 @@ body {
   width: 100%;
 }
 
-.content-tab {
+button {
+  outline: 0;
+}
+
+.content-section {
   display: none;
 }
 
@@ -27,10 +31,32 @@ body {
   display: block;
 }
 
-.wish_list_item {
+.wish-list-item {
+  border: 0;
   border-radius: 10px;
   width: 80px;
   height: 40px;
+  font-weight: 700;
+  -webkit-transition-duration: 0.4s;
+  /* Safari */
+  transition-duration: 0.4s;
+  margin: 1px;
+}
+
+.wish-list-item:hover {
+  box-shadow: 0 5px 16px 0 rgba(0, 0, 0, 0.3);
+}
+
+.upper-level:not(:last-child) {
+  margin-bottom: 0.3rem;
+}
+
+.lower-level:last-child {
+  margin-bottom: 1rem;
+}
+
+#title_input {
+  margin-left: 20px;
 }
 
 .dataTables_wrapper .dataTables_filter {

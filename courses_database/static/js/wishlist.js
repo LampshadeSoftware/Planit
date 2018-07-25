@@ -5,7 +5,7 @@
 // TODO: Wish list should store a list of WishListItems
 class WishList {
     constructor(scheduler){
-        // localStorage.clear();  // use this for testing to clear local storage of any messed up data
+        localStorage.clear();  // use this for testing to clear local storage of any messed up data
         this.wish_list = {};
         this.reloadData();
         this.scheduler = scheduler;  // the instance variable of the schedules associated with this wish list
@@ -39,17 +39,18 @@ class WishList {
         localStorage.setItem("wish_list", JSON.stringify(this.asDict()));
     }
 
-    // TODO: move this into scheduler.js
     updateButtons(){
         console.log(scheduler.courses_info);
         let html = "";
         for (let key in this.wish_list){
             if (this.wish_list.hasOwnProperty(key)) {
-                let color = "#ffffff";
-                if (key in this.scheduler.courses_info){
-                    color = this.scheduler.courses_info[key]["color"]
+                let color = "#BBBBBB";
+                let font_color = "#333333";
+                if (this.scheduler.courses_info[key]["color"]){
+                    color = this.scheduler.courses_info[key]["color"];
+                    font_color = "#ffffff";
                 }
-                html += this.wish_list[key].createButton(color);
+                html += this.wish_list[key].createButton(color, font_color);
             }
         }
         $("#wish_list").html(html);
@@ -75,8 +76,10 @@ class WishListItem{
         this.optional = true;
     }
 
-    createButton(color) {
-        return `<button class="wish_list_item" style="background-color: ${color}">${this.subject + this.course_id}</button>`
+    createButton(color, text_color) {
+        return `<button class="wish-list-item" style="background-color: ${color}; color: ${text_color}">
+            ${this.subject + this.course_id} 
+            </button>`;
     }
 
     asDict() {

@@ -26,7 +26,6 @@ class Scheduler {
         this.schedules = [];
         this.courses_info = courses_info;
 
-        // TODO: update all these variables to follow our new syntax rules
         // parses the raw schedules dictionary into a FullCalendar-readable format
         for (let i in raw_schedules) {
             this.credit_counts.push(raw_schedules[i]["total_credits"]);
@@ -36,22 +35,22 @@ class Scheduler {
                 let section = sections[j];
 
                 let subject = section["subject"];
-                let courseId = section["course_id"];
-                let sectionNum = section["section_num"];
+                let course_id = section["course_id"];
+                let section_num = section["section_num"];
                 let title = section["title"];
-                let numCredits = section["num_credits"];
+                let num_credits = section["num_credits"];
                 for (let t in section["times"]) {
                     let time = section["times"][t];
                     let day = time["day"];
-                    let startHour = time["start_hour"];
-                    let startMinute = time["start_minute"];
-                    let endHour = time["end_hour"];
-                    let endMinute = time["end_minute"];
+                    let start_hour = time["start_hour"];
+                    let start_minute = time["start_minute"];
+                    let end_hour = time["end_hour"];
+                    let end_minute = time["end_minute"];
                     schedule.push({
-                        "title": "[" + numCredits + "] " + subject + " " + courseId + " " + sectionNum + " - " + title,
-                        "start": "2018-01-0" + day + 'T' + startHour + ":" + startMinute,
-                        "end": "2018-01-0" + day + 'T' + endHour + ":" + endMinute,
-                        "color": this.courses_info[subject + courseId]["color"]
+                        "title": "[" + num_credits + "] " + subject + " " + course_id + " " + section_num + " - " + title,
+                        "start": "2018-01-0" + day + 'T' + start_hour + ":" + start_minute,
+                        "end": "2018-01-0" + day + 'T' + end_hour + ":" + end_minute,
+                        "color": this.courses_info[subject + course_id]["color"]
                     });
                 }
             }

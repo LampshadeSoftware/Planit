@@ -26,18 +26,19 @@
     <div class="section is-primary">
         <div class="columns">
             <div class="column is-5" id="search_and_filter_tabs">
+                <span>Wish List:<br></span>
                 <div class="notification">
-                    <div class="content-tab" id="empty_wish_list">
+                    <div class="content-section" id="empty_wish_list">
                         <strong>You have not added any courses to your wish list.</strong>
                         To add courses, select them from the 'Search Courses' tab.
                     </div>
-                    <div class="content-tab is-active" id="wish_list"></div>
+                    <div class="content-section is-active" id="wish_list"></div>
                 </div>
                 {% block tabs %}{% endblock %}
-                <div id="search_tab" class="content-tab is-active">
+                <div id="search_tab" class="content-section is-active">
                     {% block searchTable %}{% endblock %}
                 </div>
-                <div id="filter_tab" class="content-tab">
+                <div id="filter_tab" class="content-section">
                     {% block wishListFilters %}{% endblock %}  <!-- TODO: Implement this -->
                 </div>
             </div>

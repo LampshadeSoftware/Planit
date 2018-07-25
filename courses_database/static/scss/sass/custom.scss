@@ -1,3 +1,4 @@
+// defines all variables here
 $primary: #46B8AF;
 
 // REGION: styles that affect all of a certain element
@@ -20,10 +21,13 @@ body {
 .full-width {
   width: 100%;
 }
+button{
+  outline: 0;
+}
 // END REGION
 
 // REGION: for (not) displaying sections
-.content-tab {
+.content-section {
   display: none;
 }
 .is-active {
@@ -32,32 +36,31 @@ body {
 // END REGION
 
 // REGION: wish list
-.wish_list_item {
+.wish-list-item {
+  border: 0;
   border-radius: 10px;
   width: 80px;
   height: 40px;
+  font-weight: 700;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  margin: 1px;
+}
+.wish-list-item:hover {
+  box-shadow: 0 5px 16px 0 rgba(0,0,0,0.3);
 }
 // END REGION
 
 // REGION: input bars styling
-//label, input {
-//  float:left;
-//}
-//
-//input {
-//  font-size: 1rem;
-//  padding: 2px; // instead of using fixed height
-//  width: 50%;
-//}
-//
-//label {
-//  width: 50%; // can use JavaScript if it needs to be dynamic
-//  padding-top: 3px; // to make the label vertically inline with the input element
-//}
-//
-//.field_wrapper {
-//  clear:left;
-//}
+.upper-level:not(:last-child) {
+  margin-bottom: 0.3rem;
+}
+.lower-level:last-child {
+  margin-bottom: 1rem;
+}
+#title_input {
+  margin-left: 20px;
+}
 // END REGION
 
 // REGION: data tables
