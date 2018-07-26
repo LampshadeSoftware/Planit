@@ -13,7 +13,8 @@ class WishList {
         if (!((subject + course_id) in this.wish_list)) {
             this.wish_list[subject + course_id] = new WishListItem(subject, course_id, title);
         } else {
-            this.removeCourse(subject, course_id, title);
+            // Still deciding on this functionality. For now it won't remove the course if it's already in the wish list
+            // this.removeCourse(subject, course_id, title);
         }
     }
 
@@ -44,7 +45,7 @@ class WishList {
             $('#empty_wish_list').addClass('is-active');
             $('#wish_list').removeClass('is-active');
         } else {
-            let html = "";
+            $("#wish_list").html("");  // clears all of the buttons
             for (let key in this.wish_list){
                 if (this.wish_list.hasOwnProperty(key)) {
                     let color = "#BBBBBB";
@@ -53,10 +54,9 @@ class WishList {
                         color = this.scheduler.courses_info[key]["color"];
                         font_color = "#ffffff";
                     }
-                    html += this.wish_list[key].createButton(color, font_color);
+                    this.wish_list[key].createButton(color, font_color);
                 }
             }
-            $("#wish_list").html(html);
             $('#empty_wish_list').removeClass('is-active');
             $('#wish_list').addClass('is-active');
         }
@@ -83,9 +83,17 @@ class WishListItem{
     }
 
     createButton(color, text_color) {
-        return `<button class="wish-list-item" style="background-color: ${color}; color: ${text_color}">
-            ${this.subject + this.course_id} 
-            </button>`;
+        let button = document.createElement("button");
+        let button_text = document.createTextNode(this.subject + this.course_id);
+        button.appendChild(button_text);
+        button.style.backgroundColor = color;
+        button.style.color = text_color;
+        button.classList.add("wish-list-item");
+        // button.setAttribute("data-subject", this.subject);
+        // button.setAttribute("data-course_id", this.course_id);
+        // button.setAttribute("data-title", this.title);
+        button.ondblclick = () => { removeFromWishList(this.subject, this.course_id, this.title)};
+        document.getElementById("wish_list").appendChild(button);
     }
 
     asDict() {
