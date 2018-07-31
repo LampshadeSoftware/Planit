@@ -23,6 +23,7 @@
             </a>
         </div>
     </nav>
+    {% block popup %}{% endblock %}
     <div class="section is-primary">
         <div class="columns">
             <div class="column is-5" id="search_and_filter_tabs">
@@ -60,6 +61,7 @@
     <script src="{% static 'noUiSlider/nouislider.js' %}"></script>
     <script src="{% static 'multiple-select/multiple-select.js' %}"></script>
 
+    <script src="{% static 'js/utils.js' %}"></script>
     <script src="{% static 'js/wishlist.js' %}"></script>
     <script src="{% static 'js/scheduler.js' %}"></script>
     <script src="{% static 'js/init.js' %}"></script>

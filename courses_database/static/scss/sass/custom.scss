@@ -1,5 +1,6 @@
 // defines all variables here
 $primary: #46B8AF;
+$radius-large: 6px;
 
 // REGION: styles that affect all of a certain element
 body {
@@ -70,5 +71,12 @@ button{
 }
 .dataTables_wrapper .dataTables_filter input {
   margin-left: 0.0em;
+}
+// END REGION
+
+// REGION: modal card
+.modal-card-body {
+  border-bottom-left-radius: $radius-large;
+  border-bottom-right-radius: $radius-large;
 }
 // END REGION

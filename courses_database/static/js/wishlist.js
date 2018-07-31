@@ -3,7 +3,7 @@
  */
 class WishList {
     constructor(scheduler){
-        localStorage.clear();  // use this for testing to clear local storage of any messed up data
+        // localStorage.clear();  // use this for testing to clear local storage of any messed up data
         this.wish_list = {};
         this.reloadData();
         this.scheduler = scheduler;  // the instance variable of the schedules associated with this wish list
@@ -13,8 +13,7 @@ class WishList {
         if (!((subject + course_id) in this.wish_list)) {
             this.wish_list[subject + course_id] = new WishListItem(subject, course_id, title);
         } else {
-            // Still deciding on this functionality. For now it won't remove the course if it's already in the wish list
-            // this.removeCourse(subject, course_id, title);
+            // TODO: Send notification that this class is already in the wish list
         }
     }
 
@@ -89,9 +88,7 @@ class WishListItem{
         button.style.backgroundColor = color;
         button.style.color = text_color;
         button.classList.add("wish-list-item");
-        // button.setAttribute("data-subject", this.subject);
-        // button.setAttribute("data-course_id", this.course_id);
-        // button.setAttribute("data-title", this.title);
+        button.onclick = () => { Modal.present(this.subject, this.course_id, this.title) };
         button.ondblclick = () => { removeFromWishList(this.subject, this.course_id, this.title)};
         document.getElementById("wish_list").appendChild(button);
     }

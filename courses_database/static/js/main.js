@@ -5,6 +5,7 @@
 // global variables
 let scheduler = new Scheduler();
 let wish_list = new WishList(scheduler);  // stores the classes that the user is interested in
+let modal = new Modal();
 
 $(document).ready( function () {
     // sets up everything
@@ -14,6 +15,7 @@ $(document).ready( function () {
     filtersInit();
 
     updateSchedules(false);
+    document.getElementById("course_search_table").style.display = "";
 } );
 
 /**

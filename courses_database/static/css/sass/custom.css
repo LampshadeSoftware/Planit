@@ -68,4 +68,9 @@ button {
   margin-left: 0em;
 }
 
+.modal-card-body {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
 /*# sourceMappingURL=custom.css.map */
