@@ -23,7 +23,6 @@
             </a>
         </div>
     </nav>
-    {% block popup %}{% endblock %}
     <div class="section is-primary">
         <div class="columns">
             <div class="column is-5" id="search_and_filter_tabs">
@@ -44,9 +43,13 @@
             </div>
             <div class="column is-7">
                 <div class="center-horizontal">
-                    <button onclick="cycleLeft()"><</button>
+                    <button onclick="cycleLeft()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
                     <strong><p id="schedule_index" style="display: inline-block;">0/0</p></strong>
-                    <button onclick="cycleRight()">></button>
+                    <button onclick="cycleRight()">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
                 </div>
                 <div id="calendar"></div>
             </div>

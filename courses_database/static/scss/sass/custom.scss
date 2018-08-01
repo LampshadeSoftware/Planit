@@ -12,12 +12,14 @@ body {
 .section {
   padding-top: 1.5rem;
 }
+a {
+  color: $primary;
+}
 // END REGION
 
 // REGION: general useful classes
 .center-horizontal {
-  margin: 0 auto;
-  width: 100px;
+  text-align: center;
 }
 .full-width {
   width: 100%;
@@ -50,17 +52,17 @@ button{
 .wish-list-item:hover {
   box-shadow: 0 5px 16px 0 rgba(0,0,0,0.3);
 }
+.notification {
+  padding: 1rem;
+}
+.noUi-handle {
+  outline: 0;
+}
 // END REGION
 
-// REGION: input bars styling
-.upper-level:not(:last-child) {
-  margin-bottom: 0.3rem;
-}
-.lower-level:last-child {
-  margin-bottom: 1rem;
-}
-#title_input {
-  margin-left: 20px;
+// REGION: tabs
+.tabs:not(:last-child){
+  margin-bottom: .5rem;
 }
 // END REGION
 
@@ -74,9 +76,12 @@ button{
 }
 // END REGION
 
-// REGION: modal card
-.modal-card-body {
-  border-bottom-left-radius: $radius-large;
-  border-bottom-right-radius: $radius-large;
+// REGION: filters
+.filter {
+  margin-bottom: 1.5rem;
+}
+.slider {
+  padding-left: 15px;
+  margin-top: 0.5rem;
 }
 // END REGION

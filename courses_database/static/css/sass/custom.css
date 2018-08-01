@@ -10,9 +10,12 @@ body {
   padding-top: 1.5rem;
 }
 
+a {
+  color: #46B8AF;
+}
+
 .center-horizontal {
-  margin: 0 auto;
-  width: 100px;
+  text-align: center;
 }
 
 .full-width {
@@ -47,16 +50,16 @@ button {
   box-shadow: 0 5px 16px 0 rgba(0, 0, 0, 0.3);
 }
 
-.upper-level:not(:last-child) {
-  margin-bottom: 0.3rem;
+.notification {
+  padding: 1rem;
 }
 
-.lower-level:last-child {
-  margin-bottom: 1rem;
+.noUi-handle {
+  outline: 0;
 }
 
-#title_input {
-  margin-left: 20px;
+.tabs:not(:last-child) {
+  margin-bottom: 0.5rem;
 }
 
 .dataTables_wrapper .dataTables_filter {
@@ -68,9 +71,13 @@ button {
   margin-left: 0em;
 }
 
-.modal-card-body {
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
+.filter {
+  margin-bottom: 1.5rem;
+}
+
+.slider {
+  padding-left: 15px;
+  margin-top: 0.5rem;
 }
 
 /*# sourceMappingURL=custom.css.map */

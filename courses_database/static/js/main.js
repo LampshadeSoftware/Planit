@@ -5,7 +5,6 @@
 // global variables
 let scheduler = new Scheduler();
 let wish_list = new WishList(scheduler);  // stores the classes that the user is interested in
-let modal = new Modal();
 
 $(document).ready( function () {
     // sets up everything
@@ -15,7 +14,7 @@ $(document).ready( function () {
     filtersInit();
 
     updateSchedules(false);
-    document.getElementById("course_search_table").style.display = "";
+    document.getElementById("course_search_table").style.display = "";  // calendar now displays
 } );
 
 /**
@@ -91,8 +90,12 @@ function cycleRight(){
 
 // Start of wish list functions
 function addToWishList(subject, course_id, title){
-    wish_list.addCourse(subject, course_id, title);
-    updateSchedules();
+    if (!wish_list.contains(subject + course_id)) {
+        wish_list.addCourse(subject, course_id, title);
+        updateSchedules();
+    } else {
+        // TODO: send notification that they've already added this course
+    }
 }
 
 function removeFromWishList(subject, course_id, title){

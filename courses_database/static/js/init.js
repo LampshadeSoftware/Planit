@@ -24,17 +24,38 @@ function calendarInit(){
  * sets up the table that holds all of the courses and allows the user to search for courses
  */
 function tableInit(){
-    let course_data_table = $('#course_search_table').DataTable({searching: true, dom: 'lrtp', "lengthChange": false});
+    let course_data_table = $('#course_search_table').DataTable({
+        /*"paging": false,
+        "scrollY": '30vh',
+        "scrollCollapse": true,
+        "deferRender": true,
+        "scroller": true, */
+
+        "columns": [
+            {
+                "orderable":      false,
+                "data":           "hi"
+            },
+            { "data": "subject" },
+            { "data": "course_id" },
+            { "data": "title" },
+        ],
+        "order": [[1, 'asc']],
+        "lengthChange": false,
+        "dom": 'lrtp',
+        "pageLength": 5,
+        "pagingType": "numbers"
+    });
 
     // sets up all the course search filters
     $('#subject_input').on( 'keyup', function () {
-        filterCourseTable(this, 0);
-    });
-    $('#course_num_input').on( 'keyup', function () {
         filterCourseTable(this, 1);
     });
-    $('#title_input').on( 'keyup', function () {
+    $('#course_num_input').on( 'keyup', function () {
         filterCourseTable(this, 2);
+    });
+    $('#title_input').on( 'keyup', function () {
+        filterCourseTable(this, 3);
     });
 
     function filterCourseTable(element, column) {
@@ -47,7 +68,7 @@ function tableInit(){
     // adds all clicking actions
     $('#course_search_table tbody').on('dblclick', 'tr', function () {
         let data = course_data_table.row( this ).data();
-        addToWishList(data[0], data[1], data[2]);
+        addToWishList(data["subject"], data["course_id"], data["title"]);
     } );
 }
 
