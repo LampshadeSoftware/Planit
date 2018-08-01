@@ -3,7 +3,7 @@
  */
 class WishList {
     constructor(scheduler){
-        // localStorage.clear();  // use this for testing to clear local storage of any messed up data
+        localStorage.clear();  // use this for testing to clear local storage of any messed up data
         this.wish_list = {};
         this.reloadData();
         this.scheduler = scheduler;  // the instance variable of the schedules associated with this wish list

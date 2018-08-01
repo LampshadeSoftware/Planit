@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.http import HttpResponse
+from django.core import serializers
 from .models import Section
 import API.Interface as Interface
 import json
@@ -11,6 +12,7 @@ def index(request):
 	sections = []
 	for section in Section.objects.all():
 		subject, course_id = section.subject, section.course_id
+		# makes sure that we don't accidentally add a class twice
 		if subject + course_id not in unique_sections:
 			sections.append(section)
 			unique_sections.add(subject + course_id)
@@ -32,3 +34,9 @@ def get_schedules(request):
 			return JsonResponse({"schedules": [], "courses_info": {}}, safe=False)
 	else:
 		return HttpResponse("Da fuck are you tryin' to do?")
+	
+	
+def get_sections(request):
+	sections_list = Section.objects.all()
+	json_sections = serializers.serialize("json", sections_list)
+	return HttpResponse(json_sections, content_type='application/json')

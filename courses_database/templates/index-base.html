@@ -8,9 +8,9 @@
     <!-- load CSS -->
     <link rel='stylesheet' href="{% static 'css/bulma.css' %}" />
     <link rel='stylesheet' href="{% static 'fullcalendar/fullcalendar.css' %}" />
-    <link rel="stylesheet" href="{% static 'DataTables/datatables.css' %}">
     <link rel='stylesheet' href="{% static 'noUiSlider/nouislider.min.css' %}" />
     <link rel='stylesheet' href="{% static 'multiple-select/multiple-select.css' %}" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/sc-1.5.0/datatables.min.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <!-- end load CSS -->
@@ -60,9 +60,9 @@
     <script src="{% static 'fullcalendar/lib/jquery.min.js' %}"></script>
     <script src="{% static 'fullcalendar/lib/moment.min.js' %}"></script>
     <script src="{% static 'fullcalendar/fullcalendar.js' %}"></script>
-    <script src="{% static 'DataTables/datatables.js' %}"></script>
     <script src="{% static 'noUiSlider/nouislider.js' %}"></script>
     <script src="{% static 'multiple-select/multiple-select.js' %}"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/sc-1.5.0/datatables.min.js"></script>
 
     <script src="{% static 'js/utils.js' %}"></script>
     <script src="{% static 'js/wishlist.js' %}"></script>
@@ -71,6 +71,7 @@
     <script src="{% static 'js/main.js' %}"></script>
     <script> // gets Django template variables that will be used in js
         var get_schedules_url = '{% url "get_schedules" %}';
+        var get_sections_url = '{% url "get_sections" %}';
         var csrf_token = '{{ csrf_token }}';
     </script>
     <!-- end load scripts -->

@@ -109,7 +109,7 @@
             </div>
         </div>
     </div>
-	<table id="course_search_table" class="display" style="display: none; height: 100px">
+	<table id="course_search_table" class="display" style="">
 		<thead>
 		<tr>
             <th></th>
@@ -118,18 +118,18 @@
 			<th>Title</th>
 		</tr>
 		</thead>
-		<tbody>
-		{% for item in sections %}
-			<tr>
+        <tbody>
+        {% for item in sections %}
+            <tr>
                 <td><a class="btn btn-large btn-primary">
                     <i class="fas fa-plus-circle"></i></a></td>
-				<td> {{ item.subject }}</td>
-				<td> {{ item.course_id }} </td>
-				<td> {{ item.title }}</td>
-			</tr>
-		{% endfor %}
-		</tbody>
-	</table>
+                <td> {{ item.subject }}</td>
+                <td> {{ item.course_id }} </td>
+                <td> {{ item.title }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
 
 {% block wishListFilters %}

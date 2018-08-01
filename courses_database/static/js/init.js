@@ -25,26 +25,29 @@ function calendarInit(){
  */
 function tableInit(){
     let course_data_table = $('#course_search_table').DataTable({
-        /*"paging": false,
-        "scrollY": '30vh',
-        "scrollCollapse": true,
-        "deferRender": true,
-        "scroller": true, */
+        deferRender:    true,
+        scrollY:        200,
+        scrollCollapse: true,
+        scroller:       true,
+
+        /*"ajax": {
+            "processing": true,
+            "url": get_sections_url,
+            "dataSrc": ""
+        },*/
 
         "columns": [
             {
                 "orderable":      false,
-                "data":           "hi"
+                "data":           null,
+                "defaultContent": "<a class=\"btn btn-large btn-primary\"><i class=\"fas fa-plus-circle\"></i>"
             },
             { "data": "subject" },
             { "data": "course_id" },
             { "data": "title" },
         ],
         "order": [[1, 'asc']],
-        "lengthChange": false,
-        "dom": 'lrtp',
-        "pageLength": 5,
-        "pagingType": "numbers"
+        "dom": 'lrt'
     });
 
     // sets up all the course search filters
