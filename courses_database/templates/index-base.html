@@ -74,6 +74,9 @@
         var get_schedules_url = '{% url "get_schedules" %}';
         var get_sections_url = '{% url "get_sections" %}';
         var csrf_token = '{{ csrf_token }}';
+        {% autoescape off %}
+            var courses_info = {{ courses_info }};
+        {% endautoescape %}
     </script>
     <!-- end load scripts -->
 </body>
