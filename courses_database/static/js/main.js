@@ -5,6 +5,7 @@
 // global variables
 let scheduler = new Scheduler();
 let wish_list = new WishList(scheduler);  // stores the classes that the user is interested in
+let displayed_course = new Course();  // the course that was most recently clicked
 
 $(document).ready( function () {
     // sets up everything
@@ -90,12 +91,8 @@ function cycleRight(){
 
 // Start of wish list functions
 function addToWishList(subject, course_id, title){
-    if (!wish_list.contains(subject + course_id)) {
-        wish_list.addCourse(subject, course_id, title);
-        updateSchedules();
-    } else {
-        // TODO: send notification that they've already added this course
-    }
+    wish_list.addCourse(subject, course_id, title);
+    updateSchedules();
 }
 
 function removeFromWishList(subject, course_id, title){

@@ -73,6 +73,10 @@ function tableInit(){
         let data = course_data_table.row( this ).data();
         addToWishList(data["subject"], data["course_id"], data["title"]);
     } );
+    $('#course_search_table tbody').on('click', 'tr', function () {
+        let data = course_data_table.row( this ).data();
+        displayed_course.change(data["subject"], data["course_id"], data["title"]);
+    } );
 }
 
 /**

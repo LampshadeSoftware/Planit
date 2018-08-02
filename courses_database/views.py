@@ -12,7 +12,7 @@ def index(request):
 	The home screen of the app that displays the calendar and lets users add courses and sort through schedules
 	:return:
 			sections (array): an array of courses used to populate the data table
-			courses_info (dictionary): a dictionary that maps "subject + course_id" to descriptions
+			courses_info (dictionary): a dictionary that maps "subject + course_id" to relevant course information (descriptions, etc.)
 	"""
 	unique_sections = set()
 	sections = []
@@ -23,6 +23,7 @@ def index(request):
 		if subject + course_id not in unique_sections:
 			sections.append(section)
 			unique_sections.add(subject + course_id)
+			# TODO: also add other stuff to this dictionary like professors and section times
 			courses_info[subject + course_id] = section.description
 	
 	return render(request, 'index.html', {"sections": sections, "courses_info": json.dumps(courses_info)})

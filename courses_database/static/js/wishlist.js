@@ -9,8 +9,12 @@ class WishList {
         this.scheduler = scheduler;  // the instance variable of the schedules associated with this wish list
     }
 
-    addCourse(subject, course_id, title){
-        this.wish_list[subject + course_id] = new WishListItem(subject, course_id, title);
+    addCourse(subject, course_id, title) {
+        if (!this.contains(subject + course_id)) {
+            this.wish_list[subject + course_id] = new WishListItem(subject, course_id, title);
+        } else {
+            this.removeCourse(subject, course_id)
+        }
     }
 
     removeCourse(subject, course_id){
@@ -73,6 +77,9 @@ class WishList {
     }
 }
 
+/**
+ * Represents a wish list item which is always a course
+ */
 class WishListItem{
     constructor(subject, course_id, title){
         this.subject = subject;

@@ -332,7 +332,7 @@
     </form>
 {% endblock %}
 
-{% block courseInfo %}
+{% block displayedCourse %}
     <div class="modal">
         <div class="modal-card">
             <header class="modal-card-head">
@@ -348,9 +348,9 @@
             </footer>
         </div>
     </div>
-    <div class="notification" id="course_info">
-        <div><strong id="info_title">ART 309 - Life Drawing I</strong></div>
-        <div><button>Add Class</button></div>
-        <p id="info_description">Exploration of various drawing concepts using the human figure. And other sentences like descriptions of the kinds of stupid things you might do in this class.</p>
+    <div class="notification" id="displayed_course">
+        <div><strong id="displayed_title"></strong></div>
+        <div><button id="displayed_button" onclick="displayed_course.addToWishList()">Add Class</button></div>
+        <p id="displayed_description">Exploration of various drawing concepts using the human figure. And other sentences like descriptions of the kinds of stupid things you might do in this class.</p>
     </div>
 {% endblock %}
