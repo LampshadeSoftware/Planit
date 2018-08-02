@@ -35,11 +35,12 @@
                 </div>
                 {% block tabs %}{% endblock %}
                 <div id="search_tab" class="content-section is-active">
-                    {% block searchTable %}{% endblock %}
+                    {% block dataTable %}{% endblock %}
                 </div>
                 <div id="filter_tab" class="content-section">
-                    {% block wishListFilters %}{% endblock %}  <!-- TODO: Implement this -->
+                    {% block wishListFilters %}{% endblock %}
                 </div>
+                {% block courseInfo %}{% endblock %}
             </div>
             <div class="column is-7">
                 <div class="center-horizontal">

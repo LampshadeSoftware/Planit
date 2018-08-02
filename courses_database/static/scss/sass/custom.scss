@@ -4,7 +4,7 @@ $radius-large: 6px;
 
 // REGION: styles that affect all of a certain element
 body {
-  font-family: "Open Sans", monospace;
+  font-family: "Open Sans", Helvetica, sans-serif;
 }
 .header {
   font-family: 'Arial Rounded MT Bold', Arial, Helvetica, sans-serif;
@@ -66,7 +66,7 @@ button{
 }
 // END REGION
 
-// REGION: data tables
+// REGION: data table
 .dataTables_wrapper .dataTables_filter {
   float: left;
   text-align: right;
@@ -83,5 +83,11 @@ button{
 .slider {
   padding-left: 15px;
   margin-top: 0.5rem;
+}
+// END REGION
+
+// REGION: course info
+#course_info {
+  margin-top: 1.5rem;
 }
 // END REGION

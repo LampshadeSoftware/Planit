@@ -47,9 +47,9 @@ function updateSchedules(is_async) {
         dataType: 'json',
         async: is_async,
         success: function (data) {
-            let courses_info = data["courses_info"];  // contains info about the courses, applies to all schedules
+            let schedules_info = data["schedules_info"];  // contains info about the courses, applies to all schedules
             let raw_schedules = data["schedules"];
-            scheduler.parseRawSchedules(raw_schedules, courses_info);
+            scheduler.parseRawSchedules(raw_schedules, schedules_info);
             updateCalendar();
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {  // something went wrong

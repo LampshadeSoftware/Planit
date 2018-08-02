@@ -20,8 +20,7 @@
     </div>
 {% endblock %}
 
-{% block searchTable %}
-    <!-- TODO: Look up Bulma 'levels' for getting things to look nice on the same line -->
+{% block dataTable %}
     <div id="course_search_filters">
         <div class="columns">
             <div class="column">
@@ -334,15 +333,24 @@
 {% endblock %}
 
 {% block courseInfo %}
-    <div id="tooltip_template" style="display: none;">
-        <article class="message" style="width: 400px">
-            <div class="message-header">
-                <p>Hello World</p>
-                <button class="delete" aria-label="delete"></button>
-            </div>
-            <div class="message-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
-            </div>
-        </article>
+    <div class="modal">
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Modal title</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <!-- Content ... -->
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-success">Save changes</button>
+                <button class="button">Cancel</button>
+            </footer>
+        </div>
+    </div>
+    <div class="notification" id="course_info">
+        <div><strong id="info_title">ART 309 - Life Drawing I</strong></div>
+        <div><button>Add Class</button></div>
+        <p id="info_description">Exploration of various drawing concepts using the human figure. And other sentences like descriptions of the kinds of stupid things you might do in this class.</p>
     </div>
 {% endblock %}

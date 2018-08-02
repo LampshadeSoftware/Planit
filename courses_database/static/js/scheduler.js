@@ -2,14 +2,13 @@
  * Manages all of the schedules and the currently displayed schedules
  * Parses raw data and converts it to a calendar-readable format
  */
-
 class Scheduler {
     constructor(){
         this.empty_schedules = [[{}]];
         this.schedules = this.empty_schedules;
         this.schedule_index = 0;
         this.credit_counts = [];
-        this.courses_info = {};
+        this.schedules_info = {};
     }
 
     /**
@@ -19,12 +18,12 @@ class Scheduler {
         return this.schedules[this.schedule_index];
     }
 
-    parseRawSchedules(raw_schedules, courses_info){
+    parseRawSchedules(raw_schedules, schedules_info){
         // clears the last array of schedules and resets index
         this.reset();
 
         this.schedules = [];
-        this.courses_info = courses_info;
+        this.schedules_info = schedules_info;
 
         // parses the raw schedules dictionary into a FullCalendar-readable format
         for (let i in raw_schedules) {
@@ -50,7 +49,7 @@ class Scheduler {
                         "title": "[" + num_credits + "] " + subject + " " + course_id + " " + section_num + " - " + title,
                         "start": "2018-01-0" + day + 'T' + start_hour + ":" + start_minute,
                         "end": "2018-01-0" + day + 'T' + end_hour + ":" + end_minute,
-                        "color": this.courses_info[subject + course_id]["color"]
+                        "color": this.schedules_info[subject + course_id]["color"]
                     });
                 }
             }

@@ -45,8 +45,8 @@ class WishList {
                 if (this.wish_list.hasOwnProperty(key)) {
                     let color = "#BBBBBB";
                     let font_color = "#333333";
-                    if (this.scheduler.courses_info[key]["color"]){
-                        color = this.scheduler.courses_info[key]["color"];
+                    if (this.scheduler.schedules_info[key]["color"]){
+                        color = this.scheduler.schedules_info[key]["color"];
                         font_color = "#ffffff";
                     }
                     this.wish_list[key].createButton(color, font_color);

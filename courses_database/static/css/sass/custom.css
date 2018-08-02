@@ -1,5 +1,5 @@
 body {
-  font-family: "Open Sans", monospace;
+  font-family: "Open Sans", Helvetica, sans-serif;
 }
 
 .header {
@@ -78,6 +78,10 @@ button {
 .slider {
   padding-left: 15px;
   margin-top: 0.5rem;
+}
+
+#course_info {
+  margin-top: 1.5rem;
 }
 
 /*# sourceMappingURL=custom.css.map */
