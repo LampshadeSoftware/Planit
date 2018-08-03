@@ -10,11 +10,7 @@ class WishList {
     }
 
     addCourse(subject, course_id, title) {
-        if (!this.contains(subject + course_id)) {
-            this.wish_list[subject + course_id] = new WishListItem(subject, course_id, title);
-        } else {
-            this.removeCourse(subject, course_id)
-        }
+        this.wish_list[subject + course_id] = new WishListItem(subject, course_id, title);
     }
 
     removeCourse(subject, course_id){
@@ -95,7 +91,7 @@ class WishListItem{
         button.style.backgroundColor = color;
         button.style.color = text_color;
         button.classList.add("wish-list-item");
-        button.onclick = () => {  };
+        button.onclick = () => { displayed_course.change(this.subject, this.course_id, this.title) };
         button.ondblclick = () => { removeFromWishList(this.subject, this.course_id, this.title)};
         document.getElementById("wish_list").appendChild(button);
     }

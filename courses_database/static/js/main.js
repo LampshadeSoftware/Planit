@@ -52,6 +52,7 @@ function updateSchedules(is_async) {
             let raw_schedules = data["schedules"];
             scheduler.parseRawSchedules(raw_schedules, schedules_info);
             updateCalendar();
+            displayed_course.updateUI();
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {  // something went wrong
             alert("Status: " + textStatus + ". Error" + errorThrown);
@@ -90,8 +91,16 @@ function cycleRight(){
 // End of calendar functions
 
 // Start of wish list functions
-function addToWishList(subject, course_id, title){
-    wish_list.addCourse(subject, course_id, title);
+function addToWishList(subject, course_id, title, force){
+    if (force) {
+        wish_list.addCourse(subject, course_id, title);
+    } else {
+        if (!wish_list.contains(subject + course_id)) {
+            wish_list.addCourse(subject, course_id, title);
+        } else {
+            wish_list.removeCourse(subject, course_id, title);
+        }
+    }
     updateSchedules();
 }
 
