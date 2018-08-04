@@ -3,7 +3,7 @@
  */
 class WishList {
     constructor(scheduler){
-        localStorage.clear();  // use this for testing to clear local storage of any messed up data
+        // localStorage.clear();  // use this for testing to clear local storage of any messed up data
         this.wish_list = {};
         this.reloadData();
         this.scheduler = scheduler;  // the instance variable of the schedules associated with this wish list
@@ -37,8 +37,8 @@ class WishList {
 
     updateButtons(){
         if (Object.keys(this.wish_list).length === 0){
-            $('#empty_wish_list').addClass('is-active');
-            $('#wish_list').removeClass('is-active');
+            $('#empty_wish_list').show();
+            $('#wish_list').hide();
         } else {
             $("#wish_list").html("");  // clears all of the buttons
             for (let key in this.wish_list){
@@ -52,8 +52,8 @@ class WishList {
                     this.wish_list[key].createButton(color, font_color);
                 }
             }
-            $('#empty_wish_list').removeClass('is-active');
-            $('#wish_list').addClass('is-active');
+            $('#empty_wish_list').hide();
+            $('#wish_list').show();
         }
     }
 

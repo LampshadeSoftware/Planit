@@ -14,18 +14,28 @@ class Course {
         this.subject = subject;
         this.course_id = course_id;
         this.title = title;
-        this.description = courses_info[this.subject + this.course_id];
+        this.description = courses_info[this.subject + this.course_id]["description"];
+        this.credits = courses_info[this.subject + this.course_id]["credits"];
+        this.crn = courses_info[this.subject + this.course_id]["crn"];
+        this.instructor = courses_info[this.subject + this.course_id]["instructor"];
         this.updateUI();
     }
 
     updateUI() {
-        $("#displayed_title").html(this.subject + " " + this.course_id + " " + this.title);
-        $("#displayed_description").html(this.description);
-        let button_text = "Add Course";
-        if (wish_list.contains(this.subject + this.course_id)){
-            button_text = "Remove Course"
+        if (this.subject !== null) {
+            $("#displayed_content").show();
+            $("#displayed_title").html("[" + this.credits + "] " + this.subject + " " + this.course_id + " " + this.title);
+            $("#displayed_crn").html(this.crn);
+            $("#displayed_instructor").html(this.instructor);
+            $("#displayed_description").html(this.description);
+            let button_text = "Add Course";
+            if (wish_list.contains(this.subject + this.course_id)){
+                button_text = "Remove Course"
+            }
+            $("#displayed_button").html(button_text)
+        } else {
+            $("#displayed_content").hide();
         }
-        $("#displayed_button").html(button_text);
     }
 
     addToWishList(){

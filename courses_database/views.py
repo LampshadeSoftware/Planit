@@ -24,7 +24,12 @@ def index(request):
 			sections.append(section)
 			unique_sections.add(subject + course_id)
 			# TODO: also add other stuff to this dictionary like professors and section times
-			courses_info[subject + course_id] = section.description
+			courses_info[subject + course_id] = {
+				"description": section.description,
+				"crn": section.crn,
+				"credits": section.credit_hrs,
+				"instructor": section.instructor
+			}
 	
 	return render(request, 'index.html', {"sections": sections, "courses_info": json.dumps(courses_info)})
 

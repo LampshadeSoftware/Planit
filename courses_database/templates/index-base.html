@@ -34,15 +34,17 @@
                     <div class="content-section is-active" id="wish_list"></div>
                 </div>
                 {% block tabs %}{% endblock %}
-                <div id="search_tab" class="content-section is-active">
-                    {% block dataTable %}{% endblock %}
-                </div>
-                <div id="filter_tab" class="content-section">
-                    {% block wishListFilters %}{% endblock %}
+                <div id="tabs_content">
+                    <div id="search_tab" class="content-section is-active">
+                        {% block dataTable %}{% endblock %}
+                    </div>
+                    <div id="filter_tab" class="content-section">
+                        {% block wishListFilters %}{% endblock %}
+                    </div>
                 </div>
                 {% block displayedCourse %}{% endblock %}
             </div>
-            <div class="column is-7">
+            <div class="column is-7" id="calendar_column">
                 <div class="center-horizontal">
                     <button onclick="cycleLeft()">
                         <i class="fas fa-arrow-left"></i>

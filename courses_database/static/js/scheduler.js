@@ -46,7 +46,7 @@ class Scheduler {
                     let end_hour = time["end_hour"];
                     let end_minute = time["end_minute"];
                     schedule.push({
-                        "title": "[" + num_credits + "] " + subject + " " + course_id + " " + section_num + " - " + title,
+                        "title": "[" + num_credits + "] " + title + " - " + subject + " " + course_id + " " + section_num,
                         "start": "2018-01-0" + day + 'T' + start_hour + ":" + start_minute,
                         "end": "2018-01-0" + day + 'T' + end_hour + ":" + end_minute,
                         "color": this.schedules_info[subject + course_id]["color"]

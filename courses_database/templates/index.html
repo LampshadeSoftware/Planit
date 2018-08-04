@@ -22,7 +22,7 @@
 
 {% block dataTable %}
     <div id="course_search_filters">
-        <div class="columns">
+        <div class="columns" id="search_courses_filters">
             <div class="column">
                 <label for="subject_input">Subject</label>
                 <input title="Course Subject" id="subject_input" list="subjects" class="full-width">
@@ -334,24 +334,15 @@
 {% endblock %}
 
 {% block displayedCourse %}
-    <div class="modal">
-        <div class="modal-card">
-            <header class="modal-card-head">
-                <p class="modal-card-title">Modal title</p>
-                <button class="delete" aria-label="close"></button>
-            </header>
-            <section class="modal-card-body">
-                <!-- Content ... -->
-            </section>
-            <footer class="modal-card-foot">
-                <button class="button is-success">Save changes</button>
-                <button class="button">Cancel</button>
-            </footer>
-        </div>
-    </div>
     <div class="notification" id="displayed_course">
-        <div><strong id="displayed_title"></strong></div>
-        <div><button id="displayed_button" onclick="displayed_course.addToWishList()">Add Class</button></div>
-        <p id="displayed_description">Exploration of various drawing concepts using the human figure. And other sentences like descriptions of the kinds of stupid things you might do in this class.</p>
+        <div id="displayed_content">
+            <div><strong id="displayed_title"></strong></div>
+            <p>
+                CRN: <span id="displayed_crn"></span>&emsp;
+                Instructor: <span id="displayed_instructor"></span>
+            </p>
+            <div><button id="displayed_button" onclick="displayed_course.addToWishList()">Add Class</button></div>
+            <p id="displayed_description"></p>
+        </div>
     </div>
 {% endblock %}

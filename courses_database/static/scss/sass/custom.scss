@@ -1,19 +1,26 @@
-// defines all variables here
-$primary: #46B8AF;
-$radius-large: 6px;
-
 // REGION: styles that affect all of a certain element
 body {
   font-family: "Open Sans", Helvetica, sans-serif;
+  background-color: $background-primary;
+}
+p {
+  font-size: 80%;
 }
 .header {
   font-family: 'Arial Rounded MT Bold', Arial, Helvetica, sans-serif;
 }
 .section {
-  padding-top: 1.5rem;
+  padding-top: 0.75rem;
 }
 a {
   color: $primary;
+}
+.notification {
+  background-color: $background-secondary;
+  border: 1px solid $border-color;
+}
+.columns {
+  margin-top: 0px;
 }
 // END REGION
 
@@ -62,11 +69,22 @@ button{
 
 // REGION: tabs
 .tabs:not(:last-child){
-  margin-bottom: .5rem;
+  margin-bottom: 0px;
+}
+#tabs_content {
+  background-color: $background-secondary;
+  border: 1px solid $border-color;
+  border-top: 0px;
+  border-bottom-left-radius: $radius;
+  border-bottom-right-radius: $radius;
 }
 // END REGION
 
-// REGION: data table
+// REGION: data table and search
+#search_courses_filters{
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
 .dataTables_wrapper .dataTables_filter {
   float: left;
   text-align: right;
@@ -82,12 +100,32 @@ button{
 }
 .slider {
   padding-left: 15px;
+  padding-right: 15px;
   margin-top: 0.5rem;
+}
+#filter_tab {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  border-bottom-right-radius: $radius;
+  border-bottom-left-radius: $radius;
 }
 // END REGION
 
 // REGION: course info
 #displayed_course {
   margin-top: 1.5rem;
+}
+// END REGION
+
+// REGION: calendar
+#calendar {
+  background-color: $background-secondary;
+}
+#calendar_column{
+  margin-top: -1.5rem;
+}
+.fc-content {
+  font-size: 12px;
 }
 // END REGION
