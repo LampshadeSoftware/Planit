@@ -337,12 +337,20 @@
     <div class="notification" id="displayed_course">
         <div id="displayed_content">
             <div><strong id="displayed_title"></strong></div>
-            <p>
-                CRN: <span id="displayed_crn"></span>&emsp;
-                Instructor: <span id="displayed_instructor"></span>
-            </p>
-            <div><button id="displayed_button" onclick="displayed_course.addToWishList()">Add Class</button></div>
-            <p id="displayed_description"></p>
+            <div class="small_text">
+                <p>
+                    CRN: <span id="displayed_crn"></span>&emsp;
+                    Instructor: <span id="displayed_instructor"></span>
+                </p>
+                <div>
+                    <button id="displayed_button" onclick="displayed_course.addToWishList()">Add Class</button>&emsp;
+                    <span id="displayed_optional_holder">
+                        [<input type="checkbox" id="displayed_optional_checkbox" name="required" value="Bike">
+                        <label for="subject_input">Required*]</label>
+                    </span>
+                </div>
+                <p id="displayed_description"></p>
+            </div>
         </div>
     </div>
 {% endblock %}

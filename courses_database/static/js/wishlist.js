@@ -9,6 +9,11 @@ class WishList {
         this.scheduler = scheduler;  // the instance variable of the schedules associated with this wish list
     }
 
+    getItem(subject, course_id) {
+
+        return this.wish_list[subject + course_id];
+    }
+
     addCourse(subject, course_id, title) {
         this.wish_list[subject + course_id] = new WishListItem(subject, course_id, title);
     }
@@ -81,12 +86,21 @@ class WishListItem{
         this.subject = subject;
         this.course_id = course_id;
         this.title = title;
-        this.optional = true;
+        this.optional = true;  // false if the course MUST be in the schedule, true if it doesn't matter
+    }
+
+    setOptional(val){
+        this.optional = val;
     }
 
     createButton(color, text_color) {
         let button = document.createElement("button");
-        let button_text = document.createTextNode(this.subject + this.course_id);
+        let button_text;
+        if (this.optional) {
+            button_text = document.createTextNode(this.subject + this.course_id);
+        } else {
+            button_text = document.createTextNode("*" + this.subject + this.course_id);
+        }
         button.appendChild(button_text);
         button.style.backgroundColor = color;
         button.style.color = text_color;
@@ -101,7 +115,7 @@ class WishListItem{
             "subject": this.subject,
             "course_id": this.course_id,
             "title": this.title,
-            "optional": true
+            "optional": this.optional
         };
     }
 }

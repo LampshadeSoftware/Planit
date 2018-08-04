@@ -3,17 +3,17 @@ body {
   font-family: "Open Sans", Helvetica, sans-serif;
   background-color: $background-primary;
 }
-p {
-  font-size: 80%;
+a {
+  color: $primary;
+}
+button{
+  outline: 0;
 }
 .header {
   font-family: 'Arial Rounded MT Bold', Arial, Helvetica, sans-serif;
 }
 .section {
   padding-top: 0.75rem;
-}
-a {
-  color: $primary;
 }
 .notification {
   background-color: $background-secondary;
@@ -31,8 +31,8 @@ a {
 .full-width {
   width: 100%;
 }
-button{
-  outline: 0;
+.small_text {
+  font-size: 80%;
 }
 // END REGION
 
