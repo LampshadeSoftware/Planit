@@ -203,3 +203,7 @@ function filtersInit(){
         }
     });
 }
+
+function tooltipInit(){
+    tippy('#displayed_lock_icon');
+}

@@ -13,6 +13,7 @@ $(document).ready( function () {
     calendarInit();
     tabsInit();
     filtersInit();
+    tooltipInit();
 
     updateSchedules(false);
     document.getElementById("course_search_table").style.display = "";  // calendar now displays
