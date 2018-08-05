@@ -14,8 +14,8 @@ class WishList {
         return this.wish_list[subject + course_id];
     }
 
-    addCourse(subject, course_id, title) {
-        this.wish_list[subject + course_id] = new WishListItem(subject, course_id, title);
+    addCourse(subject, course_id, title, optional) {
+        this.wish_list[subject + course_id] = new WishListItem(subject, course_id, title, optional);
     }
 
     removeCourse(subject, course_id){
@@ -31,7 +31,8 @@ class WishList {
             if (saved_wish_list.hasOwnProperty(key)) {
                 this.addCourse(saved_wish_list[key]["subject"],
                     saved_wish_list[key]["course_id"],
-                    saved_wish_list[key]["title"]);
+                    saved_wish_list[key]["title"],
+                    saved_wish_list[key]["optional"]);
             }
         }
     }
@@ -82,11 +83,11 @@ class WishList {
  * Represents a wish list item which is always a course
  */
 class WishListItem{
-    constructor(subject, course_id, title){
+    constructor(subject, course_id, title, optional){
         this.subject = subject;
         this.course_id = course_id;
         this.title = title;
-        this.optional = true;  // false if the course MUST be in the schedule, true if it doesn't matter
+        this.optional = optional;  // false if the course MUST be in the schedule, true if it doesn't matter
     }
 
     setOptional(val){
@@ -95,12 +96,13 @@ class WishListItem{
 
     createButton(color, text_color) {
         let button = document.createElement("button");
-        let button_text;
-        if (this.optional) {
-            button_text = document.createTextNode(this.subject + this.course_id);
-        } else {
-            button_text = document.createTextNode("*" + this.subject + this.course_id);
+        let button_text = document.createTextNode(this.subject + this.course_id);
+        let button_required = document.createElement("i");
+        if (!this.optional) {
+            button_required.className = "fa fa-lock";
+            button_required.style.paddingRight = "3px";
         }
+        button.appendChild(button_required);
         button.appendChild(button_text);
         button.style.backgroundColor = color;
         button.style.color = text_color;
