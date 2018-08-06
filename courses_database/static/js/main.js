@@ -16,7 +16,7 @@ $(document).ready( function () {
     tooltipInit();
 
     updateSchedules(false);
-    document.getElementById("course_search_table").style.display = "";  // calendar now displays
+    $(".loading_screen").hide();  // removes the loading screen from the view
 } );
 
 /**

@@ -18,6 +18,7 @@
     <!-- end load CSS -->
 </head>
 <body onunload="wish_list.saveData()">
+    {% block loadingScreen %}{% endblock %}
     <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="#">
