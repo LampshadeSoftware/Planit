@@ -60,6 +60,7 @@ class WishList {
             }
             $('#empty_wish_list').hide();
             $('#wish_list').show();
+            tippy('.wish_list_item', {theme: 'light'});
         }
     }
 
@@ -104,9 +105,10 @@ class WishListItem{
         }
         button.appendChild(button_required);
         button.appendChild(button_text);
+        button.title = this.title;
         button.style.backgroundColor = color;
         button.style.color = text_color;
-        button.classList.add("wish-list-item");
+        button.classList.add("wish_list_item");
         button.onclick = () => { displayed_course.change(this.subject, this.course_id, this.title) };
         button.ondblclick = () => { removeFromWishList(this.subject, this.course_id, this.title)};
         document.getElementById("wish_list").appendChild(button);

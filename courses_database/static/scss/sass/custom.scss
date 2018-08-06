@@ -46,7 +46,7 @@ button{
 // END REGION
 
 // REGION: wish list
-.wish-list-item {
+.wish_list_item {
   border: 0;
   border-radius: 10px;
   width: 5.5rem;
@@ -56,7 +56,7 @@ button{
   transition-duration: 0.4s;
   margin: 1px;
 }
-.wish-list-item:hover {
+.wish_list_item:hover {
   box-shadow: 0 5px 16px 0 rgba(0,0,0,0.3);
 }
 .notification {
@@ -64,6 +64,17 @@ button{
 }
 .noUi-handle {
   outline: 0;
+}
+.tippy-tooltip.light-theme {
+  /* Your styling here. Example: */
+  background-color: #ffffff;
+  box-shadow: 0 5px 16px 0 rgba(0,0,0,0.15);
+  font-weight: bold;
+  color: #333;
+}
+.tippy-tooltip.light-theme .tippy-backdrop {
+  /* Your styling here. Example: */
+  background-color: #ffffff;
 }
 // END REGION
 
@@ -133,8 +144,7 @@ button{
 // REGION: loading screen
 .loading_screen {
   position: fixed; /* Stay in place */
-  z-index: 10; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  z-index: 100; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */

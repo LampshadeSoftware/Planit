@@ -8483,7 +8483,7 @@ button {
   display: block;
 }
 
-.wish-list-item {
+.wish_list_item {
   border: 0;
   border-radius: 10px;
   width: 5.5rem;
@@ -8495,7 +8495,7 @@ button {
   margin: 1px;
 }
 
-.wish-list-item:hover {
+.wish_list_item:hover {
   box-shadow: 0 5px 16px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -8505,6 +8505,19 @@ button {
 
 .noUi-handle {
   outline: 0;
+}
+
+.tippy-tooltip.light-theme {
+  /* Your styling here. Example: */
+  background-color: #ffffff;
+  box-shadow: 0 5px 16px 0 rgba(0, 0, 0, 0.15);
+  font-weight: bold;
+  color: #333;
+}
+
+.tippy-tooltip.light-theme .tippy-backdrop {
+  /* Your styling here. Example: */
+  background-color: #ffffff;
 }
 
 .tabs:not(:last-child) {
@@ -8570,10 +8583,8 @@ button {
 .loading_screen {
   position: fixed;
   /* Stay in place */
-  z-index: 10;
+  z-index: 100;
   /* Sit on top */
-  padding-top: 100px;
-  /* Location of the box */
   left: 0;
   top: 0;
   width: 100%;
