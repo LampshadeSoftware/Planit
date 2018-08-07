@@ -60,7 +60,7 @@ class WishList {
             }
             $('#empty_wish_list').hide();
             $('#wish_list').show();
-            tippy('.wish_list_item', {theme: 'light'});
+            tippy('.wish_list_item', {theme: 'light'});  //  adds tooltips to all of the wish list items
         }
     }
 
@@ -95,7 +95,7 @@ class WishListItem{
         this.optional = val;
     }
 
-    createButton(color, text_color) {
+    createButton(color, text_color, in_schedule) {
         let button = document.createElement("button");
         let button_text = document.createTextNode(this.subject + this.course_id);
         let button_required = document.createElement("i");
@@ -109,6 +109,7 @@ class WishListItem{
         button.style.backgroundColor = color;
         button.style.color = text_color;
         button.classList.add("wish_list_item");
+        if (in_schedule) { button.classList.add("in_schedule"); }
         button.onclick = () => { displayed_course.change(this.subject, this.course_id, this.title) };
         button.ondblclick = () => { removeFromWishList(this.subject, this.course_id, this.title)};
         document.getElementById("wish_list").appendChild(button);

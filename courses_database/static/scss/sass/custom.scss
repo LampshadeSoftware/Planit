@@ -59,6 +59,11 @@ button{
 .wish_list_item:hover {
   box-shadow: 0 5px 16px 0 rgba(0,0,0,0.3);
 }
+.in_schedule {
+  border-style: solid;
+  border-color: #f4b267;
+  border-width: 2px;
+}
 .notification {
   padding: 1rem;
 }
