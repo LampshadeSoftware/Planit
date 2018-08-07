@@ -1,29 +1,43 @@
-$primary: #46B8AF;
-
 // REGION: styles that affect all of a certain element
 body {
-  font-family: "Open Sans", monospace;
+  font-family: "Open Sans", Helvetica, sans-serif;
+  background-color: $background-primary;
+}
+p {
+  font-size: 80%;
 }
 .header {
   font-family: 'Arial Rounded MT Bold', Arial, Helvetica, sans-serif;
 }
 .section {
-  padding-top: 1.5rem;
+  padding-top: 0.75rem;
+}
+a {
+  color: $primary;
+}
+.notification {
+  background-color: $background-secondary;
+  border: 1px solid $border-color;
+}
+.columns {
+  margin-top: 0px;
 }
 // END REGION
 
 // REGION: general useful classes
 .center-horizontal {
-  margin: 0 auto;
-  width: 100px;
+  text-align: center;
 }
 .full-width {
   width: 100%;
 }
+button{
+  outline: 0;
+}
 // END REGION
 
-// REGION: for (not) displaying tabs
-.content-tab {
+// REGION: for (not) displaying sections
+.content-section {
   display: none;
 }
 .is-active {
@@ -31,33 +45,87 @@ body {
 }
 // END REGION
 
-// REGION: input bars styling
-//label, input {
-//  float:left;
-//}
-//
-//input {
-//  font-size: 1rem;
-//  padding: 2px; // instead of using fixed height
-//  width: 50%;
-//}
-//
-//label {
-//  width: 50%; // can use JavaScript if it needs to be dynamic
-//  padding-top: 3px; // to make the label vertically inline with the input element
-//}
-//
-//.field_wrapper {
-//  clear:left;
-//}
+// REGION: wish list
+.wish-list-item {
+  border: 0;
+  border-radius: 10px;
+  width: 5rem;
+  height: 3rem;
+  font-weight: 700;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  margin: 1px;
+}
+.wish-list-item:hover {
+  box-shadow: 0 5px 16px 0 rgba(0,0,0,0.3);
+}
+.notification {
+  padding: 1rem;
+}
+.noUi-handle {
+  outline: 0;
+}
 // END REGION
 
-// REGION: data tables
+// REGION: tabs
+.tabs:not(:last-child){
+  margin-bottom: 0px;
+}
+#tabs_content {
+  background-color: $background-secondary;
+  border: 1px solid $border-color;
+  border-top: 0px;
+  border-bottom-left-radius: $radius;
+  border-bottom-right-radius: $radius;
+}
+// END REGION
+
+// REGION: data table and search
+#search_courses_filters{
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
 .dataTables_wrapper .dataTables_filter {
   float: left;
   text-align: right;
 }
 .dataTables_wrapper .dataTables_filter input {
   margin-left: 0.0em;
+}
+// END REGION
+
+// REGION: filters
+.filter {
+  margin-bottom: 1.5rem;
+}
+.slider {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 0.5rem;
+}
+#filter_tab {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  border-bottom-right-radius: $radius;
+  border-bottom-left-radius: $radius;
+}
+// END REGION
+
+// REGION: course info
+#displayed_course {
+  margin-top: 1.5rem;
+}
+// END REGION
+
+// REGION: calendar
+#calendar {
+  background-color: $background-secondary;
+}
+#calendar_column{
+  margin-top: -1.5rem;
+}
+.fc-content {
+  font-size: 12px;
 }
 // END REGION

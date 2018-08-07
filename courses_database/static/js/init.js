@@ -23,26 +23,59 @@ function calendarInit(){
 /**
  * sets up the table that holds all of the courses and allows the user to search for courses
  */
-function tablesInit(){
-    let coursesDataTable = $('#course_search_table').DataTable({searching: true, dom: 'lrtp', "lengthChange": false});
+function tableInit(){
+    let course_data_table = $('#course_search_table').DataTable({
+        deferRender:    true,
+        scrollY:        200,
+        scrollCollapse: true,
+        scroller:       true,
+
+        /*"ajax": {
+            "processing": true,
+            "url": get_sections_url,
+            "dataSrc": ""
+        },*/
+
+        "columns": [
+            {
+                "orderable":      false,
+                "data":           "button"
+            },
+            { "data": "subject" },
+            { "data": "course_id" },
+            { "data": "title" },
+        ],
+        "order": [[1, 'asc']],
+        "dom": 'lrt'
+    });
 
     // sets up all the course search filters
     $('#subject_input').on( 'keyup', function () {
-        filterCourseTable(this, 0);
-    });
-    $('#course_num_input').on( 'keyup', function () {
         filterCourseTable(this, 1);
     });
-    $('#title_input').on( 'keyup', function () {
+    $('#course_num_input').on( 'keyup', function () {
         filterCourseTable(this, 2);
+    });
+    $('#title_input').on( 'keyup', function () {
+        filterCourseTable(this, 3);
     });
 
     function filterCourseTable(element, column) {
-        coursesDataTable
+        course_data_table
             .columns( column )
             .search( element.value )
             .draw();
     }
+
+    // adds all clicking actions
+    $('#course_search_table tbody').on('dblclick', 'tr', function () {
+        let data = course_data_table.row( this ).data();
+        addToWishList(data["subject"], data["course_id"], data["title"], false);
+    } );
+    $('#course_search_table tbody').on('click', 'tr', function () {
+        let data = course_data_table.row( this ).data();
+        displayed_course.change(data["subject"], data["course_id"], data["title"]);
+    } );
 }
 
 /**
@@ -111,7 +144,7 @@ function filtersInit(){
     noUiSlider.create(credit_slider, {
         connect: true,
         behavior: 'tap',
-        start: [12, 18],
+        start: [3, 18],
         step: 1,
         range: {
             'min': 1,

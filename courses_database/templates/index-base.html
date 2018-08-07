@@ -8,9 +8,9 @@
     <!-- load CSS -->
     <link rel='stylesheet' href="{% static 'css/bulma.css' %}" />
     <link rel='stylesheet' href="{% static 'fullcalendar/fullcalendar.css' %}" />
-    <link rel="stylesheet" href="{% static 'DataTables/datatables.css' %}">
     <link rel='stylesheet' href="{% static 'noUiSlider/nouislider.min.css' %}" />
     <link rel='stylesheet' href="{% static 'multiple-select/multiple-select.css' %}" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/sc-1.5.0/datatables.min.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <!-- end load CSS -->
@@ -25,20 +25,34 @@
     </nav>
     <div class="section is-primary">
         <div class="columns">
-            <div class="column is-4">
+            <div class="column is-5" id="search_and_filter_tabs">
+                <div class="notification">
+                    <div class="content-section" id="empty_wish_list">
+                        <strong>You have not added any courses to your wish list.</strong>
+                        To add courses, select them from the 'Search Courses' tab.
+                    </div>
+                    <div class="content-section is-active" id="wish_list"></div>
+                </div>
                 {% block tabs %}{% endblock %}
-                <div id="search_tab" class="content-tab is-active">
-                    {% block searchTable %}{% endblock %}
+                <div id="tabs_content">
+                    <div id="search_tab" class="content-section is-active">
+                        {% block dataTable %}{% endblock %}
+                    </div>
+                    <div id="filter_tab" class="content-section">
+                        {% block wishListFilters %}{% endblock %}
+                    </div>
                 </div>
-                <div id="filter_tab" class="content-tab">
-                    {% block wishListFilters %}{% endblock %}  <!-- TODO: Implement this -->
-                </div>
+                {% block displayedCourse %}{% endblock %}
             </div>
-            <div class="column is-8">
+            <div class="column is-7" id="calendar_column">
                 <div class="center-horizontal">
-                    <button onclick="cycleLeft()"><</button>
+                    <button onclick="cycleLeft()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
                     <strong><p id="schedule_index" style="display: inline-block;">0/0</p></strong>
-                    <button onclick="cycleRight()">></button>
+                    <button onclick="cycleRight()">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
                 </div>
                 <div id="calendar"></div>
             </div>
@@ -49,17 +63,22 @@
     <script src="{% static 'fullcalendar/lib/jquery.min.js' %}"></script>
     <script src="{% static 'fullcalendar/lib/moment.min.js' %}"></script>
     <script src="{% static 'fullcalendar/fullcalendar.js' %}"></script>
-    <script src="{% static 'DataTables/datatables.js' %}"></script>
     <script src="{% static 'noUiSlider/nouislider.js' %}"></script>
     <script src="{% static 'multiple-select/multiple-select.js' %}"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/sc-1.5.0/datatables.min.js"></script>
 
+    <script src="{% static 'js/utils.js' %}"></script>
     <script src="{% static 'js/wishlist.js' %}"></script>
     <script src="{% static 'js/scheduler.js' %}"></script>
     <script src="{% static 'js/init.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
     <script> // gets Django template variables that will be used in js
         var get_schedules_url = '{% url "get_schedules" %}';
+        var get_sections_url = '{% url "get_sections" %}';
         var csrf_token = '{{ csrf_token }}';
+        {% autoescape off %}
+            var courses_info = {{ courses_info }};
+        {% endautoescape %}
     </script>
     <!-- end load scripts -->
 </body>

@@ -21,4 +21,5 @@ urlpatterns = [
 	path('admin/', admin.site.urls),
 	path('', views.index, name='index'),
 	path('get_schedules', views.get_schedules, name='get_schedules'),
+	path('get_sections', views.get_sections, name='get_sections'),
 ]

@@ -2,12 +2,13 @@
  * Manages all of the schedules and the currently displayed schedules
  * Parses raw data and converts it to a calendar-readable format
  */
-
 class Scheduler {
     constructor(){
         this.empty_schedules = [[{}]];
         this.schedules = this.empty_schedules;
         this.schedule_index = 0;
+        this.credit_counts = [];
+        this.schedules_info = {};
     }
 
     /**
@@ -17,37 +18,38 @@ class Scheduler {
         return this.schedules[this.schedule_index];
     }
 
-    parseRawSchedules(raw_schedules){
+    parseRawSchedules(raw_schedules, schedules_info){
         // clears the last array of schedules and resets index
         this.reset();
 
         this.schedules = [];
+        this.schedules_info = schedules_info;
 
         // parses the raw schedules dictionary into a FullCalendar-readable format
         for (let i in raw_schedules) {
-            creditCounts.push(raw_schedules[i]["total_credits"]);
+            this.credit_counts.push(raw_schedules[i]["total_credits"]);
             let schedule = [];
             let sections = raw_schedules[i]["sections"];
             for (let j in sections) {
                 let section = sections[j];
 
                 let subject = section["subject"];
-                let courseId = section["course_id"];
-                let sectionNum = section["section_num"];
+                let course_id = section["course_id"];
+                let section_num = section["section_num"];
                 let title = section["title"];
-                let numCredits = section["num_credits"];
+                let num_credits = section["num_credits"];
                 for (let t in section["times"]) {
                     let time = section["times"][t];
                     let day = time["day"];
-                    let startHour = time["start_hour"];
-                    let startMinute = time["start_minute"];
-                    let endHour = time["end_hour"];
-                    let endMinute = time["end_minute"];
+                    let start_hour = time["start_hour"];
+                    let start_minute = time["start_minute"];
+                    let end_hour = time["end_hour"];
+                    let end_minute = time["end_minute"];
                     schedule.push({
-                        "title": "[" + numCredits + "] " + subject + " " + courseId + " " + sectionNum + " - " + title,
-                        "start": "2018-01-0" + day + 'T' + startHour + ":" + startMinute,
-                        "end": "2018-01-0" + day + 'T' + endHour + ":" + endMinute,
-                        "color": coursesInfo[subject + courseId]["color"]
+                        "title": "[" + num_credits + "] " + title + " - " + subject + " " + course_id + " " + section_num,
+                        "start": "2018-01-0" + day + 'T' + start_hour + ":" + start_minute,
+                        "end": "2018-01-0" + day + 'T' + end_hour + ":" + end_minute,
+                        "color": this.schedules_info[subject + course_id]["color"]
                     });
                 }
             }

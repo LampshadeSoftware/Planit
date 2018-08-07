@@ -3,15 +3,19 @@
  */
 
 // global variables
-let wish_list = new WishList();  // stores the classes that the user is interested in
 let scheduler = new Scheduler();
+let wish_list = new WishList(scheduler);  // stores the classes that the user is interested in
+let displayed_course = new Course();  // the course that was most recently clicked
 
 $(document).ready( function () {
     // sets up everything
-    tablesInit();
+    tableInit();
     calendarInit();
     tabsInit();
     filtersInit();
+
+    updateSchedules(false);
+    document.getElementById("course_search_table").style.display = "";  // calendar now displays
 } );
 
 /**
@@ -28,8 +32,8 @@ function updateSchedules(is_async) {
     }, {});
     filters["days_off"] = String($("#days_off").multipleSelect("getSelects"));
     filters["attr"] = String($("#attributes").multipleSelect("getSelects"));
-    let courses_info = {
-        "wish_list": wish_list.getData(),
+    let schedule_restrictions = {
+        "wish_list": wish_list.asDict(),
         "filters": filters
     };
 
@@ -38,19 +42,17 @@ function updateSchedules(is_async) {
         url: get_schedules_url,
         method: 'POST',
         data: {
-            "courses_info": JSON.stringify(courses_info),
+            "schedule_restrictions": JSON.stringify(schedule_restrictions),
             "csrfmiddlewaretoken": csrf_token
         },
         dataType: 'json',
         async: is_async,
         success: function (data) {
-            // TODO: move these into scheduler.js
-            creditCounts = [];
-            coursesInfo = data["coursesInfo"];
-
+            let schedules_info = data["schedules_info"];  // contains info about the courses, applies to all schedules
             let raw_schedules = data["schedules"];
-            scheduler.parseRawSchedules(raw_schedules);
+            scheduler.parseRawSchedules(raw_schedules, schedules_info);
             updateCalendar();
+            displayed_course.updateUI();
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {  // something went wrong
             alert("Status: " + textStatus + ". Error" + errorThrown);
@@ -72,6 +74,9 @@ function updateCalendar() {
         document.getElementById("schedule_index").innerHTML = (scheduler.schedule_index + 1).toString() + "/"
             + scheduler.numberOfSchedules().toString();
     }
+
+    // updates the wish list button visuals
+    wish_list.updateButtons();
 }
 
 function cycleLeft(){
@@ -86,8 +91,16 @@ function cycleRight(){
 // End of calendar functions
 
 // Start of wish list functions
-function addToWishList(subject, course_id, title){
-    wish_list.addCourse(subject, course_id, title);
+function addToWishList(subject, course_id, title, force){
+    if (force) {
+        wish_list.addCourse(subject, course_id, title);
+    } else {
+        if (!wish_list.contains(subject + course_id)) {
+            wish_list.addCourse(subject, course_id, title);
+        } else {
+            wish_list.removeCourse(subject, course_id, title);
+        }
+    }
     updateSchedules();
 }
 
