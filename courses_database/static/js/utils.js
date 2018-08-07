@@ -55,7 +55,7 @@ class Course {
     }
 
     addToWishList(){
-        addToWishList(this.subject, this.course_id, this.title)
+        globalAddToWishList(this.subject, this.course_id, this.title)
     }
 
 

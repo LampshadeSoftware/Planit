@@ -111,7 +111,7 @@ class WishListItem{
         button.classList.add("wish_list_item");
         if (in_schedule) { button.classList.add("in_schedule"); }
         button.onclick = () => { displayed_course.change(this.subject, this.course_id, this.title) };
-        button.ondblclick = () => { removeFromWishList(this.subject, this.course_id, this.title)};
+        button.ondblclick = () => { globalRemoveFromWishList(this.subject, this.course_id, this.title)};
         document.getElementById("wish_list").appendChild(button);
     }
 

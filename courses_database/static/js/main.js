@@ -91,21 +91,21 @@ function cycleRight(){
 // End of calendar functions
 
 // Start of wish list functions
-function addToWishList(subject, course_id, title, force){
+function globalAddToWishList(subject, course_id, title, force){
     if (force) {  // used when we always want to add the class (even if it's already in our wish list)
         wish_list.addCourse(subject, course_id, title, true);
     } else {
         if (!wish_list.contains(subject + course_id)) {
             wish_list.addCourse(subject, course_id, title, true);
         } else {
-            removeFromWishList(subject, course_id, title);
+            globalRemoveFromWishList(subject, course_id, title);
             return;
         }
     }
     updateSchedules();
 }
 
-function removeFromWishList(subject, course_id, title){
+function globalRemoveFromWishList(subject, course_id, title){
     wish_list.removeCourse(subject, course_id, title);
     updateSchedules();
 }

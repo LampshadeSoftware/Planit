@@ -70,7 +70,7 @@ function tableInit(){
     // adds all clicking actions
     $('#course_search_table tbody').on('dblclick', 'tr', function () {
         let data = course_data_table.row( this ).data();
-        addToWishList(data["subject"], data["course_id"], data["title"], false);
+        globalAddToWishList(data["subject"], data["course_id"], data["title"], false);
     } );
     $('#course_search_table tbody').on('click', 'tr', function () {
         let data = course_data_table.row( this ).data();
