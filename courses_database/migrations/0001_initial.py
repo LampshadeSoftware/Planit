@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='WishList',
+            name='Wishlist',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('subject', models.CharField(default='ERROR', max_length=10)),

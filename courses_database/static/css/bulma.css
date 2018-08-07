@@ -1,22 +1,5 @@
 @charset "UTF-8";
 /*! bulma.io v0.7.1 | MIT License | github.com/jgthms/bulma */
-body {
-  font-family: "Open Sans", monospace;
-}
-
-.header {
-  font-family: "Arial Rounded MT Bold", Arial, Helvetica, sans-serif;
-}
-
-.dataTables_wrapper .dataTables_filter {
-  float: left;
-  text-align: right;
-}
-
-.dataTables_wrapper .dataTables_filter input {
-  margin-left: 0em;
-}
-
 @keyframes spinAround {
   from {
     transform: rotate(0deg);
@@ -3821,7 +3804,7 @@ a.box:active {
 }
 
 .notification {
-  background-color: whitesmoke;
+  background-color: #ffffff;
   border-radius: 4px;
   padding: 1.25rem 2.5rem 1.25rem 1.5rem;
   position: relative;
@@ -6386,7 +6369,7 @@ label.panel-block:hover {
   border-radius: 4px 4px 0 0;
 }
 .tabs.is-boxed a:hover {
-  background-color: whitesmoke;
+  background-color: #ebebeb;
   border-bottom-color: #dbdbdb;
 }
 .tabs.is-boxed li.is-active a {
@@ -8448,6 +8431,238 @@ label.panel-block:hover {
 .footer {
   background-color: #fafafa;
   padding: 3rem 1.5rem 6rem;
+}
+
+body {
+  font-family: "Open Sans", Helvetica, sans-serif;
+  background-color: #f5f5f5;
+}
+
+a {
+  color: #46B8AF;
+}
+
+button {
+  outline: 0;
+}
+
+.header {
+  font-family: "Arial Rounded MT Bold", Arial, Helvetica, sans-serif;
+}
+
+.section {
+  padding-top: 0.75rem;
+}
+
+.notification {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+}
+
+.columns {
+  margin-top: 0px;
+}
+
+.center-horizontal {
+  text-align: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.small_text {
+  font-size: 80%;
+}
+
+.content-section {
+  display: none;
+}
+
+.is-active {
+  display: block;
+}
+
+.wish_list_item {
+  border: 0;
+  border-radius: 10px;
+  width: 5.5rem;
+  height: 3rem;
+  font-weight: 700;
+  -webkit-transition-duration: 0.4s;
+  /* Safari */
+  transition-duration: 0.4s;
+  margin: 1px;
+}
+
+.wish_list_item:hover {
+  box-shadow: 0 5px 16px 0 rgba(0, 0, 0, 0.3);
+}
+
+.wish_list_item.in_schedule {
+  border-style: solid;
+  border-color: #f4b267;
+  border-width: 2px;
+}
+
+.notification {
+  padding: 1rem;
+}
+
+.noUi-handle {
+  outline: 0;
+}
+
+.tippy-tooltip.light-theme {
+  /* Your styling here. Example: */
+  background-color: #ffffff;
+  box-shadow: 0 5px 16px 0 rgba(0, 0, 0, 0.15);
+  font-weight: bold;
+  color: #333;
+}
+
+.tippy-tooltip.light-theme .tippy-backdrop {
+  /* Your styling here. Example: */
+  background-color: #ffffff;
+}
+
+.tabs:not(:last-child) {
+  margin-bottom: 0px;
+}
+
+#tabs_content {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-top: 0px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+#search_courses_filters {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.dataTables_wrapper .dataTables_filter {
+  float: left;
+  text-align: right;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  margin-left: 0em;
+}
+
+.filter {
+  margin-bottom: 1.5rem;
+}
+
+.slider {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 0.5rem;
+}
+
+#filter_tab {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+#displayed_course {
+  margin-top: 1.5rem;
+}
+
+#calendar {
+  background-color: #ffffff;
+}
+
+#calendar_column {
+  margin-top: -1.5rem;
+}
+
+.fc-content {
+  font-size: 12px;
+}
+
+.loading_screen {
+  position: fixed;
+  /* Stay in place */
+  z-index: 100;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: white;
+  /* Fallback color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  margin: 100px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  text-align: center;
+  -webkit-animation: sk-rotate 2s infinite linear;
+  animation: sk-rotate 2s infinite linear;
+}
+
+.dot1, .dot2 {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  background-color: #46B8AF;
+  border-radius: 100%;
+  -webkit-animation: sk-bounce 2s infinite ease-in-out;
+  animation: sk-bounce 2s infinite ease-in-out;
+}
+
+.dot2 {
+  top: auto;
+  bottom: 0;
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
+}
+
+@-webkit-keyframes sk-rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes sk-rotate {
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes sk-bounce {
+  0%, 100% {
+    -webkit-transform: scale(0);
+  }
+  50% {
+    -webkit-transform: scale(1);
+  }
+}
+@keyframes sk-bounce {
+  0%, 100% {
+    transform: scale(0);
+    -webkit-transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
 }
 
 /*# sourceMappingURL=bulma.css.map */
