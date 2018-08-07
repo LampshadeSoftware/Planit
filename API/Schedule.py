@@ -21,7 +21,11 @@ class API_Schedule:
 		Returns:
 		bool: True if the add was successful, false if not
 		"""
-
+		# check that the class we are trying to add actually has a time
+		# TODO: visually indicate to the user that this class has no time set
+		if new_section.get_time_blocks() == []:
+			return False
+		
 		# check that the class we are trying to add does not overlap with
 		# any sections that already exist in this schedule
 		for existing_section in self._sections:
