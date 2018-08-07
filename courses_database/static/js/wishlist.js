@@ -9,8 +9,13 @@ class WishList {
         this.scheduler = scheduler;  // the instance variable of the schedules associated with this wish list
     }
 
-    addCourse(subject, course_id, title) {
-        this.wish_list[subject + course_id] = new WishListItem(subject, course_id, title);
+    getItem(subject, course_id) {
+
+        return this.wish_list[subject + course_id];
+    }
+
+    addCourse(subject, course_id, title, optional) {
+        this.wish_list[subject + course_id] = new WishListItem(subject, course_id, title, optional);
     }
 
     removeCourse(subject, course_id){
@@ -26,7 +31,8 @@ class WishList {
             if (saved_wish_list.hasOwnProperty(key)) {
                 this.addCourse(saved_wish_list[key]["subject"],
                     saved_wish_list[key]["course_id"],
-                    saved_wish_list[key]["title"]);
+                    saved_wish_list[key]["title"],
+                    saved_wish_list[key]["optional"]);
             }
         }
     }
@@ -54,6 +60,7 @@ class WishList {
             }
             $('#empty_wish_list').hide();
             $('#wish_list').show();
+            tippy('.wish_list_item', {theme: 'light'});  //  adds tooltips to all of the wish list items
         }
     }
 
@@ -77,22 +84,34 @@ class WishList {
  * Represents a wish list item which is always a course
  */
 class WishListItem{
-    constructor(subject, course_id, title){
+    constructor(subject, course_id, title, optional){
         this.subject = subject;
         this.course_id = course_id;
         this.title = title;
-        this.optional = true;
+        this.optional = optional;  // false if the course MUST be in the schedule, true if it doesn't matter
     }
 
-    createButton(color, text_color) {
+    setOptional(val){
+        this.optional = val;
+    }
+
+    createButton(color, text_color, in_schedule) {
         let button = document.createElement("button");
         let button_text = document.createTextNode(this.subject + this.course_id);
+        let button_required = document.createElement("i");
+        if (!this.optional) {
+            button_required.className = "fa fa-lock";
+            button_required.style.paddingRight = "3px";
+        }
+        button.appendChild(button_required);
         button.appendChild(button_text);
+        button.title = this.title;
         button.style.backgroundColor = color;
         button.style.color = text_color;
-        button.classList.add("wish-list-item");
+        button.classList.add("wish_list_item");
+        if (in_schedule) { button.classList.add("in_schedule"); }
         button.onclick = () => { displayed_course.change(this.subject, this.course_id, this.title) };
-        button.ondblclick = () => { removeFromWishList(this.subject, this.course_id, this.title)};
+        button.ondblclick = () => { globalRemoveFromWishList(this.subject, this.course_id, this.title)};
         document.getElementById("wish_list").appendChild(button);
     }
 
@@ -101,7 +120,7 @@ class WishListItem{
             "subject": this.subject,
             "course_id": this.course_id,
             "title": this.title,
-            "optional": true
+            "optional": this.optional
         };
     }
 }

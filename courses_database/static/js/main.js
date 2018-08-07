@@ -13,9 +13,10 @@ $(document).ready( function () {
     calendarInit();
     tabsInit();
     filtersInit();
+    tooltipInit();
 
     updateSchedules(false);
-    document.getElementById("course_search_table").style.display = "";  // calendar now displays
+    $(".loading_screen").hide();  // removes the loading screen from the view
 } );
 
 /**
@@ -25,7 +26,6 @@ $(document).ready( function () {
 function updateSchedules(is_async) {
     if (typeof(is_async)==='undefined') is_async = true;  // default value for is_async
 
-    // TODO: when schedule filters are implemented, update this line to get those filters
     let filters = $('#wish_list_filters').serializeArray().reduce(function(obj, item) {
         obj[item.name] = item.value;
         return obj;
@@ -91,20 +91,21 @@ function cycleRight(){
 // End of calendar functions
 
 // Start of wish list functions
-function addToWishList(subject, course_id, title, force){
-    if (force) {
-        wish_list.addCourse(subject, course_id, title);
+function globalAddToWishList(subject, course_id, title, force){
+    if (force) {  // used when we always want to add the class (even if it's already in our wish list)
+        wish_list.addCourse(subject, course_id, title, true);
     } else {
         if (!wish_list.contains(subject + course_id)) {
-            wish_list.addCourse(subject, course_id, title);
+            wish_list.addCourse(subject, course_id, title, true);
         } else {
-            wish_list.removeCourse(subject, course_id, title);
+            globalRemoveFromWishList(subject, course_id, title);
+            return;
         }
     }
     updateSchedules();
 }
 
-function removeFromWishList(subject, course_id, title){
+function globalRemoveFromWishList(subject, course_id, title){
     wish_list.removeCourse(subject, course_id, title);
     updateSchedules();
 }
