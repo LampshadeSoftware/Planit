@@ -8,7 +8,7 @@ class API_Section:
 		"""
 		Parameters:
 		crn (int): The course registration number
-		course (API_Course): Course object representing the course that this section teaches
+		course (API_Course): DisplayedCourse object representing the course that this section teaches
 		section_number (string): number of section (ex: 1)
 		time_blocks (list(Time_Block)): list of Time_Block objects representing the times that the section meets
 		"""

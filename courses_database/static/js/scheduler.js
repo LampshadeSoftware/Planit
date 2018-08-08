@@ -18,8 +18,13 @@ class Scheduler {
         return this.schedules[this.schedule_index];
     }
 
+    /**
+     * Assigns the instance variables so that they reflect the most up to date schedules that came from the server
+     * @param raw_schedules: the dictionary representation of a schedule that comes from the server
+     * @param schedules_info: the dictionary that maps subject + course_id to another dictionary of course-specific information
+     */
     parseRawSchedules(raw_schedules, schedules_info){
-        // clears the last array of schedules and resets index
+        // clears the last array of schedules and resets the schedule index
         this.reset();
 
         this.schedules = [];

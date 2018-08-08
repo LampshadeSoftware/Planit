@@ -1,6 +1,4 @@
-/**
- * Manages the wish list (addition, deletion, saving to local storage)
- */
+// Manages the wish list (addition, deletion, saving to local storage)
 class WishList {
     constructor(scheduler){
         // localStorage.clear();  // use this for testing to clear local storage of any messed up data
@@ -9,8 +7,10 @@ class WishList {
         this.scheduler = scheduler;  // the instance variable of the schedules associated with this wish list
     }
 
+    /**
+     * @returns {WishListItem}
+     */
     getItem(subject, course_id) {
-
         return this.wish_list[subject + course_id];
     }
 
@@ -23,7 +23,7 @@ class WishList {
     }
 
     /**
-     * gets the wish list from local storage and creates new objects from that dictionary
+     * gets the saved wish list from local storage and populates the actual wish list from that dictionary
      */
     reloadData(){
         let saved_wish_list = JSON.parse(localStorage.getItem("wish_list")) || {};
@@ -37,10 +37,16 @@ class WishList {
         }
     }
 
+    /**
+     * saves the wish list to local storage as a JSON so that it can loaded again upon a page refresh
+     */
     saveData(){
         localStorage.setItem("wish_list", JSON.stringify(this.asDict()));
     }
 
+    /**
+     * Updates the wish list buttons section with the current courses in the wish list
+     */
     updateButtons(){
         if (Object.keys(this.wish_list).length === 0){
             $('#empty_wish_list').show();
@@ -64,6 +70,9 @@ class WishList {
         }
     }
 
+    /**
+     * @returns {Dict} representation of the wish list
+     */
     asDict(){
         let savable_wish_list = {};
         for (let key in this.wish_list) {
@@ -80,9 +89,7 @@ class WishList {
     }
 }
 
-/**
- * Represents a wish list item which is always a course
- */
+// Represents a wish list item (which, for this web site, is always a course)
 class WishListItem{
     constructor(subject, course_id, title, optional){
         this.subject = subject;
@@ -95,6 +102,12 @@ class WishListItem{
         this.optional = val;
     }
 
+    /**
+     * Creates a button for this course and adds it to the wish list section
+     * @param color: the color of the button
+     * @param text_color: the text color of the button
+     * @param in_schedule {boolean}: whether of not this course is in the schedule indicated by the schedule index
+     */
     createButton(color, text_color, in_schedule) {
         let button = document.createElement("button");
         let button_text = document.createTextNode(this.subject + this.course_id);
@@ -111,7 +124,7 @@ class WishListItem{
         button.classList.add("wish_list_item");
         if (in_schedule) { button.classList.add("in_schedule"); }
         button.onclick = () => { displayed_course.change(this.subject, this.course_id, this.title) };
-        button.ondblclick = () => { globalRemoveFromWishList(this.subject, this.course_id, this.title)};
+        button.ondblclick = () => { removeCourseFromWishList(this.subject, this.course_id, this.title)};
         document.getElementById("wish_list").appendChild(button);
     }
 

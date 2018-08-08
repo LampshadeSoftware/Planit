@@ -2,7 +2,7 @@
  * Represents a course.
  * Used to craft the course description when a user clicks on an item in the table or wish list item
  */
-class Course {
+class DisplayedCourse {
     constructor(){
         this.subject = null;
         this.course_id = null;
@@ -55,7 +55,7 @@ class Course {
     }
 
     addToWishList(){
-        globalAddToWishList(this.subject, this.course_id, this.title)
+        addCourseToWishList(this.subject, this.course_id, this.title)
     }
 
 

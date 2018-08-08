@@ -118,7 +118,7 @@
         {% for item in sections %}
             <tr>
                 <td><a class="btn btn-large btn-primary"
-                       onclick="globalAddToWishList('{{ item.subject }}', '{{ item.course_id }}', '{{ item.title }}', true)">
+                       onclick="addCourseToWishList('{{ item.subject }}', '{{ item.course_id }}', '{{ item.title }}', true)">
                     <i class="fas fa-plus-circle"></i></a></td>
                 <td> {{ item.subject }} </td>
                 <td> {{ item.course_id }} </td>
