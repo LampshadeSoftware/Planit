@@ -89,6 +89,7 @@ class WishList {
     }
 }
 
+// TODO: Consider combining this with the DisplayedCourse class
 // Represents a wish list item (which, for this web site, is always a course)
 class WishListItem{
     constructor(subject, course_id, title, optional){

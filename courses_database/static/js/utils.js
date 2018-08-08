@@ -10,6 +10,9 @@ class DisplayedCourse {
         this.description = null;
     }
 
+    /**
+     * Updates the DisplayedCourse and get the description and other info from the courses_info dict
+     */
     change(subject, course_id, title){
         this.subject = subject;
         this.course_id = course_id;
@@ -21,6 +24,9 @@ class DisplayedCourse {
         this.updateUI();
     }
 
+    /**
+     * Updates the UI of the displayed_course section
+     */
     updateUI() {
         if (this.subject !== null) {
             let displayed_optional_holder = $("#displayed_optional_holder");
@@ -54,11 +60,10 @@ class DisplayedCourse {
         }
     }
 
+    /**
+     * Adds itself to the wish list
+     */
     addToWishList(){
         addCourseToWishList(this.subject, this.course_id, this.title)
     }
-
-
-
-
 }
