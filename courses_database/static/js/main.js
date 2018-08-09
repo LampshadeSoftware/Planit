@@ -39,7 +39,7 @@ function updateSchedules(is_async) {
         "filters": filters
     };
 
-    // Ajax gets the schedules data in the background (or not in the background if async is false)
+    // gets the schedules data in the background (or not in the background if async is false)
     $.ajax({
         url: get_schedules_url,
         method: 'POST',
@@ -66,6 +66,7 @@ function updateSchedules(is_async) {
 /**
  * Updates the visuals of the calendar
  * Called from updateSchedules after we've gotten the most up-to-date schedules from the server
+ * or when the user clicks the right/left buttons on top of the calendar
  */
 function updateCalendar() {
     let calendar = $('#calendar');
@@ -73,7 +74,7 @@ function updateCalendar() {
     calendar.fullCalendar('addEventSource', scheduler.getCurrentSchedule());
     calendar.fullCalendar('rerenderEvents');
 
-    // updates the schedule index number
+    // updates the schedule index number string
     if (scheduler.numberOfSchedules() === 0){
         document.getElementById("schedule_index").innerHTML = "0/0";
     } else {
@@ -86,18 +87,20 @@ function updateCalendar() {
 }
 
 /**
- * The previous schedule is now the current schedule (decrement the schedule index)
+ * Called when the user clicks the right button on the top of the calendar.
+ * Updates the calendar to show the next schedule
  */
-function cycleLeft(){
-    scheduler.cycleLeft();
+function cycleRight(){
+    scheduler.cycleRight();
     updateCalendar();
 }
 
 /**
- * The next schedule is now the current schedule (increment the schedule index)
+ * Called when the user clicks the left button on the top of the calendar.
+ * Updates the calendar to show the previous schedule
  */
-function cycleRight(){
-    scheduler.cycleRight();
+function cycleLeft(){
+    scheduler.cycleLeft();
     updateCalendar();
 }
 // END OF CALENDAR FUNCTIONS
@@ -105,7 +108,7 @@ function cycleRight(){
 // START OF WISH LIST FUNCTIONS
 /**
  * Adds the specified course to the wish list
- * Contains some additional logic that decides whether to add or remove a course
+ * Contains some additional logic that depends on the value of 'force'
  * @param {boolean} force: if false, it will remove that class from the wish list if it's already in the wish list
  */
 function addCourseToWishList(subject, course_id, title, force){
@@ -120,7 +123,6 @@ function addCourseToWishList(subject, course_id, title, force){
         }
     }
     updateSchedules();
-
 }
 
 /**

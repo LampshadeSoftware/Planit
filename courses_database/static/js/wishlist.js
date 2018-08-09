@@ -8,7 +8,7 @@ class WishList {
     }
 
     /**
-     * @returns {WishListItem}
+     * @returns {WishListItem} given the key (subject + course_id)
      */
     getItem(subject, course_id) {
         return this.wish_list[subject + course_id];
@@ -23,7 +23,7 @@ class WishList {
     }
 
     /**
-     * gets the saved wish list from local storage and populates the actual wish list from that dictionary
+     * gets the saved wish list from local storage and populates the instance variable wish_list from that dictionary
      */
     reloadData(){
         let saved_wish_list = JSON.parse(localStorage.getItem("wish_list")) || {};
@@ -45,14 +45,16 @@ class WishList {
     }
 
     /**
-     * Updates the wish list buttons section with the current courses in the wish list
+     * Updates the wish list buttons section in HTML with the current courses in the wish list
      */
     updateButtons(){
+         // Checks if the wish list is empty and then hides and shows the appropriate sections.
+         // Adds wish list buttons if applicable
         if (Object.keys(this.wish_list).length === 0){
             $('#empty_wish_list').show();
             $('#wish_list').hide();
         } else {
-            $("#wish_list").html("");  // clears all of the buttons
+            $("#wish_list").html("");  // clears all of the buttons from before
             for (let key in this.wish_list){
                 if (this.wish_list.hasOwnProperty(key)) {
                     let color = "#BBBBBB";
@@ -64,14 +66,16 @@ class WishList {
                     this.wish_list[key].createButton(color, font_color);
                 }
             }
+
             $('#empty_wish_list').hide();
             $('#wish_list').show();
+
             tippy('.wish_list_item', {theme: 'light'});  //  adds tooltips to all of the wish list items
         }
     }
 
     /**
-     * @returns {Dict} representation of the wish list
+     * @returns a dictionary representation of the wish list
      */
     asDict(){
         let savable_wish_list = {};
@@ -84,6 +88,10 @@ class WishList {
         return savable_wish_list;
     }
 
+    /**
+     * @param key: subject + course_id
+     * @returns {boolean}: true if the key is in the wish list, false otherwise
+     */
     contains(key){
         return (key in this.wish_list);
     }
@@ -104,10 +112,10 @@ class WishListItem{
     }
 
     /**
-     * Creates a button for this course and adds it to the wish list section
+     * Creates a button for this course and adds it to the wish list section in HTML
      * @param color: the color of the button
      * @param text_color: the text color of the button
-     * @param in_schedule {boolean}: whether of not this course is in the schedule indicated by the schedule index
+     * @param in_schedule {boolean}: whether of not this course is in the current schedule being displayed
      */
     createButton(color, text_color, in_schedule) {
         let button = document.createElement("button");

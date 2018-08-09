@@ -11,7 +11,7 @@ class DisplayedCourse {
     }
 
     /**
-     * Updates the DisplayedCourse and get the description and other info from the courses_info dict
+     * Updates instance variables and gets the description and other info from the courses_info dict
      */
     change(subject, course_id, title){
         this.subject = subject;
@@ -25,20 +25,20 @@ class DisplayedCourse {
     }
 
     /**
-     * Updates the UI of the displayed_course section
+     * Updates the UI of the displayed_course section in HTML
      */
     updateUI() {
         if (this.subject !== null) {
             let displayed_optional_holder = $("#displayed_optional_holder");
             $("#displayed_content").show();
 
-            // all text based stuff
+            // all text-based stuff
             $("#displayed_title").html("[" + this.credits + "] " + this.subject + " " + this.course_id + " " + this.title);
             $("#displayed_crn").html(this.crn);
             $("#displayed_instructor").html(this.instructor);
             $("#displayed_description").html(this.description);
 
-            // add course and required button
+            // 'add course' and 'required' buttons
             let button_text = "Add Course";
             let checked = false;
             if (wish_list.contains(this.subject + this.course_id)){
@@ -64,6 +64,7 @@ class DisplayedCourse {
      * Adds itself to the wish list
      */
     addToWishList(){
+        // this function is defined in main.js
         addCourseToWishList(this.subject, this.course_id, this.title)
     }
 }
