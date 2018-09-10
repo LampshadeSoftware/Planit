@@ -1,6 +1,4 @@
-/**
- * sets up the calendar
- */
+// For the calendar that displays all of the schedules
 function calendarInit(){
     $('#calendar').fullCalendar({
         defaultDate: moment('2018-01-01'),
@@ -20,16 +18,15 @@ function calendarInit(){
     });
 }
 
-/**
- * sets up the table that holds all of the courses and allows the user to search for courses
- */
+// For the table that holds all of the courses and allows the user to search for courses
 function tableInit(){
     let course_data_table = $('#course_search_table').DataTable({
-        deferRender:    true,
-        scrollY:        200,
-        scrollCollapse: true,
-        scroller:       true,
+        deferRender:    true,  // only creates nodes for items as needed
+        scrollY:        200,  // the height of the scroll view
+        scrollCollapse: true,  // dynamically scale the height if there are too few items
+        scroller:       true,  // only renders elements that are in view
 
+        // Commented out below is the code for if we decide to populate the table using ajax
         /*"ajax": {
             "processing": true,
             "url": get_sections_url,
@@ -49,7 +46,10 @@ function tableInit(){
         "dom": 'lrt'
     });
 
-    // sets up all the course search filters
+    /**
+     * Adds callbacks to all of the course search filters (the numbers are the columns)
+     * Called whenever the user types a letter
+     */
     $('#subject_input').on( 'keyup', function () {
         filterCourseTable(this, 1);
     });
@@ -60,6 +60,7 @@ function tableInit(){
         filterCourseTable(this, 3);
     });
 
+    // Filters the table by looking for an element in the specified column
     function filterCourseTable(element, column) {
         course_data_table
             .columns( column )
@@ -67,20 +68,20 @@ function tableInit(){
             .draw();
     }
 
-    // adds all clicking actions
-    $('#course_search_table tbody').on('dblclick', 'tr', function () {
+    let search_table_body = $('#course_search_table tbody');
+    // Double click: adds the clicked course to the wish list
+    search_table_body.on('dblclick', 'tr', function () {
         let data = course_data_table.row( this ).data();
-        globalAddToWishList(data["subject"], data["course_id"], data["title"], false);
+        addCourseToWishList(data["subject"], data["course_id"], data["title"], false);
     } );
-    $('#course_search_table tbody').on('click', 'tr', function () {
+    // Single click: displays the course information in the 'displayed_course' section
+    search_table_body.on('click', 'tr', function () {
         let data = course_data_table.row( this ).data();
         displayed_course.change(data["subject"], data["course_id"], data["title"]);
     } );
 }
 
-/**
- * sets up the tabs that allow the user to switch between searching for courses and course filtering
- */
+// For the tabs that allow the user to switch between course search and filtering
 function tabsInit(){
     $('#tabs li').on( 'click', function () {
         let tab = $(this).data('tab');  // gets the tab that the user clicked
@@ -91,17 +92,14 @@ function tabsInit(){
         // makes all tab contents inactive
         $('#search_tab').removeClass('is-active');
         $('#filter_tab').removeClass('is-active');
-
         // makes clicked tab content active
         $("#" + tab + "_tab").addClass('is-active');
     });
 }
 
-/**
- * sets up the filters used to narrow down schedules
- */
+// For the filters used to narrow down schedules
 function filtersInit(){
-    // Timer Filter
+    // Time Filter
     let time_slider = document.getElementById('time_slider');
     noUiSlider.create(time_slider, {
         connect: true,
@@ -114,24 +112,23 @@ function filtersInit(){
         }
     });
 
-    let start_time = document.getElementById('start_time');
-    let end_time = document.getElementById('end_time');
+    let start_time_handle = document.getElementById('start_time');
+    let end_time_handle = document.getElementById('end_time');
 
-    start_time.addEventListener('change', function(){
+    start_time_handle.addEventListener('change', function(){
         time_slider.noUiSlider.set([this.value, null]);
     }, {passive: true});
-    end_time.addEventListener('change', function(){
+    end_time_handle.addEventListener('change', function(){
         time_slider.noUiSlider.set([null, this.value]);
     }, {passive: true});
 
     time_slider.noUiSlider.on('update', function( values, handle ) {
-
         let value = values[handle];
 
         if ( handle ) { // right handle
-            end_time.value = Math.round(value);
+            end_time_handle.value = Math.round(value);
         } else {  // left handle
-            start_time.value = Math.round(value);
+            start_time_handle.value = Math.round(value);
         }
     });
     time_slider.noUiSlider.on('change', function() {
@@ -152,13 +149,13 @@ function filtersInit(){
         }
     });
 
-    let min_credits = document.getElementById('min_credits');
-    let max_credits = document.getElementById('max_credits');
+    let min_credits_handle = document.getElementById('min_credits');
+    let max_credits_handle = document.getElementById('max_credits');
 
-    min_credits.addEventListener('change', function() {
+    min_credits_handle.addEventListener('change', function() {
         credit_slider.noUiSlider.set([this.value, null]);
     }, {passive: true});
-    max_credits.addEventListener('change', function() {
+    max_credits_handle.addEventListener('change', function() {
         credit_slider.noUiSlider.set([null, this.value]);
     }, {passive: true});
 
@@ -166,9 +163,9 @@ function filtersInit(){
         let value = values[handle];
 
         if ( handle ) {
-            max_credits.value = Math.round(value);
+            max_credits_handle.value = Math.round(value);
         } else {
-            min_credits.value = Math.round(value);
+            min_credits_handle.value = Math.round(value);
         }
         //updateSchedules();
     });
@@ -204,6 +201,7 @@ function filtersInit(){
     });
 }
 
+// For the tooltips that display when the user hovers over an element
 function tooltipInit(){
     tippy('#displayed_lock_icon');
 }
