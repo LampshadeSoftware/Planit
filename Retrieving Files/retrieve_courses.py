@@ -102,7 +102,9 @@ def get_all_subject_courses():
 	subj_codes = [x['value'] for x in soup.find('select', {'name': 'term_subj'}).findAll('option')[1:]]
 
 	for subj_code in subj_codes:  # all the subjects are at different urls so this just goes through them all
+		print("getting courses for subject code: {}".format(subj_code))
 		save_courses_for_subj(subj_code)
 
+print("Starting...")
 get_all_subject_courses()
 print("Done!")
