@@ -68,3 +68,17 @@ class DisplayedCourse {
         addCourseToWishList(this.subject, this.course_id, this.title)
     }
 }
+
+
+/**
+ *
+ */
+$('#course_search_table tbody tr td a i').click(function(){
+    console.log("here");
+    toggleAddButton($(this));
+});
+
+function toggleAddButton(button){
+    button.toggleClass('fa-plus-circle fa-minus-circle')
+
+}

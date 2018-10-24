@@ -119,7 +119,7 @@
             <tr>
                 <td><a class="btn btn-large btn-primary"
                        onclick="addCourseToWishList('{{ item.subject }}', '{{ item.course_id }}', '{{ item.title }}', true)">
-                    <i class="fas fa-plus-circle"></i></a></td>
+                    <i class="fas fa-plus-circle" id='addButton-{{ item.subject }}{{ item.course_id }}'></i></a></td>
                 <td> {{ item.subject }} </td>
                 <td> {{ item.course_id }} </td>
                 <td> {{ item.title }}</td>
