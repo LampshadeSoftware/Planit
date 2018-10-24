@@ -33,6 +33,8 @@ class WishList {
                     saved_wish_list[key]["course_id"],
                     saved_wish_list[key]["title"],
                     saved_wish_list[key]["optional"]);
+
+                toggleAddButton(saved_wish_list[key]["subject"], saved_wish_list[key]["course_id"]);
             }
         }
     }

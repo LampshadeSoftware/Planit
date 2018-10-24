@@ -70,15 +70,8 @@ class DisplayedCourse {
 }
 
 
-/**
- *
- */
-$('#course_search_table tbody tr td a i').click(function(){
-    console.log("here");
-    toggleAddButton($(this));
-});
-
-function toggleAddButton(button){
-    button.toggleClass('fa-plus-circle fa-minus-circle')
-
+function toggleAddButton(subject, course_id){
+    let buttonId = '#addButton-' + subject + course_id;
+    $(buttonId).toggleClass('fa-plus-circle fa-minus-circle');
+    $(buttonId).toggleClass('red');
 }

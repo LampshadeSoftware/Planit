@@ -8463,6 +8463,10 @@ button {
   margin-top: 0px;
 }
 
+.red {
+  color: #CE5858;
+}
+
 .center-horizontal {
   text-align: center;
 }
