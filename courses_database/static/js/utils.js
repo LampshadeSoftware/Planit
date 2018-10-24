@@ -2,7 +2,7 @@
  * Represents a course.
  * Used to craft the course description when a user clicks on an item in the table or wish list item
  */
-class Course {
+class DisplayedCourse {
     constructor(){
         this.subject = null;
         this.course_id = null;
@@ -10,6 +10,9 @@ class Course {
         this.description = null;
     }
 
+    /**
+     * Updates instance variables and gets the description and other info from the courses_info dict
+     */
     change(subject, course_id, title){
         this.subject = subject;
         this.course_id = course_id;
@@ -21,18 +24,21 @@ class Course {
         this.updateUI();
     }
 
+    /**
+     * Updates the UI of the displayed_course section in HTML
+     */
     updateUI() {
         if (this.subject !== null) {
             let displayed_optional_holder = $("#displayed_optional_holder");
             $("#displayed_content").show();
 
-            // all text based stuff
+            // all text-based stuff
             $("#displayed_title").html("[" + this.credits + "] " + this.subject + " " + this.course_id + " " + this.title);
             $("#displayed_crn").html(this.crn);
             $("#displayed_instructor").html(this.instructor);
             $("#displayed_description").html(this.description);
 
-            // add course and required button
+            // 'add course' and 'required' buttons
             let button_text = "Add Course";
             let checked = false;
             if (wish_list.contains(this.subject + this.course_id)){
@@ -54,11 +60,11 @@ class Course {
         }
     }
 
+    /**
+     * Adds itself to the wish list
+     */
     addToWishList(){
-        globalAddToWishList(this.subject, this.course_id, this.title)
+        // this function is defined in main.js
+        addCourseToWishList(this.subject, this.course_id, this.title)
     }
-
-
-
-
 }

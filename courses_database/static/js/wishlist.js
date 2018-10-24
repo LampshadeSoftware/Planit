@@ -1,6 +1,4 @@
-/**
- * Manages the wish list (addition, deletion, saving to local storage)
- */
+// Manages the wish list (addition, deletion, saving to local storage)
 class WishList {
     constructor(scheduler){
         // localStorage.clear();  // use this for testing to clear local storage of any messed up data
@@ -9,8 +7,10 @@ class WishList {
         this.scheduler = scheduler;  // the instance variable of the schedules associated with this wish list
     }
 
+    /**
+     * @returns {WishListItem} given the key (subject + course_id)
+     */
     getItem(subject, course_id) {
-
         return this.wish_list[subject + course_id];
     }
 
@@ -23,7 +23,7 @@ class WishList {
     }
 
     /**
-     * gets the wish list from local storage and creates new objects from that dictionary
+     * gets the saved wish list from local storage and populates the instance variable wish_list from that dictionary
      */
     reloadData(){
         let saved_wish_list = JSON.parse(localStorage.getItem("wish_list")) || {};
@@ -37,16 +37,24 @@ class WishList {
         }
     }
 
+    /**
+     * saves the wish list to local storage as a JSON so that it can loaded again upon a page refresh
+     */
     saveData(){
         localStorage.setItem("wish_list", JSON.stringify(this.asDict()));
     }
 
+    /**
+     * Updates the wish list buttons section in HTML with the current courses in the wish list
+     */
     updateButtons(){
+         // Checks if the wish list is empty and then hides and shows the appropriate sections.
+         // Adds wish list buttons if applicable
         if (Object.keys(this.wish_list).length === 0){
             $('#empty_wish_list').show();
             $('#wish_list').hide();
         } else {
-            $("#wish_list").html("");  // clears all of the buttons
+            $("#wish_list").html("");  // clears all of the buttons from before
             for (let key in this.wish_list){
                 if (this.wish_list.hasOwnProperty(key)) {
                     let color = "#BBBBBB";
@@ -58,12 +66,17 @@ class WishList {
                     this.wish_list[key].createButton(color, font_color);
                 }
             }
+
             $('#empty_wish_list').hide();
             $('#wish_list').show();
+
             tippy('.wish_list_item', {theme: 'light'});  //  adds tooltips to all of the wish list items
         }
     }
 
+    /**
+     * @returns a dictionary representation of the wish list
+     */
     asDict(){
         let savable_wish_list = {};
         for (let key in this.wish_list) {
@@ -75,14 +88,17 @@ class WishList {
         return savable_wish_list;
     }
 
+    /**
+     * @param key: subject + course_id
+     * @returns {boolean}: true if the key is in the wish list, false otherwise
+     */
     contains(key){
         return (key in this.wish_list);
     }
 }
 
-/**
- * Represents a wish list item which is always a course
- */
+// TODO: Consider combining this with the DisplayedCourse class
+// Represents a wish list item (which, for this web site, is always a course)
 class WishListItem{
     constructor(subject, course_id, title, optional){
         this.subject = subject;
@@ -95,6 +111,12 @@ class WishListItem{
         this.optional = val;
     }
 
+    /**
+     * Creates a button for this course and adds it to the wish list section in HTML
+     * @param color: the color of the button
+     * @param text_color: the text color of the button
+     * @param in_schedule {boolean}: whether of not this course is in the current schedule being displayed
+     */
     createButton(color, text_color, in_schedule) {
         let button = document.createElement("button");
         let button_text = document.createTextNode(this.subject + this.course_id);
@@ -111,7 +133,7 @@ class WishListItem{
         button.classList.add("wish_list_item");
         if (in_schedule) { button.classList.add("in_schedule"); }
         button.onclick = () => { displayed_course.change(this.subject, this.course_id, this.title) };
-        button.ondblclick = () => { globalRemoveFromWishList(this.subject, this.course_id, this.title)};
+        button.ondblclick = () => { removeCourseFromWishList(this.subject, this.course_id, this.title)};
         document.getElementById("wish_list").appendChild(button);
     }
 
