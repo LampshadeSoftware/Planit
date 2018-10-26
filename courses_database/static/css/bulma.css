@@ -8590,6 +8590,11 @@ button {
   font-size: 12px;
 }
 
+.message {
+  margin: auto;
+  width: 50%;
+}
+
 .loading_screen {
   position: fixed;
   /* Stay in place */

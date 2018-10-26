@@ -24,7 +24,7 @@ SECRET_KEY = 's^5)fr-t%a&01#wdz_l6o-)qyw1$i0h*d5$=#(1^6qy7yy+epg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.courseplanit.com', 'planit.clynk.scripts.mit.edu', 'localhost']
 
 # Application definition
 
@@ -113,6 +113,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+STATIC_ROOT = '/afs/athena.mit.edu/user/c/l/clynk/web_scripts/planit/static/'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
 	os.path.join(BASE_DIR, "staticfiles"),
