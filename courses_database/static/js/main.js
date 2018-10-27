@@ -122,6 +122,7 @@ function addCourseToWishList(subject, course_id, title, force){
             return;
         }
     }
+    toggleAddButton(subject, course_id);
     updateSchedules();
 }
 
@@ -130,6 +131,7 @@ function addCourseToWishList(subject, course_id, title, force){
  */
 function removeCourseFromWishList(subject, course_id, title){
     wish_list.removeCourse(subject, course_id, title);
+    toggleAddButton(subject, course_id);
     updateSchedules();
 }
 // END OF WISH LIST FUNCTIONS

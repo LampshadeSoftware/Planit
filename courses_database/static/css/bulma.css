@@ -8463,6 +8463,10 @@ button {
   margin-top: 0px;
 }
 
+.red {
+  color: #CE5858;
+}
+
 .center-horizontal {
   text-align: center;
 }
@@ -8584,6 +8588,11 @@ button {
 
 .fc-content {
   font-size: 12px;
+}
+
+.message {
+  margin: auto;
+  width: 50%;
 }
 
 .loading_screen {

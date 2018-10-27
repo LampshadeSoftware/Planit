@@ -68,3 +68,15 @@ class DisplayedCourse {
         addCourseToWishList(this.subject, this.course_id, this.title)
     }
 }
+
+/**
+ * Toggles the appearance of the add button in the table view
+ * from a green plus to a red minus
+ * @param subject
+ * @param course_id
+ */
+function toggleAddButton(subject, course_id){
+    let buttonId = '#addButton-' + subject + course_id;
+    $(buttonId).toggleClass('fa-plus-circle fa-minus-circle');
+    $(buttonId).toggleClass('red');
+}

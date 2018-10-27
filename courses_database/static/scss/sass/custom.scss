@@ -22,6 +22,10 @@ button{
 .columns {
   margin-top: 0px;
 }
+
+.red {
+  color: $red-color;
+}
 // END REGION
 
 // REGION: general useful classes
@@ -143,6 +147,13 @@ button{
 }
 .fc-content {
   font-size: 12px;
+}
+// END REGION
+
+// REGION: pop-up
+.message{
+  margin: auto;
+  width: 50%;
 }
 // END REGION
 
