@@ -8467,6 +8467,10 @@ button {
   color: #CE5858;
 }
 
+.red:hover {
+  color: #8c3838;
+}
+
 .center-horizontal {
   text-align: center;
 }
@@ -8507,6 +8511,10 @@ button {
   border-style: solid;
   border-color: #f4b267;
   border-width: 2px;
+}
+
+#empty_wish_list {
+  margin: 1px;
 }
 
 .notification {
