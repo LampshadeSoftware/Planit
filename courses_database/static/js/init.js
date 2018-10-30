@@ -1,6 +1,6 @@
 // For the calendar that displays all of the schedules
 function calendarInit(){
-    localStorage.clear();
+    
     $('#calendar').fullCalendar({
         defaultDate: moment('2018-01-01'),
         weekends: false,

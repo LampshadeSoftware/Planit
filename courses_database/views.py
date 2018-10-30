@@ -28,9 +28,12 @@ def index(request):
 				"description": section.description,
 				"crn": section.crn,
 				"credits": section.credit_hrs,
-				"instructor": section.instructor
+				"instructor": section.instructor,
+				"num_sections": 1
 			}
-	
+		else:
+			courses_info[subject + course_id]["num_sections"] += 1
+
 	return render(request, 'index.html', {"sections": sections, "courses_info": json.dumps(courses_info)})
 
 
@@ -54,8 +57,8 @@ def get_schedules(request):
 			return JsonResponse({"schedules": [], "schedules_info": {}}, safe=False)
 	else:
 		return HttpResponse("Da fuck are you tryin' to do?")
-	
-	
+
+
 def get_sections(request):
 	"""
 	(NOT CURRENTLY BEING USED)

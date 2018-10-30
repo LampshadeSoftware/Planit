@@ -8,6 +8,7 @@ class DisplayedCourse {
         this.course_id = null;
         this.title = null;
         this.description = null;
+        this.num_sections = null;
     }
 
     /**
@@ -19,7 +20,7 @@ class DisplayedCourse {
         this.title = title;
         this.description = courses_info[this.subject + this.course_id]["description"];
         this.credits = courses_info[this.subject + this.course_id]["credits"];
-        this.crn = courses_info[this.subject + this.course_id]["crn"];
+        this.num_sections = courses_info[this.subject + this.course_id]["num_sections"];
         this.instructor = courses_info[this.subject + this.course_id]["instructor"];
         this.updateUI();
     }
@@ -34,7 +35,7 @@ class DisplayedCourse {
 
             // all text-based stuff
             $("#displayed_title").html("[" + this.credits + "] " + this.subject + " " + this.course_id + " " + this.title);
-            $("#displayed_crn").html(this.crn);
+            $("#num_sections").html(this.num_sections);
             $("#displayed_instructor").html(this.instructor);
             $("#displayed_description").html(this.description);
 
