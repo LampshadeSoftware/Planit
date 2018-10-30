@@ -1,6 +1,6 @@
 // For the calendar that displays all of the schedules
 function calendarInit(){
-    
+
     $('#calendar').fullCalendar({
         defaultDate: moment('2018-01-01'),
         weekends: false,
@@ -27,6 +27,7 @@ function calendarInit(){
             window.getSelection().addRange(range);
 
             document.execCommand("copy");
+            output.innerHTML = "";
 
             alert("Copied: " + calEvent.description + " to clipboard");
         }
