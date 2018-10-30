@@ -1,5 +1,6 @@
 // For the calendar that displays all of the schedules
 function calendarInit(){
+    localStorage.clear();
     $('#calendar').fullCalendar({
         defaultDate: moment('2018-01-01'),
         weekends: false,
@@ -14,7 +15,21 @@ function calendarInit(){
         contentHeight: 600,
         allDaySlot: false,
 
-        events: [{}]
+        events: [{}],
+        eventClick: function(calEvent, jsEvent, view) {
+
+            var output = document.getElementById("output")
+            output.innerHTML = calEvent.description;
+
+            var range = document.createRange();
+
+            range.selectNode(output);
+            window.getSelection().addRange(range);
+
+            document.execCommand("copy");
+
+            alert("Copied: " + calEvent.description + " to clipboard");
+        }
     });
 }
 
