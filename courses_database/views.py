@@ -28,8 +28,7 @@ def index(request):
 			courses_info[subject + course_id] = {
 				"description": section.description,
 				"credits": section.credit_hrs,
-				"instructor": section.instructor,
-				"num_sections": 1
+				"attributes": section.course_attr
 			}
 
 			section_dict = {
@@ -40,8 +39,6 @@ def index(request):
 			}
 			sections_of_courses[subject + course_id] = [section_dict]
 		else:
-			courses_info[subject + course_id]["num_sections"] += 1
-
 			section_dict = {
 				"section_number": section.section_number,
 				"instructor": section.instructor,
