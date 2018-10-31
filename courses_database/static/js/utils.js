@@ -9,6 +9,7 @@ class DisplayedCourse {
         this.title = null;
         this.description = null;
         this.num_sections = null;
+        this.sections = null;
     }
 
     /**
@@ -22,6 +23,7 @@ class DisplayedCourse {
         this.credits = courses_info[this.subject + this.course_id]["credits"];
         this.num_sections = courses_info[this.subject + this.course_id]["num_sections"];
         this.instructor = courses_info[this.subject + this.course_id]["instructor"];
+        this.sections = sections_of_courses[this.subject + this.course_id];
         this.updateUI();
     }
 
@@ -56,6 +58,72 @@ class DisplayedCourse {
             }
             $("#displayed_button").html(button_text);
             $("#displayed_optional_checkbox").prop('checked', checked);
+
+            let sections_div = document.getElementById("sections_of_course");
+            sections_div.innerHTML = "";
+
+            let table_element = document.createElement("table");
+            table_element.class = "display";
+            table_element.id = "sections_in_course_table";
+
+            let thead = document.createElement("thead");
+            let headr = document.createElement("tr");
+
+            var head_title;
+
+            head_title = document.createElement("th");
+            head_title.innerHTML = "Section #";
+            headr.appendChild(head_title);
+
+            head_title = document.createElement("th");
+            head_title.innerHTML = "Instructor";
+            headr.appendChild(head_title);
+
+            head_title = document.createElement("th");
+            head_title.innerHTML = "Meet Time";
+            headr.appendChild(head_title);
+
+            head_title = document.createElement("th");
+            head_title.innerHTML = "Location";
+            headr.appendChild(head_title);
+
+            table_element.appendChild(headr);
+
+            let tbody = document.createElement("tbody");
+
+            for (let i in this.sections) {
+                let section = this.sections[i];
+
+                let row = document.createElement("tr");
+
+                let section_num = document.createElement("th");
+                section_num.innerHTML = section["section_number"];
+                row.appendChild(section_num);
+
+                let instructor = document.createElement("th");
+                instructor.innerHTML = section["instructor"];
+                row.appendChild(instructor);
+
+                let meet_time = document.createElement("th");
+                meet_time.innerHTML = section["meet_time"];
+                row.appendChild(meet_time)
+
+                let location = document.createElement("th");
+                location.innerHTML = section["location"];
+                row.appendChild(location);
+
+                tbody.appendChild(row);
+            }
+            table_element.appendChild(tbody);
+
+            sections_div.appendChild(table_element);
+
+            let course_data_table = $('#sections_in_course_table').DataTable({
+                deferRender:    true,  // only creates nodes for items as needed
+                scrollY:        200,  // the height of the scroll view
+                scrollCollapse: true,  // dynamically scale the height if there are too few items
+                scroller:       true,  // only renders elements that are in view
+            });
         } else {
             $("#displayed_content").hide();
         }

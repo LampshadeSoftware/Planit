@@ -83,6 +83,7 @@
         var csrf_token = '{{ csrf_token }}';
         {% autoescape off %}
             var courses_info = {{ courses_info }};
+            var sections_of_courses = {{ sections_of_courses }};
         {% endautoescape %}
     </script>
     <!-- end load scripts -->
