@@ -63,15 +63,18 @@ class DisplayedCourse {
             let table_element = document.createElement("table");
             table_element.class = "display";
             table_element.id = "sections_in_course_table";
+            table_element.cellPadding = "10";
 
             let thead = document.createElement("thead");
             let headr = document.createElement("tr");
 
             var head_title;
 
-            head_title = document.createElement("th");
-            head_title.innerHTML = "Use";
-            headr.appendChild(head_title);
+            if (wish_list.contains(this.subject + this.course_id)){
+                head_title = document.createElement("th");
+                head_title.innerHTML = "Use";
+                headr.appendChild(head_title);
+            }
 
             head_title = document.createElement("th");
             head_title.innerHTML = "Section #";
@@ -99,13 +102,22 @@ class DisplayedCourse {
 
                 let row = document.createElement("tr");
 
-                let checkbox = document.createElement("input");
-                checkbox.type = "checkbox";
-                checkbox.id = this.subject + this.course_id + "_" + section["section_number"] + "_included_checkbox";
-                checkbox.checked = wish_list.contains(this.subject + this.course_id);
-                let checkbox_col = document.createElement("td");
-                checkbox_col.appendChild(checkbox);
-                row.appendChild(checkbox_col);
+                if (wish_list.contains(this.subject + this.course_id)){
+                    let checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    checkbox.id = this.subject + this.course_id + "_" + section["section_number"] + "_included_checkbox";
+
+
+                    let using = wish_list.getItem(this.subject, this.course_id).getSectionStatus(section["section_number"]);
+                    checkbox.checked = using;
+                    checkbox.onclick = () => {
+                        wish_list.getItem(this.subject, this.course_id).setSectionStatus(section["section_number"], !using);
+                        updateSchedules(true);
+                    };
+                    let checkbox_col = document.createElement("td");
+                    checkbox_col.appendChild(checkbox);
+                    row.appendChild(checkbox_col);
+                }
 
                 let section_num = document.createElement("td");
                 section_num.innerHTML = section["section_number"];

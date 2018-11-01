@@ -106,7 +106,7 @@ class API_User:
 				sections = set(sections)
 				sections_to_consider = []
 				for section in course.get_sections():
-					if section in sections:
+					if section.get_section_number() in sections:
 						sections_to_consider.append(section)
 
 			self._wish_list[key] = {"course": course,
@@ -142,9 +142,9 @@ class API_User:
 
 		need_list = []
 
-		for course_id in self._wish_list:
-			if not self._wish_list[course_id]["optional"]:
-				need_list.append(self._wish_list[course_id]["course"])
+		for course_key in self._wish_list:
+			if not self._wish_list[course_key]["optional"]:
+				need_list.append(self._wish_list[course_key]["course"])
 
 		return need_list
 
@@ -160,9 +160,9 @@ class API_User:
 
 		want_list = []
 
-		for course_id in self._wish_list:
-			if self._wish_list[course_id]["optional"]:
-				want_list.append(self._wish_list[course_id]["course"])
+		for course_key in self._wish_list:
+			if self._wish_list[course_key]["optional"]:
+				want_list.append(self._wish_list[course_key]["course"])
 
 		return want_list
 
@@ -214,7 +214,8 @@ class API_User:
 			possible_schedules += all_schedules_without
 
 		course = course_list[0]
-		sections = course.get_sections()
+		course_key = course.get_subject() + str(course.get_course_id())
+		sections = self._wish_list[course_key]["sections"]
 
 		# for each potential section of this course...
 		for section in sections:
