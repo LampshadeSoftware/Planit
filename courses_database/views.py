@@ -43,7 +43,7 @@ def index(request):
 				"attributes": section.course_attr
 			}
 
-			sections_of_courses.setdefault(subject + course_id, default=[]).append(section_dict)
+			sections_of_courses.setdefault(subject + course_id, []).append(section_dict)
 
 	return render(request, 'index.html', {"sections": sections, "sections_of_courses": sections_of_courses, "courses_info": json.dumps(courses_info)})
 
