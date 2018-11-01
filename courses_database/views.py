@@ -20,7 +20,8 @@ def index(request):
 	sections_of_courses = {}
 	for section in Section.objects.all():
 		subject, course_id = section.subject, section.course_id
-		# makes sure that we don't add multiple sections for the same class
+
+		# Makes sure we don't add classes with no meet time
 		if len(section.meet_time) == 0:
 			continue
 
@@ -30,6 +31,8 @@ def index(request):
 			"meet_time": section.meet_time,
 			"location": section.location
 		}
+
+		# makes sure that we don't add multiple sections for the same class
 		if subject + course_id not in unique_sections:
 			sections.append(section)
 			unique_sections.add(subject + course_id)
