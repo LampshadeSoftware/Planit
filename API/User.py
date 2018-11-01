@@ -84,7 +84,7 @@ class API_User:
 			self._filters['desired_attributes'].remove(attribute)
 
 
-	def add_to_wish_list(self, subject, course_id, optional=True, sections=None):
+	def add_to_wish_list(self, subject, course_id, optional=True, sections='all'):
 		"""
 		Adds a course to the wish list.
 
@@ -100,7 +100,7 @@ class API_User:
 		if key not in self._wish_list:
 			course = API_Course(subject, course_id)
 
-			if sections is None:
+			if sections == 'all':
 				sections_to_consider = course.get_sections()
 			else:
 				sections = set(sections)
