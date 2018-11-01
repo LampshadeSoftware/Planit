@@ -103,10 +103,10 @@ class API_User:
 			if sections == 'all':
 				sections_to_consider = course.get_sections()
 			else:
-				sections = set(sections)
+				sections_set = set(sections)
 				sections_to_consider = []
 				for section in course.get_sections():
-					if section.get_section_number() in sections:
+					if section.get_section_number() in sections_set:
 						sections_to_consider.append(section)
 
 			self._wish_list[key] = {"course": course,
