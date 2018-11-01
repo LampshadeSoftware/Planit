@@ -51,51 +51,22 @@ class DisplayedCourse {
                     wish_list.getItem(this.subject, this.course_id).setOptional(checked);
                     updateSchedules(true);
                 };
+
+                document.getElementById("use_column").hidden = false;
             } else {
                 displayed_optional_holder.hide();
+                document.getElementById("use_column").hidden = true;
             }
             $("#displayed_button").html(button_text);
             $("#displayed_optional_checkbox").prop('checked', checked);
 
             let sections_div = document.getElementById("sections_of_course");
-            sections_div.innerHTML = "";
 
-            let table_element = document.createElement("table");
-            table_element.class = "display";
-            table_element.id = "sections_in_course_table";
-            table_element.cellPadding = "10";
+            let table_element = document.getElementById("sections_of_course_table");
+            table_element.hidden = false;
 
-            let thead = document.createElement("thead");
-            let headr = document.createElement("tr");
-
-            var head_title;
-
-            if (wish_list.contains(this.subject + this.course_id)){
-                head_title = document.createElement("th");
-                head_title.innerHTML = "Use";
-                headr.appendChild(head_title);
-            }
-
-            head_title = document.createElement("th");
-            head_title.innerHTML = "Section #";
-            headr.appendChild(head_title);
-
-            head_title = document.createElement("th");
-            head_title.innerHTML = "Instructor";
-            headr.appendChild(head_title);
-
-            head_title = document.createElement("th");
-            head_title.innerHTML = "Meet Time";
-            headr.appendChild(head_title);
-
-            head_title = document.createElement("th");
-            head_title.innerHTML = "Location";
-            headr.appendChild(head_title);
-
-            thead.appendChild(headr);
-            table_element.appendChild(thead);
-
-            let tbody = document.createElement("tbody");
+            let tbody = document.getElementById("sections_of_course_table_body");
+            tbody.innerHTML = "";
 
             for (let i in this.sections) {
                 let section = this.sections[i];
@@ -137,9 +108,6 @@ class DisplayedCourse {
 
                 tbody.appendChild(row);
             }
-            table_element.appendChild(tbody);
-
-            sections_div.appendChild(table_element);
 
         } else {
             $("#displayed_content").hide();
