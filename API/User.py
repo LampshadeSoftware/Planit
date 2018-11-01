@@ -84,7 +84,7 @@ class API_User:
 			self._filters['desired_attributes'].remove(attribute)
 
 
-	def add_to_wish_list(self, subject, course_id, optional=True):
+	def add_to_wish_list(self, subject, course_id, optional=True, sections=None):
 		"""
 		Adds a course to the wish list.
 
@@ -95,10 +95,23 @@ class API_User:
 		when computing potential schedules.
 		"""
 
+
 		key = str(subject) + str(course_id)
 		if key not in self._wish_list:
 			course = API_Course(subject, course_id)
-			self._wish_list[key] = [course, optional]
+
+			if sections is None:
+				sections_to_consider = course.get_sections()
+			else:
+				sections = set(sections)
+				sections_to_consider = []
+				for section in course.get_sections():
+					if section in sections:
+						sections_to_consider.append(section)
+
+			self._wish_list[key] = {"course": course,
+									"optional": optional,
+									"sections": sections_to_consider}
 		else:
 			pass
 			# print(key + " already in wish list")
@@ -115,7 +128,7 @@ class API_User:
 
 		key = str(subject) + str(course_id)
 		if key in self._wish_list:
-			self._wish_list[key][1] = value
+			self._wish_list[key]["optional"] = value
 
 	def get_need_list(self):
 		"""
@@ -129,9 +142,9 @@ class API_User:
 
 		need_list = []
 
-		for course in self._wish_list:
-			if not self._wish_list[course][1]:
-				need_list.append(self._wish_list[course][0])
+		for course_id in self._wish_list:
+			if not self._wish_list[course_id]["optional"]:
+				need_list.append(self._wish_list[course_id]["course"])
 
 		return need_list
 
@@ -147,9 +160,9 @@ class API_User:
 
 		want_list = []
 
-		for course in self._wish_list:
-			if self._wish_list[course][1]:
-				want_list.append(self._wish_list[course][0])
+		for course_id in self._wish_list:
+			if self._wish_list[course_id]["optional"]:
+				want_list.append(self._wish_list[course_id]["course"])
 
 		return want_list
 
@@ -261,7 +274,7 @@ class API_User:
 		# check that schedule has less than max credits
 		if self._filters['credit_max'] is not None and schedule.total_credits() > self._filters['credit_max']:
 			return False
-			
+
 		return True
 
 	def schedule_passes_final_filters(self, schedule):

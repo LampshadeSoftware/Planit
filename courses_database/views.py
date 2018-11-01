@@ -15,14 +15,21 @@ def index(request):
 			courses_info (dictionary): a dictionary that maps "subject + course_id" to relevant course information (descriptions, etc.)
 	"""
 	unique_sections = set()
-	sections = []
 	courses_info = {}
 	sections_of_courses = {}
 	for section in Section.objects.all():
 		subject, course_id = section.subject, section.course_id
 		# makes sure that we don't add multiple sections for the same class
+		if len(section.meet_time) == 0:
+			continue
+
+		section_dict = {
+			"section_number": section.section_number,
+			"instructor": section.instructor,
+			"meet_time": section.meet_time,
+			"location": section.location
+		}
 		if subject + course_id not in unique_sections:
-			sections.append(section)
 			unique_sections.add(subject + course_id)
 			# TODO: also add other stuff to this dictionary like professors and section times
 			courses_info[subject + course_id] = {
@@ -31,23 +38,11 @@ def index(request):
 				"attributes": section.course_attr
 			}
 
-			section_dict = {
-				"section_number": section.section_number,
-				"instructor": section.instructor,
-				"meet_time": section.meet_time,
-				"location": section.location
-			}
 			sections_of_courses[subject + course_id] = [section_dict]
 		else:
-			section_dict = {
-				"section_number": section.section_number,
-				"instructor": section.instructor,
-				"meet_time": section.meet_time,
-				"location": section.location
-			}
 			sections_of_courses[subject + course_id].append(section_dict)
 
-	return render(request, 'index.html', {"sections": sections, "sections_of_courses": sections_of_courses, "courses_info": json.dumps(courses_info)})
+	return render(request, 'index.html', {"sections_of_courses": sections_of_courses, "courses_info": json.dumps(courses_info)})
 
 
 def get_schedules(request):

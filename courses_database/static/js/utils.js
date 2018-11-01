@@ -129,12 +129,6 @@ class DisplayedCourse {
 
             sections_div.appendChild(table_element);
 
-            let sections_in_course_table = $('#sections_in_course_table').DataTable({
-                deferRender:    true,  // only creates nodes for items as needed
-                scrollY:        200,  // the height of the scroll view
-                scrollCollapse: true,  // dynamically scale the height if there are too few items
-                scroller:       true,  // only renders elements that are in view
-            });
         } else {
             $("#displayed_content").hide();
         }
