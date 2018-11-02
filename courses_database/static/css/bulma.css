@@ -8586,6 +8586,20 @@ button {
   margin-top: 1.5rem;
 }
 
+.sections_of_course_table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.sections_of_course_table th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+.sections_of_course_table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
 #calendar {
   background-color: #ffffff;
 }

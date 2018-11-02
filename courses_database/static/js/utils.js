@@ -60,11 +60,7 @@ class DisplayedCourse {
             $("#displayed_button").html(button_text);
             $("#displayed_optional_checkbox").prop('checked', checked);
 
-            let sections_div = document.getElementById("sections_of_course");
-
-            let table_element = document.getElementById("sections_of_course_table");
-            table_element.hidden = false;
-
+            // sections of courses
             let tbody = document.getElementById("sections_of_course_table_body");
             tbody.innerHTML = "";
 
@@ -100,7 +96,7 @@ class DisplayedCourse {
 
                 let meet_time = document.createElement("td");
                 meet_time.innerHTML = section["meet_time"];
-                row.appendChild(meet_time)
+                row.appendChild(meet_time);
 
                 let location = document.createElement("td");
                 location.innerHTML = section["location"];
