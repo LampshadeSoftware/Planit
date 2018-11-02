@@ -8,7 +8,7 @@ function calendarInit(){
         columnHeaderFormat: 'dddd',
         minTime: "08:00:00",
         maxTime: "23:59:00",
-        height: "auto",
+        height: "parent",
         eventColor: '#29B89B',
         header:false,
 

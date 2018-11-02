@@ -336,8 +336,7 @@
             <div><strong id="displayed_title"></strong></div>
             <div class="small_text">
                 <p>
-                    # of Sections: <span id="num_sections"></span>&emsp;
-                    Instructor: <span id="displayed_instructor"></span>
+                    Attributes: <span id="displayed_attributes"></span>
                 </p>
                 <div>
                     <button id="displayed_button" onclick="displayed_course.addToWishList()">Add Class</button>&emsp;
@@ -348,6 +347,22 @@
                     </span>
                 </div>
                 <p id="displayed_description"></p>
+                <div id="sections_of_course">
+                    <table class="sections_of_course_table" class="display" cellpadding="10">
+                        <thead>
+                        <tr>
+                            <th id="use_column">Use</th>
+                            <th>Section</th>
+                            <th>Instructor</th>
+                            <th>Meet Time</th>
+                            <th>Location</th>
+                        </tr>
+                        </thead>
+                        <tbody id="sections_of_course_table_body">
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

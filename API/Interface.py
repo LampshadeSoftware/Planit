@@ -28,8 +28,7 @@ def compute_schedules(wish_list, filters):
 		schedules_info.setdefault(subject + course_id, {})
 		schedules_info[subject+course_id]["color"] = colors[i % len(colors)]
 		# schedules_info[subject+course_id]["description"] = course_object.description
-
-		user.add_to_wish_list(str(course['subject']), str(course['course_id']), optional=course['optional'])
+		user.add_to_wish_list(str(course['subject']), str(course['course_id']), optional=course['optional'], sections=course['section_nums'])
 
 	# apply filters
 	for key in filters:

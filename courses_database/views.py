@@ -17,8 +17,21 @@ def index(request):
 	unique_sections = set()
 	sections = []
 	courses_info = {}
+	sections_of_courses = {}
 	for section in Section.objects.all():
 		subject, course_id = section.subject, section.course_id
+
+		# Makes sure we don't add classes with no meet time
+		if len(section.meet_time) == 0:
+			continue
+
+		section_dict = {
+			"section_number": section.section_number,
+			"instructor": section.instructor,
+			"meet_time": section.meet_time,
+			"location": section.location
+		}
+
 		# makes sure that we don't add multiple sections for the same class
 		if subject + course_id not in unique_sections:
 			sections.append(section)
@@ -26,15 +39,13 @@ def index(request):
 			# TODO: also add other stuff to this dictionary like professors and section times
 			courses_info[subject + course_id] = {
 				"description": section.description,
-				"crn": section.crn,
 				"credits": section.credit_hrs,
-				"instructor": section.instructor,
-				"num_sections": 1
+				"attributes": section.course_attr
 			}
-		else:
-			courses_info[subject + course_id]["num_sections"] += 1
 
-	return render(request, 'index.html', {"sections": sections, "courses_info": json.dumps(courses_info)})
+		sections_of_courses.setdefault(subject + course_id, []).append(section_dict)
+
+	return render(request, 'index.html', {"sections": sections, "sections_of_courses": sections_of_courses, "courses_info": json.dumps(courses_info)})
 
 
 def get_schedules(request):

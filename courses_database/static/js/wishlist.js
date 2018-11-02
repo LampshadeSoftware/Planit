@@ -15,7 +15,13 @@ class WishList {
     }
 
     addCourse(subject, course_id, title, optional) {
-        this.wish_list[subject + course_id] = new WishListItem(subject, course_id, title, optional);
+        var all_sections = [];
+        for (var i in sections_of_courses[subject + course_id]) {
+            let section = sections_of_courses[subject + course_id][i];
+            let section_num = section["section_number"];
+            all_sections.push(section_num);
+        }
+        this.wish_list[subject + course_id] = new WishListItem(subject, course_id, title, optional, all_sections);
     }
 
     removeCourse(subject, course_id){
@@ -102,15 +108,38 @@ class WishList {
 // TODO: Consider combining this with the DisplayedCourse class
 // Represents a wish list item (which, for this web site, is always a course)
 class WishListItem{
-    constructor(subject, course_id, title, optional){
+    constructor(subject, course_id, title, optional, section_nums){
         this.subject = subject;
         this.course_id = course_id;
         this.title = title;
         this.optional = optional;  // false if the course MUST be in the schedule, true if it doesn't matter
+        this.section_nums = {};
+        for (var i in section_nums) {
+            let section_num = section_nums[i];
+            this.section_nums[section_num] = true;
+        }
     }
 
     setOptional(val){
         this.optional = val;
+    }
+
+    setSectionStatus(section_num, status) {
+        this.section_nums[section_num] = status;
+    }
+
+    getSectionStatus(section_num) {
+        return this.section_nums[section_num];
+    }
+
+    getSections() {
+        var output = [];
+        for (var section_num in this.section_nums) {
+            if (this.section_nums[section_num]) {
+                output.push(section_num);
+            }
+        }
+        return output;
     }
 
     /**
@@ -144,7 +173,8 @@ class WishListItem{
             "subject": this.subject,
             "course_id": this.course_id,
             "title": this.title,
-            "optional": this.optional
+            "optional": this.optional,
+            "section_nums": this.getSections()
         };
     }
 }

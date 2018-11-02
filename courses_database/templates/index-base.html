@@ -24,7 +24,9 @@
             <a class="navbar-item" href="#">
                 <h1 class="title is-4 header" style="color: #ffffff">PLANiT!</h1>
             </a>
+
         </div>
+
     </nav>
     <div class="section is-primary">
         <div class="columns">
@@ -72,19 +74,29 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/sc-1.5.0/datatables.min.js"></script>
     <script src="https://unpkg.com/tippy.js@2.5.4/dist/tippy.all.min.js"></script>
 
-    <script src="{% static 'js/utils.js' %}"></script>
-    <script src="{% static 'js/wishlist.js' %}"></script>
-    <script src="{% static 'js/scheduler.js' %}"></script>
-    <script src="{% static 'js/init.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
     <script> // gets Django template variables that will be used in js
         var get_schedules_url = '{% url "get_schedules" %}';
         var get_sections_url = '{% url "get_sections" %}';
         var csrf_token = '{{ csrf_token }}';
         {% autoescape off %}
             var courses_info = {{ courses_info }};
+            var sections_of_courses = {{ sections_of_courses }};
         {% endautoescape %}
     </script>
+    <script src="{% static 'js/utils.js' %}"></script>
+    <script src="{% static 'js/wishlist.js' %}"></script>
+    <script src="{% static 'js/scheduler.js' %}"></script>
+    <script src="{% static 'js/init.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
     <!-- end load scripts -->
 </body>
+<footer>
+    <div style="text-align: center">
+        <p valign="center">Created by <a href="https://github.com/CowboyLynk" target="_blank">Cowboy Lynk</a>
+        and <a href="https://github.com/DanielMcCrystal" target="_blank">Daniel McCrystal</a></p>
+        <p valign="center" class="small_text">Please send us feedback at <a href="mailto:lampshadesoftware@gmail.com">lampshadesoftware@gmail.com</a></p>
+        <br>
+    </div>
+</footer>
 </html>

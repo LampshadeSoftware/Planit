@@ -84,7 +84,7 @@ class API_User:
 			self._filters['desired_attributes'].remove(attribute)
 
 
-	def add_to_wish_list(self, subject, course_id, optional=True):
+	def add_to_wish_list(self, subject, course_id, optional=True, sections='all'):
 		"""
 		Adds a course to the wish list.
 
@@ -95,10 +95,23 @@ class API_User:
 		when computing potential schedules.
 		"""
 
+
 		key = str(subject) + str(course_id)
 		if key not in self._wish_list:
 			course = API_Course(subject, course_id)
-			self._wish_list[key] = [course, optional]
+
+			if sections == 'all':
+				sections_to_consider = course.get_sections()
+			else:
+				sections_set = set(sections)
+				sections_to_consider = []
+				for section in course.get_sections():
+					if section.get_section_number() in sections_set:
+						sections_to_consider.append(section)
+
+			self._wish_list[key] = {"course": course,
+									"optional": optional,
+									"sections": sections_to_consider}
 		else:
 			pass
 			# print(key + " already in wish list")
@@ -115,7 +128,7 @@ class API_User:
 
 		key = str(subject) + str(course_id)
 		if key in self._wish_list:
-			self._wish_list[key][1] = value
+			self._wish_list[key]["optional"] = value
 
 	def get_need_list(self):
 		"""
@@ -129,9 +142,9 @@ class API_User:
 
 		need_list = []
 
-		for course in self._wish_list:
-			if not self._wish_list[course][1]:
-				need_list.append(self._wish_list[course][0])
+		for course_key in self._wish_list:
+			if not self._wish_list[course_key]["optional"]:
+				need_list.append(self._wish_list[course_key]["course"])
 
 		return need_list
 
@@ -147,9 +160,9 @@ class API_User:
 
 		want_list = []
 
-		for course in self._wish_list:
-			if self._wish_list[course][1]:
-				want_list.append(self._wish_list[course][0])
+		for course_key in self._wish_list:
+			if self._wish_list[course_key]["optional"]:
+				want_list.append(self._wish_list[course_key]["course"])
 
 		return want_list
 
@@ -201,7 +214,8 @@ class API_User:
 			possible_schedules += all_schedules_without
 
 		course = course_list[0]
-		sections = course.get_sections()
+		course_key = course.get_subject() + str(course.get_course_id())
+		sections = self._wish_list[course_key]["sections"]
 
 		# for each potential section of this course...
 		for section in sections:
@@ -261,7 +275,7 @@ class API_User:
 		# check that schedule has less than max credits
 		if self._filters['credit_max'] is not None and schedule.total_credits() > self._filters['credit_max']:
 			return False
-			
+
 		return True
 
 	def schedule_passes_final_filters(self, schedule):
