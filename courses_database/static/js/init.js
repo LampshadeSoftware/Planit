@@ -108,6 +108,7 @@ function tabsInit(){
         // makes all tab contents inactive
         $('#search_tab').removeClass('is-active');
         $('#filter_tab').removeClass('is-active');
+        $('#saved_schedules_tab').removeClass('is-active');
         // makes clicked tab content active
         $("#" + tab + "_tab").addClass('is-active');
     });

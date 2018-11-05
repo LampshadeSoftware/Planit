@@ -16,6 +16,12 @@
                     <span>Filter Schedules</span>
                 </a>
             </li>
+            <li data-tab="saved_schedules">
+                <a>
+                    <span class="icon is-smal"><i class="fas fa-star"></i></span>
+                    <span>Saved Schedules</span>
+                </a>
+            </li>
         </ul>
     </div>
 {% endblock %}
@@ -330,6 +336,12 @@
     </form>
 {% endblock %}
 
+{% block savedSchedules %}
+    <div id="savedSchedulesDiv">
+        <strong>Testing!!!!</strong>
+    </div>
+{% endblock %}
+
 {% block displayedCourse %}
     <div class="notification" id="displayed_course">
         <div id="displayed_content">
@@ -367,6 +379,7 @@
         </div>
     </div>
 {% endblock %}
+
 
 {% block pop-up %}
     <article class="message pop-up">
