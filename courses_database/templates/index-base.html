@@ -53,7 +53,7 @@
                 {% block displayedCourse %}{% endblock %}
             </div>
             <div class="column is-7" id="calendar_column">
-                <div class="center-horizontal">
+                <div class="center-horizontal" id="schedule_arrows">
                     <button onclick="cycleLeft()">
                         <i class="fas fa-arrow-left"></i>
                     </button>
@@ -63,6 +63,12 @@
                     </button>
                 </div>
                 <div id="calendar"></div>
+                <div class="notification" id="empty_calendar" style="height:80%">
+                    <div id="empty_calendar_text">
+                        <strong>There are no possible schedules for the given configuration.</strong>
+                        Try adding more classes to your wish list, or loosen your schedule filters.
+                    </div>
+                </div>
             </div>
         </div>
     </div>

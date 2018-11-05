@@ -69,18 +69,27 @@ function updateSchedules(is_async) {
  * or when the user clicks the right/left buttons on top of the calendar
  */
 function updateCalendar() {
+
+
+    // updates the schedule index number string
+    if (scheduler.numberOfSchedules() === 0){
+        //document.getElementById("schedule_index").innerHTML = "0/0";
+        $('#schedule_arrows').css("visibility", "hidden");
+        $('#calendar').hide();
+        $('#empty_calendar').show();
+        $('#empty_calendar_text').show();
+    } else {
+        $('#schedule_arrows').css("visibility", "visible");
+        $('#calendar').show();
+        $('#empty_calendar').hide();
+        document.getElementById("schedule_index").innerHTML = (scheduler.schedule_index + 1).toString() + "/"
+            + scheduler.numberOfSchedules().toString();
+    }
+
     let calendar = $('#calendar');
     calendar.fullCalendar('removeEvents');
     calendar.fullCalendar('addEventSource', scheduler.getCurrentSchedule());
     calendar.fullCalendar('rerenderEvents');
-
-    // updates the schedule index number string
-    if (scheduler.numberOfSchedules() === 0){
-        document.getElementById("schedule_index").innerHTML = "0/0";
-    } else {
-        document.getElementById("schedule_index").innerHTML = (scheduler.schedule_index + 1).toString() + "/"
-            + scheduler.numberOfSchedules().toString();
-    }
 
     // Updates the wish list button visuals
     wish_list.updateButtons();
