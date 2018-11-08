@@ -21,17 +21,18 @@ class Time_Block:
 		"""
 
 		blocks = []
-
-		if ':' in day_time_str:
-			colon_index = day_time_str.index(':')
-			days = day_time_str[:colon_index]
-
-			start_time = day_time_str[-9:-5]
-			end_time = day_time_str[-4:]
-
-			for day in days:
-				blocks.append(Time_Block(start_time, end_time, day))
-
+		
+		for time_str in day_time_str.split(" "):
+			if ':' in time_str:
+				colon_index = time_str.index(':')
+				days = time_str[:colon_index]
+				
+				start_time = time_str[-9:-5]
+				end_time = time_str[-4:]
+				
+				for day in days:
+					blocks.append(Time_Block(start_time, end_time, day))
+	
 		return blocks
 
 	@classmethod
