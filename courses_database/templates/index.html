@@ -338,7 +338,19 @@
 
 {% block savedSchedules %}
     <div id="savedSchedulesDiv">
-        <strong>Testing!!!!</strong>
+        <strong>Favorite Schedules</strong>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th># Credits</th>
+                </tr>
+            </thead>
+            <tbody id="favorite_schedules_table_body">
+
+            </tbody>
+        </table>
     </div>
 {% endblock %}
 
@@ -360,7 +372,7 @@
                 </div>
                 <p id="displayed_description"></p>
                 <div id="sections_of_course">
-                    <table class="sections_of_course_table" class="display" cellpadding="10">
+                    <table id="sections_of_course_table" class="display" cellpadding="10">
                         <thead>
                         <tr>
                             <th id="use_column">Use</th>

@@ -2,6 +2,7 @@
 
 // global variables
 let scheduler = new Scheduler();
+let favorites = new FavoritesManager();
 let wish_list = new WishList(scheduler);  // stores the classes that the user is interested in
 let displayed_course = new DisplayedCourse();  // the course that was most recently clicked
 
@@ -144,3 +145,57 @@ function removeCourseFromWishList(subject, course_id, title){
     updateSchedules();
 }
 // END OF WISH LIST FUNCTIONS
+
+// START OF FAVORITE FUNCTIONS
+
+function toggleCurrentScheduleFavorite() {
+    let hash = scheduler.getCurrentScheduleHash();
+    if (favorites.scheduleInFavorites(hash)) {
+        removeCurrentScheduleFromFavorites();
+    } else {
+        addCurrentScheduleToFavorites();
+    }
+}
+
+function addCurrentScheduleToFavorites() {
+    let events = scheduler.getCurrentSchedule();
+    let name = "" + (favorites.getNumberOfFavorites() + 1);
+    let hash = scheduler.getCurrentScheduleHash();
+    if (favorites.addFavorite(events, name, hash)) {
+        let favoritesTable = document.getElementById("favorite_schedules_table_body");
+        let newRow = document.createElement("tr");
+        newRow.appendChild(document.createElement("td"));
+        newRow.id = hash;
+
+        let nameCell = document.createElement("td");
+        nameCell.innerHTML = name;
+        newRow.appendChild(nameCell);
+
+        let numCreditsCell = document.createElement("td");
+        numCreditsCell.innerHTML = "n/a";
+        newRow.appendChild(numCreditsCell);
+
+        favoritesTable.appendChild(newRow);
+
+
+        let starButton = document.getElementById("save_schedule_star");
+        starButton.className = "fas fa-star yellow";
+    }
+}
+
+function removeCurrentScheduleFromFavorites() {
+    let hash = scheduler.getCurrentScheduleHash();
+    favorites.removeFavoriteByHash(hash);
+
+    let starButton = document.getElementById("save_schedule_star");
+    starButton.className = "far fa-star";
+
+    let tableRow = document.getElementById(hash);
+    tableRow.remove();
+}
+
+function repopulateFavoritesTable() {
+
+}
+
+// END OF FAVORITE FUNCTIONS

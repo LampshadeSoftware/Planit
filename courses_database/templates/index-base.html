@@ -72,8 +72,8 @@
                         <i class="fas fa-arrow-right"></i>
                     </button>
                     <span id="save_schedule" style="float: right">
-                        <button>
-                            <i class="far fa-star"></i>
+                        <button onclick="toggleCurrentScheduleFavorite()">
+                            <i class="far fa-star" id="save_schedule_star"></i>
                         </button>
                     </span>
                 </div>
@@ -110,6 +110,7 @@
     </script>
     <script src="{% static 'js/utils.js' %}"></script>
     <script src="{% static 'js/wishlist.js' %}"></script>
+    <script src="{% static 'js/favorites.js' %}"></script>
     <script src="{% static 'js/scheduler.js' %}"></script>
     <script src="{% static 'js/init.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>

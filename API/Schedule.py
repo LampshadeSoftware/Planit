@@ -25,7 +25,7 @@ class API_Schedule:
 		# TODO: visually indicate to the user that this class has no time set
 		if new_section.get_time_blocks() == []:
 			return False
-		
+
 		# check that the class we are trying to add does not overlap with
 		# any sections that already exist in this schedule
 		for existing_section in self._sections:
@@ -143,11 +143,13 @@ class API_Schedule:
 				num_credits -> int
 				times -> list(dict) (see Time_Block.py for keys)
 		"""
-		
+
 		sched = dict()
 		sched['total_credits'] = self.total_credits()
 
 		sections = dict()
+
+		crn_list = []
 
 		for section in self._sections:
 
@@ -157,11 +159,16 @@ class API_Schedule:
 			section_dict['title'] = section.get_title()
 			section_dict['section_num'] = section.get_section_number()
 			section_dict['crn'] = section.get_crn()
+			crn_list.append(section.get_crn())
 			section_dict['num_credits'] = section.get_course().get_num_credits()
 			section_dict['times'] = [x.get_as_dict() for x in section.get_time_blocks()]
 
 			key = section_dict['subject'] + section_dict['course_id']
 			sections[key] = section_dict
+
+		crn_list.sort()
+		schedule_hash = ' '.join([str(i) for i in crn_list])
+		sched['hash'] = schedule_hash
 
 		sched['sections'] = sections
 

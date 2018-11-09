@@ -8,6 +8,7 @@ class Scheduler {
         this.schedules = this.empty_schedules;
         this.schedule_index = 0;
         this.credit_counts = [];
+        this.schedule_hashes = [];
         this.schedules_info = {};
     }
 
@@ -33,6 +34,7 @@ class Scheduler {
         // parses the raw schedules dictionary into a FullCalendar-readable format
         for (let i in raw_schedules) {
             this.credit_counts.push(raw_schedules[i]["total_credits"]);
+            this.schedule_hashes.push(raw_schedules[i]["hash"])
             let schedule = [];
             let sections = raw_schedules[i]["sections"];
             for (let j in sections) {
@@ -93,6 +95,12 @@ class Scheduler {
             }
         }
         return this.schedules.length;
+    }
+
+    getCurrentScheduleHash() {
+        if (this.numberOfSchedules() != 0) {
+            return this.schedule_hashes[this.schedule_index];
+        }
     }
 
     reset(){
