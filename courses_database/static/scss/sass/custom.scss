@@ -28,6 +28,16 @@ button{
 .red:hover {
   color: $hover-color;
 }
+.shadow:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 22px 54px 0 rgba(158, 166, 168, 0.1);
+  z-index: -1;
+}
 // END REGION
 
 // REGION: general useful classes
