@@ -8447,7 +8447,7 @@ button {
 }
 
 .header {
-  font-family: "Arial Rounded MT Bold", Arial, Helvetica, sans-serif;
+  font-family: "Montserrat-ExtraBold", Arial, Helvetica, sans-serif;
 }
 
 .section {
@@ -8469,6 +8469,17 @@ button {
 
 .red:hover {
   color: #8c3838;
+}
+
+.shadow:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 22px 54px 0 rgba(158, 166, 168, 0.1);
+  z-index: -1;
 }
 
 .center-horizontal {
@@ -8615,6 +8626,15 @@ button {
 .message {
   margin: auto;
   width: 50%;
+}
+
+.navbar_padding {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+#planit_span {
+  color: #C2E9E7;
 }
 
 .loading_screen {

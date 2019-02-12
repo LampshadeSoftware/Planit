@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>PLANiT!</title>
+    <title>W&M Course Planner</title>
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
     <link rel="icon" sizes="16x16 32x32 64x64" href="{% static 'images/favicon.ico' %}">
 
@@ -31,10 +31,15 @@
     {% block loadingScreen %}{% endblock %}
     <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" href="#">
-                <h1 class="title is-4 header" style="color: #ffffff">PLANiT!</h1>
+            <div class="navbar-item">
+                <img class="navbar_padding" src="{% static 'images/logo.png' %}">
+                <h1 class="title is-4 header" style="color: #ffffff">PLAN<span id="planit_span">IT</span></h1>
+            </div>
+        </div>
+        <div class="navbar-end">
+            <a class="navbar-item" href="https://github.com/LampshadeSoftware/Planit" target="_blank">
+                <i class="navbar_padding fab fa-github fa-lg"></i>
             </a>
-
         </div>
 
     </nav>
