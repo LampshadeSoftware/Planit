@@ -1,3 +1,4 @@
+import re
 import urllib.request
 from bs4 import BeautifulSoup
 
@@ -91,7 +92,8 @@ def save_courses_for_subj(subj, term):
 			crn = int(entry.strip("*"))
 			entry = int(entry.strip("*"))
 		elif header == "course_id":
-			course_id, section_number = entry.strip().split(" ")[1:]
+			entry = re.sub(' +', ' ', entry.strip())
+			course_id, section_number = entry.split(" ")[1:]
 			setattr(current_section, "course_id", course_id)
 			setattr(current_section, "section_number", section_number)
 			continue
@@ -104,24 +106,26 @@ def save_courses_for_subj(subj, term):
 		save_course(current_section, subj)
 
 
-def get_all_subject_courses():
+def get_all_subject_courses(term=None):
 	html = urllib.request.urlopen(SUBJECT_SELECT_URL).read()
 	soup = BeautifulSoup(html, 'html.parser')
 	
-	# ensures we are using the most up-to-date term
-	all_terms = {x.contents[0]: x['value'] for x in soup.find('select', {'name': 'term_code'}).findAll('option')}
-	non_summer_terms = []  # sorted by date (oldest first)
-	for term in all_terms:
-		if "Summer" not in term:
-			non_summer_terms.append(all_terms[term])
+	if term is None:
+		# ensures we are using the most up-to-date term
+		all_terms = {x.contents[0]: x['value'] for x in soup.find('select', {'name': 'term_code'}).findAll('option')}
+		non_summer_terms = []  # sorted by date (oldest first)
+		for term in all_terms:
+			if "Summer" not in term:
+				non_summer_terms.append(all_terms[term])
+		term = non_summer_terms[-1]
 	
 	subj_codes = [x['value'] for x in soup.find('select', {'name': 'term_subj'}).findAll('option')[1:]]
 	
 	for subj_code in subj_codes:  # all the subjects are at different urls so this just goes through them all
 		print("getting courses for subject code: {}".format(subj_code))
-		save_courses_for_subj(subj_code, non_summer_terms[-1])
+		save_courses_for_subj(subj_code, term)
 
 
 print("Starting...")
-get_all_subject_courses()
+get_all_subject_courses(202010)
 print("Done!")
