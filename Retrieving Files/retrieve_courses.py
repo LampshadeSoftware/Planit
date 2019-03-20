@@ -42,10 +42,10 @@ def get_additional_info(crn, current_section, term):
 	try:
 		html = urllib.request.urlopen(url).read()
 		soup = BeautifulSoup(html, 'html.parser')
-		descrip = soup.find_all("td")[0].text.split(" -- ")[2].strip()
+		description = soup.find_all("td")[0].text.split(" -- ")[2].strip()
 		location = soup.find_all("td")[-1].text
 		
-		setattr(current_section, "description", descrip)
+		setattr(current_section, "description", description)
 		setattr(current_section, "location", location)
 	except:
 		#TODO: when this is an automatic update, have it send us an email that it failed
