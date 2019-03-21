@@ -1,0 +1,6 @@
+#!/bin/sh
+rm -rf /afs/athena.mit.edu/user/c/l/clynk/web_scripts/planit/static
+
+cp -r /afs/athena.mit.edu/user/c/l/clynk/Scripts/django/Planit/courses_database/static /afs/athena.mit.edu/user/c/l/clynk/web_scripts/planit
+
+athrun scripts for-each-server pkill -f index.fcgi

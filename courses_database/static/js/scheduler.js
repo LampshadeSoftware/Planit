@@ -42,6 +42,7 @@ class Scheduler {
                 let course_id = section["course_id"];
                 let section_num = section["section_num"];
                 let title = section["title"];
+                let crn = section["crn"];
                 let num_credits = section["num_credits"];
                 for (let t in section["times"]) {
                     let time = section["times"][t];
@@ -54,7 +55,8 @@ class Scheduler {
                         "title": "[" + num_credits + "] " + title + " - " + subject + " " + course_id + " " + section_num,
                         "start": "2018-01-0" + day + 'T' + start_hour + ":" + start_minute,
                         "end": "2018-01-0" + day + 'T' + end_hour + ":" + end_minute,
-                        "color": this.schedules_info[subject + course_id]["color"]
+                        "color": this.schedules_info[subject + course_id]["color"],
+						"description": crn
                     });
                 }
             }

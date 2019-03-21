@@ -10,7 +10,7 @@ button{
   outline: 0;
 }
 .header {
-  font-family: 'Arial Rounded MT Bold', Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat-ExtraBold', Arial, Helvetica, sans-serif;
 }
 .section {
   padding-top: 0.75rem;
@@ -21,6 +21,22 @@ button{
 }
 .columns {
   margin-top: 0px;
+}
+.red {
+  color: $red-color;
+}
+.red:hover {
+  color: $hover-color;
+}
+.shadow:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 22px 54px 0 rgba(158, 166, 168, 0.1);
+  z-index: -1;
 }
 // END REGION
 
@@ -63,6 +79,9 @@ button{
   border-style: solid;
   border-color: #f4b267;
   border-width: 2px;
+}
+#empty_wish_list{
+  margin: 1px;
 }
 .notification {
   padding: 1rem;
@@ -132,6 +151,17 @@ button{
 #displayed_course {
   margin-top: 1.5rem;
 }
+.sections_of_course_table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.sections_of_course_table th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+.sections_of_course_table tr:nth-child(even) {background-color: #f9f9f9;}
 // END REGION
 
 // REGION: calendar
@@ -143,6 +173,23 @@ button{
 }
 .fc-content {
   font-size: 12px;
+}
+// END REGION
+
+// REGION: pop-up
+.message{
+  margin: auto;
+  width: 50%;
+}
+// END REGION
+
+// REGION: Header
+.navbar_padding{
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+#planit_span{
+  color: #C2E9E7;
 }
 // END REGION
 

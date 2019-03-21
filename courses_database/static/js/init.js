@@ -1,5 +1,6 @@
 // For the calendar that displays all of the schedules
 function calendarInit(){
+
     $('#calendar').fullCalendar({
         defaultDate: moment('2018-01-01'),
         weekends: false,
@@ -7,14 +8,29 @@ function calendarInit(){
         columnHeaderFormat: 'dddd',
         minTime: "08:00:00",
         maxTime: "23:59:00",
-        height: "auto",
+        height: "parent",
         eventColor: '#29B89B',
         header:false,
 
         contentHeight: 600,
         allDaySlot: false,
 
-        events: [{}]
+        events: [{}],
+        eventClick: function(calEvent, jsEvent, view) {
+
+            var output = document.getElementById("output")
+            output.innerHTML = calEvent.description;
+
+            var range = document.createRange();
+
+            range.selectNode(output);
+            window.getSelection().addRange(range);
+
+            document.execCommand("copy");
+            output.innerHTML = "";
+
+            alert("Copied: " + calEvent.description + " to clipboard");
+        }
     });
 }
 

@@ -117,9 +117,9 @@
         <tbody>
         {% for item in sections %}
             <tr>
-                <td><a class="btn btn-large btn-primary"
-                       onclick="addCourseToWishList('{{ item.subject }}', '{{ item.course_id }}', '{{ item.title }}', true)">
-                    <i class="fas fa-plus-circle"></i></a></td>
+                <td><a class=""
+                       onclick="addCourseToWishList('{{ item.subject }}', '{{ item.course_id }}', '{{ item.title }}', false)">
+                    <i class="btn btn-large btn-primary fas fa-plus-circle" id='addButton-{{ item.subject }}{{ item.course_id }}'></i></a></td>
                 <td> {{ item.subject }} </td>
                 <td> {{ item.course_id }} </td>
                 <td> {{ item.title }}</td>
@@ -336,8 +336,7 @@
             <div><strong id="displayed_title"></strong></div>
             <div class="small_text">
                 <p>
-                    CRN: <span id="displayed_crn"></span>&emsp;
-                    Instructor: <span id="displayed_instructor"></span>
+                    Attributes: <span id="displayed_attributes"></span>
                 </p>
                 <div>
                     <button id="displayed_button" onclick="displayed_course.addToWishList()">Add Class</button>&emsp;
@@ -348,9 +347,37 @@
                     </span>
                 </div>
                 <p id="displayed_description"></p>
+                <div id="sections_of_course">
+                    <table class="sections_of_course_table" class="display" cellpadding="10">
+                        <thead>
+                        <tr>
+                            <th id="use_column">Use</th>
+                            <th>Section</th>
+                            <th>Instructor</th>
+                            <th>Meet Time</th>
+                            <th>Location</th>
+                        </tr>
+                        </thead>
+                        <tbody id="sections_of_course_table_body">
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block pop-up %}
+    <article class="message pop-up">
+        <div class="message-header">
+            <p>Hello World</p>
+            <button class="delete" aria-label="delete"></button>
+        </div>
+        <div class="message-body">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+        </div>
+    </article>
 {% endblock %}
 
 {% block loadingScreen %}

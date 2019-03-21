@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>PLANiT!</title>
+    <title>W&M Course Planner</title>
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
     <link rel="icon" sizes="16x16 32x32 64x64" href="{% static 'images/favicon.ico' %}">
 
@@ -16,15 +16,32 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <!-- end load CSS -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128551056-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-128551056-1');
+    </script>
 </head>
 <body onunload="wish_list.saveData()">
     {% block loadingScreen %}{% endblock %}
     <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" href="#">
-                <h1 class="title is-4 header" style="color: #ffffff">PLANiT!</h1>
+            <div class="navbar-item">
+                <img class="navbar_padding" src="{% static 'images/logo.png' %}">
+                <h1 class="title is-4 header" style="color: #ffffff">PLAN<span id="planit_span">IT</span></h1>
+            </div>
+        </div>
+        <div class="navbar-end">
+            <a class="navbar-item" href="https://github.com/LampshadeSoftware/Planit" target="_blank">
+                <i class="navbar_padding fab fa-github fa-lg"></i>
             </a>
         </div>
+
     </nav>
     <div class="section is-primary">
         <div class="columns">
@@ -61,6 +78,7 @@
             </div>
         </div>
     </div>
+    <div id="output"></div>
 
     <!-- load scripts -->
     <script src="{% static 'fullcalendar/lib/jquery.min.js' %}"></script>
@@ -71,19 +89,29 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/sc-1.5.0/datatables.min.js"></script>
     <script src="https://unpkg.com/tippy.js@2.5.4/dist/tippy.all.min.js"></script>
 
-    <script src="{% static 'js/utils.js' %}"></script>
-    <script src="{% static 'js/wishlist.js' %}"></script>
-    <script src="{% static 'js/scheduler.js' %}"></script>
-    <script src="{% static 'js/init.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
     <script> // gets Django template variables that will be used in js
         var get_schedules_url = '{% url "get_schedules" %}';
         var get_sections_url = '{% url "get_sections" %}';
         var csrf_token = '{{ csrf_token }}';
         {% autoescape off %}
             var courses_info = {{ courses_info }};
+            var sections_of_courses = {{ sections_of_courses }};
         {% endautoescape %}
     </script>
+    <script src="{% static 'js/utils.js' %}"></script>
+    <script src="{% static 'js/wishlist.js' %}"></script>
+    <script src="{% static 'js/scheduler.js' %}"></script>
+    <script src="{% static 'js/init.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
     <!-- end load scripts -->
 </body>
+<footer>
+    <div style="text-align: center">
+        <p valign="center">Created by <a href="https://github.com/CowboyLynk" target="_blank">Cowboy Lynk</a>
+        and <a href="https://github.com/DanielMcCrystal" target="_blank">Daniel McCrystal</a></p>
+        <p valign="center" class="small_text">Please send us feedback at <a href="mailto:lampshadesoftware@gmail.com">lampshadesoftware@gmail.com</a></p>
+        <br>
+    </div>
+</footer>
 </html>

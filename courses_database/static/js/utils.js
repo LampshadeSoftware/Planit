@@ -8,6 +8,8 @@ class DisplayedCourse {
         this.course_id = null;
         this.title = null;
         this.description = null;
+        this.attributes = null;
+        this.sections = null;
     }
 
     /**
@@ -19,8 +21,8 @@ class DisplayedCourse {
         this.title = title;
         this.description = courses_info[this.subject + this.course_id]["description"];
         this.credits = courses_info[this.subject + this.course_id]["credits"];
-        this.crn = courses_info[this.subject + this.course_id]["crn"];
-        this.instructor = courses_info[this.subject + this.course_id]["instructor"];
+        this.attributes = courses_info[this.subject + this.course_id]["attributes"];
+        this.sections = sections_of_courses[this.subject + this.course_id];
         this.updateUI();
     }
 
@@ -34,8 +36,7 @@ class DisplayedCourse {
 
             // all text-based stuff
             $("#displayed_title").html("[" + this.credits + "] " + this.subject + " " + this.course_id + " " + this.title);
-            $("#displayed_crn").html(this.crn);
-            $("#displayed_instructor").html(this.instructor);
+            $("#displayed_attributes").html(this.attributes);
             $("#displayed_description").html(this.description);
 
             // 'add course' and 'required' buttons
@@ -50,11 +51,60 @@ class DisplayedCourse {
                     wish_list.getItem(this.subject, this.course_id).setOptional(checked);
                     updateSchedules(true);
                 };
+
+                document.getElementById("use_column").hidden = false;
             } else {
                 displayed_optional_holder.hide();
+                document.getElementById("use_column").hidden = true;
             }
             $("#displayed_button").html(button_text);
             $("#displayed_optional_checkbox").prop('checked', checked);
+
+            // sections of courses
+            let tbody = document.getElementById("sections_of_course_table_body");
+            tbody.innerHTML = "";
+
+            for (let i in this.sections) {
+                let section = this.sections[i];
+
+                let row = document.createElement("tr");
+
+                if (wish_list.contains(this.subject + this.course_id)){
+                    let checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    checkbox.id = this.subject + this.course_id + "_" + section["section_number"] + "_included_checkbox";
+
+
+                    let using = wish_list.getItem(this.subject, this.course_id).getSectionStatus(section["section_number"]);
+                    checkbox.checked = using;
+                    checkbox.onclick = () => {
+                        wish_list.getItem(this.subject, this.course_id).setSectionStatus(section["section_number"], !using);
+                        updateSchedules(true);
+                    };
+                    let checkbox_col = document.createElement("td");
+                    checkbox_col.appendChild(checkbox);
+                    row.appendChild(checkbox_col);
+                }
+
+                let section_num = document.createElement("td");
+                section_num.innerHTML = section["section_number"];
+                row.appendChild(section_num);
+
+                let instructor = document.createElement("td");
+                instructor.innerHTML = section["instructor"];
+                row.appendChild(instructor);
+
+                let meet_time = document.createElement("td");
+                meet_time.innerHTML = section["meet_time"];
+                row.appendChild(meet_time);
+
+                let location = document.createElement("td");
+                location.innerHTML = section["location"];
+                row.appendChild(location);
+
+                tbody.appendChild(row);
+            }
+
         } else {
             $("#displayed_content").hide();
         }
@@ -67,4 +117,16 @@ class DisplayedCourse {
         // this function is defined in main.js
         addCourseToWishList(this.subject, this.course_id, this.title)
     }
+}
+
+/**
+ * Toggles the appearance of the add button in the table view
+ * from a green plus to a red minus
+ * @param subject
+ * @param course_id
+ */
+function toggleAddButton(subject, course_id){
+    let buttonId = '#addButton-' + subject + course_id;
+    $(buttonId).toggleClass('fa-plus-circle fa-minus-circle');
+    $(buttonId).toggleClass('red');
 }
