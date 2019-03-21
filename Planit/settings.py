@@ -24,7 +24,7 @@ SECRET_KEY = 's^5)fr-t%a&01#wdz_l6o-)qyw1$i0h*d5$=#(1^6qy7yy+epg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.courseplanit.com', 'planit.clynk.scripts.mit.edu', 'localhost']
+ALLOWED_HOSTS = ['www.courseplanit.com', 'courseplanit.com', 'wm.courseplanit.com', 'planit.clynk.scripts.mit.edu', 'localhost']
 
 # Application definition
 
